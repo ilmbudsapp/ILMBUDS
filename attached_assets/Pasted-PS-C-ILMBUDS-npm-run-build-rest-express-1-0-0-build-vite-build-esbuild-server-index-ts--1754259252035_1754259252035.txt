@@ -1,0 +1,51 @@
+PS C:\ILMBUDS> npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (3) src\main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 2955 modules transformed.
+../dist/public/index.html                             3.39 kB │ gzip:   1.26 kB
+../dist/public/assets/index-DYeE_2rp.css            120.54 kB │ gzip:  19.54 kB
+../dist/public/assets/label-CHCj3xFd.js               0.55 kB │ gzip:   0.38 kB
+../dist/public/assets/sounds-BRFYD7Nl.js              0.64 kB │ gzip:   0.35 kB
+../dist/public/assets/separator-BQsoYTgS.js           0.67 kB │ gzip:   0.40 kB
+../dist/public/assets/badge-DTu2mdR-.js               0.96 kB │ gzip:   0.53 kB
+../dist/public/assets/button-Df50xPas.js              0.97 kB │ gzip:   0.48 kB
+../dist/public/assets/web-EBB8yiJI.js                 1.27 kB │ gzip:   0.43 kB
+../dist/public/assets/avatar-i3aU5Cm6.js              1.75 kB │ gzip:   0.81 kB
+../dist/public/assets/beliefs-5ccRoOek.js             2.19 kB │ gzip:   0.99 kB
+../dist/public/assets/pillars-C63YAbPj.js             2.21 kB │ gzip:   1.00 kB
+../dist/public/assets/badges-C6JYf8KI.js              2.28 kB │ gzip:   0.93 kB
+../dist/public/assets/donate-BjTfyXJC.js              2.44 kB │ gzip:   0.97 kB
+../dist/public/assets/ablution-BDQH67fV.js            2.89 kB │ gzip:   1.24 kB
+../dist/public/assets/belief-detail-DCgu7qAg.js       2.95 kB │ gzip:   1.16 kB
+../dist/public/assets/pillar-detail-B2CRoxz4.js       3.08 kB │ gzip:   1.16 kB
+../dist/public/assets/tabs-BJRgRhWf.js                3.18 kB │ gzip:   1.34 kB
+../dist/public/assets/profile-CMwRC62T.js             4.21 kB │ gzip:   1.22 kB
+../dist/public/assets/quran-C9b_NgSY.js               6.77 kB │ gzip:   2.33 kB
+../dist/public/assets/cartoons-BehKADt1.js            7.19 kB │ gzip:   2.41 kB
+../dist/public/assets/arabic-alphabet-_eLsaQ9G.js     9.08 kB │ gzip:   3.11 kB
+../dist/public/assets/quiz-categories-D1Y8gGeb.js    12.90 kB │ gzip:   3.59 kB
+../dist/public/assets/quiz-Di4xK2cR.js               30.90 kB │ gzip:   8.85 kB
+../dist/public/assets/about-D6nSYyET.js              31.49 kB │ gzip:  10.15 kB
+../dist/public/assets/settings-Dwk0CJ0v.js           40.90 kB │ gzip:  12.85 kB
+../dist/public/assets/catechism-B-xRr6wr.js          88.78 kB │ gzip:  35.90 kB
+../dist/public/assets/partners-BFYIW_Zr.js          104.32 kB │ gzip:  30.48 kB
+../dist/public/assets/stories-D_4a3skD.js           121.73 kB │ gzip:  49.63 kB
+../dist/public/assets/parent-dashboard-Bit5kR4W.js  381.56 kB │ gzip: 105.13 kB
+../dist/public/assets/index-BWKSERGq.js             551.27 kB │ gzip: 176.81 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.91s
+
+  dist\index.js  77.9kb
+
+Done in 7ms
+PS C:\ILMBUDS>
