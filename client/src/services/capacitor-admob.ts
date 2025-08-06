@@ -4,6 +4,20 @@ import { Capacitor } from '@capacitor/core';
 export class CapacitorAdMobService {
   private static isInitialized = false;
   
+  // Google Test Ad Unit IDs - SAFE za development
+  static readonly TEST_IDS = {
+    BANNER: 'ca-app-pub-3940256099942544/6300978111',
+    INTERSTITIAL: 'ca-app-pub-3940256099942544/1033173712',
+    REWARDED: 'ca-app-pub-3940256099942544/5224354917'
+  };
+
+  // Production Ad Unit IDs
+  static readonly PROD_IDS = {
+    BANNER: 'ca-app-pub-9746293142643974/3548505956',
+    INTERSTITIAL: 'ca-app-pub-9746293142643974/7649626393',
+    REWARDED: 'ca-app-pub-9746293142643974/2411518252'
+  };
+  
   static async initialize() {
     if (this.isInitialized || !Capacitor.isNativePlatform()) {
       return;
@@ -12,7 +26,7 @@ export class CapacitorAdMobService {
     try {
       await AdMob.initialize({
         testingDevices: ['EMULATOR'],
-        initializeForTesting: false,
+        initializeForTesting: true, // IMPORTANT: true for development
       });
       this.isInitialized = true;
       console.log('AdMob initialized successfully');
@@ -21,7 +35,7 @@ export class CapacitorAdMobService {
     }
   }
   
-  static async showBanner(adUnitId: string) {
+  static async showBanner(useTestAds = true) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Banner ad - Web environment detected');
       return;
@@ -31,61 +45,65 @@ export class CapacitorAdMobService {
       await this.initialize();
       
       const options: BannerAdOptions = {
-        adId: adUnitId,
+        adId: useTestAds ? this.TEST_IDS.BANNER : this.PROD_IDS.BANNER,
         adSize: BannerAdSize.BANNER,
         position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 80, // Increased margin to prevent navigation overlap
-        isTesting: true
+        margin: 90, // Increased to 90px for better navigation clearance
+        isTesting: useTestAds
       };
       
       await AdMob.showBanner(options);
-      console.log('Banner ad shown');
+      console.log('Banner ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
     } catch (error) {
       console.error('Error showing banner ad:', error);
     }
   }
   
-  static async showInterstitial(adUnitId: string) {
+  static async showInterstitial(useTestAds = true) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Interstitial ad - Web environment detected');
-      return;
+      return false;
     }
     
     try {
       await this.initialize();
       
       const options = {
-        adId: adUnitId,
-        isTesting: true
+        adId: useTestAds ? this.TEST_IDS.INTERSTITIAL : this.PROD_IDS.INTERSTITIAL,
+        isTesting: useTestAds
       };
       
       await AdMob.prepareInterstitial(options);
       await AdMob.showInterstitial();
-      console.log('Interstitial ad shown');
+      console.log('Interstitial ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
+      return true;
     } catch (error) {
       console.error('Error showing interstitial ad:', error);
+      return false;
     }
   }
   
-  static async showRewarded(adUnitId: string) {
+  static async showRewarded(useTestAds = true) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Rewarded ad - Web environment detected');
-      return;
+      return { watched: false, reward: null };
     }
     
     try {
       await this.initialize();
       
       const options = {
-        adId: adUnitId,
-        isTesting: true
+        adId: useTestAds ? this.TEST_IDS.REWARDED : this.PROD_IDS.REWARDED,
+        isTesting: useTestAds
       };
       
       await AdMob.prepareRewardVideoAd(options);
-      await AdMob.showRewardVideoAd();
-      console.log('Rewarded ad shown');
+      const result = await AdMob.showRewardVideoAd();
+      console.log('Rewarded ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
+      return { watched: true, reward: result };
     } catch (error) {
       console.error('Error showing rewarded ad:', error);
+      return { watched: false, reward: null };
     }
   }
   

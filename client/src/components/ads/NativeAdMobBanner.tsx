@@ -2,15 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import CapacitorAdMobService from '@/services/capacitor-admob';
 
 interface NativeAdMobBannerProps {
-  testMode?: boolean;
-  adUnitId?: string;
-  appId?: string;
+  useTestAds?: boolean;
 }
 
 const NativeAdMobBanner: React.FC<NativeAdMobBannerProps> = ({
-  testMode = false,
-  adUnitId = "ca-app-pub-9746293142643974/3548505956",
-  appId = "ca-app-pub-9746293142643974~5047751469"
+  useTestAds = true // Default to test ads for safety
 }) => {
   const bannerRef = useRef<HTMLDivElement>(null);
   const [isInitialized, setIsInitialized] = React.useState(false);
@@ -19,10 +15,10 @@ const NativeAdMobBanner: React.FC<NativeAdMobBannerProps> = ({
   useEffect(() => {
     const initializeAdMob = async () => {
       try {
-        console.log('Initializing AdMob Banner with ID:', adUnitId);
+        console.log('Initializing AdMob Banner - Test Mode:', useTestAds);
         
         // Initialize and show banner using service
-        await CapacitorAdMobService.showBanner(adUnitId);
+        await CapacitorAdMobService.showBanner(useTestAds);
         
         setIsInitialized(true);
         setBannerLoaded(true);
@@ -42,28 +38,42 @@ const NativeAdMobBanner: React.FC<NativeAdMobBannerProps> = ({
       // Clean up banner when component unmounts
       CapacitorAdMobService.hideBanner().catch(console.error);
     };
-  }, [adUnitId, testMode]);
+  }, [useTestAds]);
 
-  // Web fallback - show clickable placeholder for testing
+  // Web fallback - show test banner preview
   const handleBannerClick = () => {
-    console.log('Banner clicked - would open ad in real app');
-    // Simulate ad click behavior
-    window.open('https://www.google.com', '_blank');
+    console.log('TEST: Banner clicked - would open ad in real app');
   };
 
-  // In web environment, show empty div - AdMob will work in native app
-  if (!bannerLoaded) {
+  // In web environment, show test banner preview
+  if (typeof window !== 'undefined') {
     return (
       <div 
         ref={bannerRef}
-        className="w-full h-14 bg-transparent"
-        style={{ minHeight: '50px' }}
-      />
+        className="w-full h-14 bg-blue-50 border-t-2 border-blue-200 flex items-center justify-center cursor-pointer hover:bg-blue-100 transition-colors"
+        onClick={handleBannerClick}
+        style={{ minHeight: '56px' }}
+      >
+        <div className="text-center">
+          <div className="text-xs text-blue-600 font-medium">
+            📺 AdMob Test Banner
+          </div>
+          <div className="text-xs text-blue-400 mt-1">
+            {useTestAds ? 'TEST MODE' : 'PRODUCTION'}
+          </div>
+        </div>
+      </div>
     );
   }
 
-  // Native AdMob banner will be shown by Capacitor plugin
-  return null;
+  // Native environment - AdMob handles the banner
+  return (
+    <div 
+      ref={bannerRef}
+      className="w-full h-14 bg-transparent"
+      style={{ minHeight: '56px' }}
+    />
+  );
 
 
 };

@@ -1,303 +1,173 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Icon } from '@/components/ui/icons';
-import { useTranslation } from '@/hooks/use-translation';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import CapacitorAdMobService from '@/services/capacitor-admob';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface RewardedAdProps {
   isOpen: boolean;
   onClose: () => void;
-  onRewarded: (reward: { type: string, amount: number }) => void;
+  onRewardEarned: (reward: { amount: number, type: string }) => void;
+  useTestAds?: boolean;
 }
 
-const RewardedAd: React.FC<RewardedAdProps> = ({ isOpen, onClose, onRewarded }) => {
-  const { t } = useTranslation();
+const RewardedAd: React.FC<RewardedAdProps> = ({
+  isOpen,
+  onClose,
+  onRewardEarned,
+  useTestAds = true
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [adState, setAdState] = useState<'idle' | 'loading' | 'playing' | 'completed' | 'failed'>('idle');
-  const [canClose, setCanClose] = useState(false);
-  const [hasRewarded, setHasRewarded] = useState(false);
-  
-  // Use refs to track component mounting state and prevent memory leaks
-  const isMountedRef = useRef(true);
-  const timersRef = useRef<NodeJS.Timeout[]>([]);
+  const [showWebPreview, setShowWebPreview] = useState(false);
+  const [watchProgress, setWatchProgress] = useState(0);
 
-  // Production AdMob Rewarded Ad ID
-  const REWARDED_AD_ID = 'ca-app-pub-9746293142643974/2411518252';
-
-  useEffect(() => {
-    if (isOpen) {
-      setAdState('idle');
-      setCanClose(false);
-      setHasRewarded(false);
-    }
-  }, [isOpen]);
-
-  // Cleanup effect to prevent memory leaks
-  useEffect(() => {
-    isMountedRef.current = true;
-    
-    return () => {
-      isMountedRef.current = false;
-      
-      // Clear all timers
-      timersRef.current.forEach(timer => clearTimeout(timer));
-      timersRef.current = [];
-      
-      // Clean up AdMob listeners
-      if (window.AdMob) {
-        try {
-          window.AdMob.removeAllListeners();
-        } catch (error) {
-          console.log('Error cleaning up AdMob listeners on unmount:', error);
-        }
-      }
-    };
-  }, []);
-
-  // Safe state update function
-  const safeSetState = (updateFn: () => void) => {
-    if (isMountedRef.current) {
-      try {
-        updateFn();
-      } catch (error) {
-        console.log('Error updating state:', error);
-      }
-    }
-  };
-
-  // Safe timer function
-  const safeSetTimeout = (callback: () => void, delay: number) => {
-    const timer = setTimeout(() => {
-      if (isMountedRef.current) {
-        callback();
-      }
-    }, delay);
-    timersRef.current.push(timer);
-    return timer;
-  };
-
-  // Handle showing rewarded ad
-  const handleShowAd = async () => {
-    safeSetState(() => {
-      setIsLoading(true);
-      setAdState('loading');
-    });
+  const handleWatchAd = async () => {
+    setIsLoading(true);
     
     try {
-      console.log('Showing rewarded ad with ID:', REWARDED_AD_ID);
+      console.log('Attempting to show rewarded ad...');
+      const result = await CapacitorAdMobService.showRewarded(useTestAds);
       
-      // Show rewarded ad using service
-      await CapacitorAdMobService.showRewarded(REWARDED_AD_ID);
-      
-      safeSetState(() => {
-        setAdState('playing');
-        setIsLoading(false);
-      });
-      
-      // Simulate reward completion after 5 seconds for native ads
-      safeSetTimeout(() => {
-        if (!hasRewarded && isMountedRef.current) {
-          safeSetState(() => setHasRewarded(true));
-          safeSetTimeout(() => {
-            if (isMountedRef.current) {
-              onRewarded({ type: 'points', amount: 10 });
-              safeSetState(() => {
-                setAdState('completed');
-                setCanClose(true);
-              });
-            }
-          }, 100);
-        }
-      }, 5000);
+      if (result.watched) {
+        console.log('Rewarded ad completed successfully');
+        // Standard reward for watching complete ad
+        onRewardEarned({ amount: 10, type: 'points' });
+        onClose();
+      } else {
+        // Fallback to web preview if native ad fails
+        console.log('Native rewarded ad failed, showing web preview');
+        setShowWebPreview(true);
+        startWebAdWatch();
+      }
     } catch (error) {
-      console.error('Error showing rewarded ad:', error);
-      // Web preview - simulate ad behavior without countdown timer
-      console.log('Web preview: Simulating rewarded ad');
-      safeSetState(() => {
-        setAdState('playing');
-        setIsLoading(false);
-      });
-      
-      // Simulate ad completion after 3 seconds (no visible countdown)
-      safeSetTimeout(() => {
-        // First trigger reward event
-        if (!hasRewarded && isMountedRef.current) {
-          safeSetState(() => setHasRewarded(true));
-          safeSetTimeout(() => {
-            if (isMountedRef.current) {
-              onRewarded({ type: 'points', amount: 10 });
-            }
-          }, 100);
+      console.error('Rewarded ad error:', error);
+      // Show web preview as fallback
+      setShowWebPreview(true);
+      startWebAdWatch();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const startWebAdWatch = () => {
+    setWatchProgress(0);
+    const interval = setInterval(() => {
+      setWatchProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          // Give reward after watching complete ad
+          setTimeout(() => {
+            onRewardEarned({ amount: 10, type: 'points' });
+            onClose();
+          }, 1000);
+          return 100;
         }
-        // Then close the ad
-        safeSetTimeout(() => {
-          if (isMountedRef.current) {
-            safeSetState(() => {
-              setAdState('completed');
-              setCanClose(true);
-            });
-          }
-        }, 200);
-      }, 3000);
-    }
-  };
-
-  const handleRetry = () => {
-    safeSetState(() => {
-      setAdState('idle');
-      setCanClose(false);
-      setHasRewarded(false);
-    });
-  };
-
-  const handleClose = () => {
-    if (canClose || adState === 'failed') {
-      // Clean up timers and resources
-      // Clear all timers
-      timersRef.current.forEach(timer => clearTimeout(timer));
-      timersRef.current = [];
-      
-      onClose();
-    }
+        return prev + 5; // 5% every 150ms = 3 seconds total
+      });
+    }, 150);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl"
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
       >
-        {/* Header */}
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold text-gray-800">
-            {t('quiz', 'watchAdForPoints')}
-          </h3>
-          {(canClose || adState === 'failed') && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleClose}
-              className="text-gray-500 hover:text-gray-700"
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          className="bg-white rounded-lg max-w-md mx-4 shadow-2xl relative"
+        >
+          {/* Close button - only show if not watching ad */}
+          {!showWebPreview && !isLoading && (
+            <button
+              onClick={onClose}
+              className="absolute top-2 right-2 w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors z-10"
             >
-              <Icon name="close" />
-            </Button>
+              ✕
+            </button>
           )}
-        </div>
 
-        {/* Content based on ad state */}
-        {adState === 'idle' && (
-          <div className="text-center">
-            <div className="mb-4">
-              <Icon name="play_circle" className="text-6xl text-green-500 mx-auto mb-2" />
-              <p className="text-gray-600 mb-2">{t('quiz', 'completeAdForBonus')}</p>
-              <p className="text-sm text-gray-500">
-                {t('quiz', 'earnedPoints')?.replace('{points}', '10')}
+          {!showWebPreview ? (
+            // Initial screen - watch ad button
+            <div className="p-6 text-center">
+              <div className="text-4xl mb-4">🎁</div>
+              <h2 className="text-xl font-bold mb-4 text-gray-800">
+                Watch Ad for Reward!
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Watch a short video ad to earn 10 bonus points for your learning progress.
               </p>
-            </div>
-            
-            <Button
-              onClick={handleShowAd}
-              disabled={isLoading}
-              className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold"
-            >
-              {isLoading ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                  {t('common', 'loading')}
-                </div>
-              ) : (
-                <>
-                  <Icon name="play_arrow" className="mr-2" />
-                  {t('quiz', 'watchAdForPoints')}
-                </>
-              )}
-            </Button>
-          </div>
-        )}
-
-        {adState === 'loading' && (
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">{t('common', 'loading')}...</p>
-          </div>
-        )}
-
-        {adState === 'playing' && (
-          <div className="text-center">
-            <div className="mb-4">
-              <Icon name="tv" className="text-6xl text-blue-500 mx-auto mb-2" />
-              <p className="text-gray-600 mb-2">Ad is playing...</p>
-              <div className="animate-pulse">
-                <div className="h-2 bg-blue-200 rounded-full mb-2"></div>
-                <div className="h-2 bg-blue-200 rounded-full w-3/4 mx-auto"></div>
+              
+              <button
+                onClick={handleWatchAd}
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Loading Ad...
+                  </div>
+                ) : (
+                  '▶️ Watch Ad & Earn Points'
+                )}
+              </button>
+              
+              <div className="text-xs text-gray-500 mt-4">
+                {useTestAds ? 'Test Mode - Safe for Development' : 'Production Mode'}
               </div>
             </div>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <p className="text-sm text-gray-600">
-                Watch the complete ad to earn your reward!
-              </p>
-            </div>
-          </div>
-        )}
+          ) : (
+            // Web preview - simulated ad watching
+            <div className="p-6">
+              <div className="text-center mb-4">
+                <h3 className="text-lg font-bold text-gray-800">
+                  📺 Watching Advertisement...
+                </h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Educational content preview
+                </p>
+              </div>
 
-        {adState === 'completed' && (
-          <div className="text-center">
-            <div className="mb-4">
-              <Icon name="check_circle" className="text-6xl text-green-500 mx-auto mb-2" />
-              <p className="text-lg font-bold text-green-600 mb-2">
-                {t('quiz', 'adCompleted')}
-              </p>
-              <p className="text-gray-600">
-                {t('quiz', 'pointsEarned')?.replace('{points}', '10')}
-              </p>
-            </div>
-            
-            <Button
-              onClick={handleClose}
-              className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold"
-            >
-              <Icon name="done" className="mr-2" />
-              Continue
-            </Button>
-          </div>
-        )}
+              {/* Simulated ad content */}
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
+                <div className="text-center">
+                  <div className="text-2xl mb-2">🕌</div>
+                  <div className="text-sm mb-2">Islamic Learning App</div>
+                  <div className="text-xs opacity-75">
+                    Making Islamic education fun for children
+                  </div>
+                </div>
+              </div>
 
-        {adState === 'failed' && (
-          <div className="text-center">
-            <div className="mb-4">
-              <Icon name="error" className="text-6xl text-red-500 mx-auto mb-2" />
-              <p className="text-lg font-bold text-red-600 mb-2">
-                {t('common', 'error')}
-              </p>
-              <p className="text-gray-600 mb-4">
-                Failed to load ad. Please try again.
-              </p>
+              {/* Progress bar */}
+              <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
+                <div
+                  className="bg-gradient-to-r from-green-400 to-blue-500 h-3 rounded-full transition-all duration-150 ease-out"
+                  style={{ width: `${watchProgress}%` }}
+                ></div>
+              </div>
+
+              <div className="text-center">
+                <div className="text-sm text-gray-600">
+                  {watchProgress < 100 ? (
+                    `Watching... ${Math.round(watchProgress)}%`
+                  ) : (
+                    <span className="text-green-600 font-semibold">
+                      ✅ Ad Complete! Earning reward...
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-            
-            <div className="flex gap-2">
-              <Button
-                onClick={handleRetry}
-                className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl font-bold"
-              >
-                <Icon name="refresh" className="mr-2" />
-                {t('common', 'retry')}
-              </Button>
-              <Button
-                onClick={handleClose}
-                variant="outline"
-                className="flex-1 py-3 rounded-xl font-bold"
-              >
-                {t('common', 'cancel')}
-              </Button>
-            </div>
-          </div>
-        )}
+          )}
+        </motion.div>
       </motion.div>
-    </div>
+    </AnimatePresence>
   );
 };
 

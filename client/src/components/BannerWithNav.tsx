@@ -25,12 +25,13 @@ const BannerWithNav: React.FC = () => {
     // Show interstitial every 3rd navigation
     if (newCount % 3 === 0) {
       console.log('Showing interstitial ad after', newCount, 'navigations');
-      try {
-        await CapacitorAdMobService.showInterstitial("ca-app-pub-9746293142643974/7649626393");
-        // In web, show our custom interstitial
-        setShowInterstitial(true);
-      } catch (error) {
-        console.log('Interstitial ad error, showing web preview:', error);
+      
+      // Try native interstitial first
+      const nativeShown = await CapacitorAdMobService.showInterstitial(true); // true = test mode
+      
+      // If native failed (web environment), show web preview
+      if (!nativeShown) {
+        console.log('Native interstitial failed, showing web preview');
         setShowInterstitial(true);
       }
     }
@@ -104,7 +105,7 @@ const BannerWithNav: React.FC = () => {
   return (
     <div className="w-full">
       {/* Bottom Navigation - FIXED positioning above AdMob banner */}
-      <nav className="fixed bottom-20 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+      <nav className="fixed bottom-24 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
         <div className="w-full max-w-lg mx-auto flex justify-between px-2">
           {navItems.map(item => (
             <button 
@@ -158,9 +159,7 @@ const BannerWithNav: React.FC = () => {
       {/* AdMob Banner - FIXED at bottom - Native Implementation */}
       <div className="fixed bottom-0 left-0 right-0 z-40 w-full">
         <NativeAdMobBanner 
-          testMode={false}
-          adUnitId="ca-app-pub-9746293142643974/3548505956"
-          appId="ca-app-pub-9746293142643974~5047751469"
+          useTestAds={true}
         />
       </div>
       
@@ -168,7 +167,6 @@ const BannerWithNav: React.FC = () => {
       <InterstitialAd
         isOpen={showInterstitial}
         onClose={() => setShowInterstitial(false)}
-        adUnitId="ca-app-pub-9746293142643974/7649626393"
       />
     </div>
   );
