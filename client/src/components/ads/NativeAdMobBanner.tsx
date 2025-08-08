@@ -56,10 +56,10 @@ const NativeAdMobBanner: React.FC<NativeAdMobBannerProps> = ({
       >
         <div className="text-center">
           <div className="text-xs text-blue-600 font-medium">
-            📺 AdMob Test Banner
+            AdMob Banner
           </div>
           <div className="text-xs text-blue-400 mt-1">
-            {useTestAds ? 'TEST MODE' : 'PRODUCTION'}
+            {useTestAds ? 'Test' : 'Live'}
           </div>
         </div>
       </div>

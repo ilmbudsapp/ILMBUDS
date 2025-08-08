@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
-import { playSound } from "@/lib/sounds";
+
 import InterstitialAd from "@/components/ads/InterstitialAd";
 
 // Arabic alphabet data with pronunciations
@@ -432,13 +432,8 @@ export default function ArabicAlphabet() {
     setCurrentlyPlaying(letter.id);
     setIsPlaying(true);
     
-    // Create audio element for authentic Arabic pronunciation
-    const audio = new Audio();
-    // Store reference for cleanup
-    audioRef.current = audio;
-    
-    // Map letter names to correct audio file names
-    const audioFileNames: Record<string, string> = {
+    // Direct audio implementation for Android compatibility
+    const audioFileMap: Record<string, string> = {
       'Alif': 'alif',
       'Ba': 'ba',
       'Ta': 'ta',
@@ -469,11 +464,12 @@ export default function ArabicAlphabet() {
       'Ya': 'ya'
     };
     
-    const audioFileName = audioFileNames[letter.name] || letter.name.toLowerCase();
+    const audioFileName = audioFileMap[letter.name] || letter.name.toLowerCase();
     const audioPath = `/audio/arabic/${audioFileName}.mp3`;
-    audio.src = audioPath;
     
-    // Postavi volume na maksimum (bez Web Audio API za Android WebView kompatibilnost)
+    // Create new audio instance for each play
+    const audio = new Audio(audioPath);
+    audioRef.current = audio;
     audio.volume = 1.0;
     
     audio.onended = () => {
@@ -482,18 +478,20 @@ export default function ArabicAlphabet() {
     };
     
     audio.onerror = () => {
-      console.warn(`Failed to load authentic Arabic audio for ${letter.name}`);
+      console.warn(`Failed to load Arabic audio for ${letter.name}`);
       setIsPlaying(false);
       setCurrentlyPlaying(null);
     };
     
-    audio.play().then(() => {
-      console.log(`Playing authentic Arabic pronunciation for ${letter.name}`);
-    }).catch(error => {
-      console.warn(`Failed to play Arabic audio for ${letter.name}:`, error);
-      setIsPlaying(false);
-      setCurrentlyPlaying(null);
-    });
+    audio.play()
+      .then(() => {
+        console.log(`Playing Arabic pronunciation for ${letter.name}`);
+      })
+      .catch(() => {
+        console.warn(`Failed to play Arabic audio for ${letter.name}`);
+        setIsPlaying(false);
+        setCurrentlyPlaying(null);
+      });
   };
 
   const getTitle = () => {
@@ -662,7 +660,6 @@ export default function ArabicAlphabet() {
       <InterstitialAd
         isOpen={showInterstitial}
         onClose={() => setShowInterstitial(false)}
-        adUnitId="ca-app-pub-9746293142643974/7649626393"
       />
     </div>
   );

@@ -105,7 +105,7 @@ const BannerWithNav: React.FC = () => {
   return (
     <div className="w-full">
       {/* Bottom Navigation - FIXED positioning above AdMob banner */}
-      <nav className="fixed bottom-24 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+      <nav className="fixed bottom-20 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
         <div className="w-full max-w-lg mx-auto flex justify-between px-2">
           {navItems.map(item => (
             <button 
