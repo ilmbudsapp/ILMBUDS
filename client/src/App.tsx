@@ -101,7 +101,7 @@ function App() {
                 </div>
                 
                 {/* Main scrollable content - with bottom padding for fixed navigation/banner */}
-                <div className="flex-1 overflow-auto pb-28">
+                <div className="flex-1 overflow-auto pb-32">
                   <Router />
                   <Toaster />
                 </div>
