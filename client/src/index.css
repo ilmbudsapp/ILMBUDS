@@ -18,7 +18,7 @@
 
 /* Body padding for fixed layout with AdMob banner and navigation */
 body {
-  padding-bottom: 170px; /* Banner (56px) + Navigation (56px) + Extra margin (58px) for higher positioning */
+  padding-bottom: 170px; /* Banner (56px) + Navigation (56px) + Extra margin for stacked positioning */
 }
 
 /* Enable safe area support for mobile devices */

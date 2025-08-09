@@ -156,8 +156,8 @@ const BannerWithNav: React.FC = () => {
         </div>
       </nav>
 
-      {/* AdMob Banner - FIXED at bottom - Native Implementation */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 w-full">
+      {/* AdMob Banner - FIXED directly below navigation - Native Implementation */}
+      <div className="fixed bottom-14 left-0 right-0 z-40 w-full">
         <NativeAdMobBanner 
           useTestAds={true}
         />

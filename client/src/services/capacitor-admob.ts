@@ -50,7 +50,7 @@ export class CapacitorAdMobService {
         adId: useTestAds ? this.TEST_IDS.BANNER : this.PROD_IDS.BANNER,
         adSize: BannerAdSize.BANNER,
         position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 120, // 120px for proper navigation clearance (bottom-28 = 112px + extra space)
+        margin: 168, // 168px to position banner directly under navigation (bottom-28 = 112px + banner height 56px)
         isTesting: useTestAds
       };
       
