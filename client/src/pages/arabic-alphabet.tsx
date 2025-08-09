@@ -361,7 +361,7 @@ const arabicAlphabet = [
   {
     id: 26,
     arabic: "ه",
-    name: "Ha",
+    name: "Hah",
     pronunciation: "H",
     example: {
       en: "Heart",
@@ -439,7 +439,7 @@ export default function ArabicAlphabet() {
       'Ta': 'ta',
       'Tha': 'tha',
       'Jim': 'jim',
-      'Ha': 'hha',
+      'Ha': 'hha',  // Letter 6: ح
       'Kha': 'kha',
       'Dal': 'dal',
       'Dhal': 'dhal',
@@ -459,7 +459,7 @@ export default function ArabicAlphabet() {
       'Lam': 'lam',
       'Mim': 'mim',
       'Nun': 'nun',
-      'Hah': 'ha',
+      'Hah': 'ha',  // Letter 26: ه (different letter)
       'Waw': 'waw',
       'Ya': 'ya'
     };
