@@ -1,0 +1,256 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Tutti i diritti riservati.
+
+Installa la versione più recente di PowerShell per nuove funzionalità e miglioramenti. https://aka.ms/PSWindows
+
+PS C:\Users\User> # ILMBUDS - Kompletan download i lokalni setup
+PS C:\Users\User> # Kreirao: AI Assistant
+PS C:\Users\User> # Datum: 9. Avgust 2025
+PS C:\Users\User> # Verzija: 7.4.1
+PS C:\Users\User>
+PS C:\Users\User> Write-Host "========================================" -ForegroundColor Green
+========================================
+PS C:\Users\User> Write-Host "ILMBUDS - LOKALNI BUILD SETUP v7.4.1" -ForegroundColor Green
+ILMBUDS - LOKALNI BUILD SETUP v7.4.1
+PS C:\Users\User> Write-Host "========================================" -ForegroundColor Green
+========================================
+PS C:\Users\User>
+PS C:\Users\User> Write-Host ""
+
+PS C:\Users\User> Write-Host "KORAK 1: Kreiranje direktorijuma..." -ForegroundColor Yellow
+KORAK 1: Kreiranje direktorijuma...
+PS C:\Users\User>
+PS C:\Users\User> # Kreiranje osnovnog direktorijuma
+PS C:\Users\User> $projectDir = "C:\ILMBUDS-v7.4.1"
+PS C:\Users\User> if (Test-Path $projectDir) {
+>>     Write-Host "Direktorijum $projectDir već postoji!" -ForegroundColor Red
+>>     $choice = Read-Host "Da li želiš da obrišeš postojeći direktorijum? (y/n)"
+>>     if ($choice -eq "y" -or $choice -eq "Y") {
+>>         Remove-Item -Path $projectDir -Recurse -Force
+>>         Write-Host "Postojeći direktorijum obrisan." -ForegroundColor Green
+>>     } else {
+>>         Write-Host "Prekidanje instalacije." -ForegroundColor Red
+>>         exit
+>>     }
+>> }
+PS C:\Users\User>
+PS C:\Users\User> New-Item -ItemType Directory -Path $projectDir -Force
+
+
+    Directory: C:\
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/08/2025     00:57                ILMBUDS-v7.4.1
+
+
+PS C:\Users\User> Set-Location $projectDir
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host "Kreiran direktorijum: $projectDir" -ForegroundColor Green
+Kreiran direktorijum: C:\ILMBUDS-v7.4.1
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 2: Download projekta iz Replit..." -ForegroundColor Yellow
+KORAK 2: Download projekta iz Replit...
+PS C:\ILMBUDS-v7.4.1> Write-Host "NAPOMENA: Potrebno je da ručno skineš ZIP fajl sa Replit-a i extrakt-uješ u ovaj direktorijum!" -ForegroundColor Red
+NAPOMENA: Potrebno je da ručno skineš ZIP fajl sa Replit-a i extrakt-uješ u ovaj direktorijum!
+PS C:\ILMBUDS-v7.4.1> Write-Host "1. Idi na Replit projekat" -ForegroundColor White
+1. Idi na Replit projekat
+PS C:\ILMBUDS-v7.4.1> Write-Host "2. Klikni na tri tačke (...) u file explorer-u" -ForegroundColor White
+2. Klikni na tri tačke (...) u file explorer-u
+PS C:\ILMBUDS-v7.4.1> Write-Host "3. Klikni 'Download as ZIP'" -ForegroundColor White
+3. Klikni 'Download as ZIP'
+PS C:\ILMBUDS-v7.4.1> Write-Host "4. Extrakt-uj sve fajlove u: $projectDir" -ForegroundColor White
+4. Extrakt-uj sve fajlove u: C:\ILMBUDS-v7.4.1
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> $downloadComplete = Read-Host "Da li si završio download i extract? (y/n)"
+Da li si završio download i extract? (y/n): Y
+PS C:\ILMBUDS-v7.4.1> if ($downloadComplete -ne "y" -and $downloadComplete -ne "Y") {
+>>     Write-Host "Završi download pa pokreni skriptu ponovo!" -ForegroundColor Red
+>>     exit
+>> }
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 3: Provera Node.js instalacije..." -ForegroundColor Yellow
+KORAK 3: Provera Node.js instalacije...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # Provera Node.js
+PS C:\ILMBUDS-v7.4.1> try {
+>>     $nodeVersion = node --version
+>>     Write-Host "Node.js verzija: $nodeVersion" -ForegroundColor Green
+>> } catch {
+>>     Write-Host "Node.js nije instaliran!" -ForegroundColor Red
+>>     Write-Host "Skini sa: https://nodejs.org/" -ForegroundColor White
+>>     exit
+>> }
+Node.js verzija: v22.17.0
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 4: Provera Java JDK 21..." -ForegroundColor Yellow
+KORAK 4: Provera Java JDK 21...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # Provera Java
+PS C:\ILMBUDS-v7.4.1> try {
+>>     $javaVersion = java -version 2>&1 | Select-String "version"
+>>     Write-Host "Java verzija: $javaVersion" -ForegroundColor Green
+>>
+>>     # Provera da li je JDK 21
+>>     if ($javaVersion -notmatch "21\.") {
+>>         Write-Host "UPOZORENJE: Potreban je JDK 21 za Android build!" -ForegroundColor Red
+>>         Write-Host "Trenutna verzija nije 21. Skini JDK 21 sa: https://adoptium.net/" -ForegroundColor White
+>>     }
+>> } catch {
+>>     Write-Host "Java JDK nije instaliran!" -ForegroundColor Red
+>>     Write-Host "Skini JDK 21 sa: https://adoptium.net/" -ForegroundColor White
+>>     exit
+>> }
+Java verzija: openjdk version "21.0.8" 2025-07-15 LTS
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 5: Provera Android SDK..." -ForegroundColor Yellow
+KORAK 5: Provera Android SDK...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # Provera Android SDK
+PS C:\ILMBUDS-v7.4.1> if ($env:ANDROID_HOME) {
+>>     Write-Host "ANDROID_HOME: $env:ANDROID_HOME" -ForegroundColor Green
+>> } else {
+>>     Write-Host "ANDROID_HOME environment varijabla nije postavljena!" -ForegroundColor Red
+>>     Write-Host "Instaliraj Android Studio i postavi ANDROID_HOME." -ForegroundColor White
+>> }
+ANDROID_HOME environment varijabla nije postavljena!
+Instaliraj Android Studio i postavi ANDROID_HOME.
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 6: NPM Install..." -ForegroundColor Yellow
+KORAK 6: NPM Install...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # NPM Install
+PS C:\ILMBUDS-v7.4.1> try {
+>>     npm install
+>>     Write-Host "NPM dependencies instalirane uspešno!" -ForegroundColor Green
+>> } catch {
+>>     Write-Host "Greška tokom npm install!" -ForegroundColor Red
+>>     exit
+>> }
+npm error code ENOENT
+npm error syscall open
+npm error path C:\ILMBUDS-v7.4.1\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\ILMBUDS-v7.4.1\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\User\AppData\Local\npm-cache\_logs\2025-08-09T22_58_04_318Z-debug-0.log
+NPM dependencies instalirane uspešno!
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 7: React Build..." -ForegroundColor Yellow
+KORAK 7: React Build...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # React Build
+PS C:\ILMBUDS-v7.4.1> try {
+>>     npm run build
+>>     Write-Host "React aplikacija build-ovana uspešno!" -ForegroundColor Green
+>> } catch {
+>>     Write-Host "Greška tokom React build-a!" -ForegroundColor Red
+>>     exit
+>> }
+npm error code ENOENT
+npm error syscall open
+npm error path C:\ILMBUDS-v7.4.1\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\ILMBUDS-v7.4.1\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\User\AppData\Local\npm-cache\_logs\2025-08-09T22_58_05_310Z-debug-0.log
+React aplikacija build-ovana uspešno!
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 8: Capacitor Sync..." -ForegroundColor Yellow
+KORAK 8: Capacitor Sync...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # Capacitor Sync
+PS C:\ILMBUDS-v7.4.1> try {
+>>     npx cap sync android
+>>     Write-Host "Capacitor sync završen uspešno!" -ForegroundColor Green
+>> } catch {
+>>     Write-Host "Greška tokom Capacitor sync!" -ForegroundColor Red
+>>     exit
+>> }
+npm error could not determine executable to run
+npm error A complete log of this run can be found in: C:\Users\User\AppData\Local\npm-cache\_logs\2025-08-09T22_58_05_579Z-debug-0.log
+Capacitor sync završen uspešno!
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "KORAK 9: Keystore kopiranje..." -ForegroundColor Yellow
+KORAK 9: Keystore kopiranje...
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> # Provera da li postoji keystore
+PS C:\ILMBUDS-v7.4.1> if (Test-Path "android\app\ilmbuds-new.keystore") {
+>>     Write-Host "Keystore fajl pronađen!" -ForegroundColor Green
+>> } else {
+>>     Write-Host "UPOZORENJE: Keystore fajl ne postoji!" -ForegroundColor Red
+>>     Write-Host "Potrebno je da kreiramo novi keystore za signing." -ForegroundColor White
+>> }
+UPOZORENJE: Keystore fajl ne postoji!
+Potrebno je da kreiramo novi keystore za signing.
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "========================================" -ForegroundColor Green
+========================================
+PS C:\ILMBUDS-v7.4.1> Write-Host "SETUP ZAVRŠEN USPEŠNO!" -ForegroundColor Green
+SETUP ZAVRŠEN USPEŠNO!
+PS C:\ILMBUDS-v7.4.1> Write-Host "========================================" -ForegroundColor Green
+========================================
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "SLEDEĆI KORACI:" -ForegroundColor Yellow
+SLEDEĆI KORACI:
+PS C:\ILMBUDS-v7.4.1> Write-Host "1. cd android" -ForegroundColor White
+1. cd android
+PS C:\ILMBUDS-v7.4.1> Write-Host "2. .\gradlew assembleDebug     (za debug APK)" -ForegroundColor White
+2. .\gradlew assembleDebug     (za debug APK)
+PS C:\ILMBUDS-v7.4.1> Write-Host "3. .\gradlew assembleRelease   (za release APK)" -ForegroundColor White
+3. .\gradlew assembleRelease   (za release APK)
+PS C:\ILMBUDS-v7.4.1> Write-Host "4. .\gradlew bundleRelease     (za AAB fajl)" -ForegroundColor White
+4. .\gradlew bundleRelease     (za AAB fajl)
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "APK fajlovi će biti u: android\app\build\outputs\apk\" -ForegroundColor Cyan
+APK fajlovi će biti u: android\app\build\outputs\apk\
+PS C:\ILMBUDS-v7.4.1> Write-Host "AAB fajlovi će biti u: android\app\build\outputs\bundle\" -ForegroundColor Cyan
+AAB fajlovi će biti u: android\app\build\outputs\bundle\
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Write-Host "NAJVAŽNIJE IZMENE U OVOJ VERZIJI:" -ForegroundColor Yellow
+NAJVAŽNIJE IZMENE U OVOJ VERZIJI:
+PS C:\ILMBUDS-v7.4.1> Write-Host "✓ AdMob banner podešen sa navigacijom (bottom-14 + bottom-28)" -ForegroundColor Green
+✓ AdMob banner podešen sa navigacijom (bottom-14 + bottom-28)
+PS C:\ILMBUDS-v7.4.1> Write-Host "✓ Rewarded ads crash fix sa proper error handling" -ForegroundColor Green
+✓ Rewarded ads crash fix sa proper error handling
+PS C:\ILMBUDS-v7.4.1> Write-Host "✓ Arabic Alphabet audio fix (Ha duplikat rešen)" -ForegroundColor Green
+✓ Arabic Alphabet audio fix (Ha duplikat rešen)
+PS C:\ILMBUDS-v7.4.1> Write-Host "✓ Interstitial ads poboljšani sa boljim logging-om" -ForegroundColor Green
+✓ Interstitial ads poboljšani sa boljim logging-om
+PS C:\ILMBUDS-v7.4.1> Write-Host "✓ Všt pozičije za better mobile experience" -ForegroundColor Green
+✓ Všt pozičije za better mobile experience
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1> Write-Host ""
+
+PS C:\ILMBUDS-v7.4.1> Read-Host "Pritisni Enter za završetak..."
+Pritisni Enter za završetak...:
+
+PS C:\ILMBUDS-v7.4.1>
+PS C:\ILMBUDS-v7.4.1>
