@@ -1,0 +1,61 @@
+PS C:\ILMBUDS\android> .\gradlew assembleDebug --no-daemon
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+Configuration on demand is an incubating feature.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'android'.
+> Multiple build operations failed.
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\e6a7e4316a0b8f1aaeb3abff0bc599bd\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\d1d22a93a92b7a56e294a086bfa132a8\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\8c3df5c82426ef9a917f05c24f58a984\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\1f4e43c77025b4385d023faa3c248d2e\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\d33687540de72aafbeb12ba4e02abab3\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\a18fda40b60b1b66430e392e6976d94a\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\606cda34d5920c3c6b637b4e282d7dd4\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\a8fd5ae2a818a4dfddcad2ceaefdbcd9\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\904b5bda6927bb0b99b2f7e84db3c26e\metadata.bin
+      Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\193a9cc516046fd0c6e7eee93146fd0a\metadata.bin
+      ...and 21 more failures.
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\e6a7e4316a0b8f1aaeb3abff0bc599bd\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\d1d22a93a92b7a56e294a086bfa132a8\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\8c3df5c82426ef9a917f05c24f58a984\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\1f4e43c77025b4385d023faa3c248d2e\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\d33687540de72aafbeb12ba4e02abab3\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\a18fda40b60b1b66430e392e6976d94a\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\606cda34d5920c3c6b637b4e282d7dd4\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\a8fd5ae2a818a4dfddcad2ceaefdbcd9\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\904b5bda6927bb0b99b2f7e84db3c26e\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\193a9cc516046fd0c6e7eee93146fd0a\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\ed2ed1266a508bb3b08070ec4f9bf6f0\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\151d43e17ece36247b514d6a6bf13d21\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\8b5760b49cd8f55f3035b00b64676534\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\3be084ebf5fa7a47e493b5c7b2389b3a\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\bc4edf70ec0029c5ad12fa9f81bcd1de\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\88ecc128ac3c54f26630188530be3d02\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\3291e9b440b5d7842a213be45630d11a\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\8d253c61131946015a9e9def71d753e7\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\a358b48ba45a259d7ef7a4e66c63dec6\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\f33d5bcbf1577a3a6612300e67c3a7f7\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\aabee9691c61f7068f3ad51fc2de4b7c\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\5f8151157bd5d4561607f9fbe06b0ee4\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\1a9307cce4905dfe87614b3e8ce2ced0\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\e308c2e8699545ae25baea4237faa841\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\50100a89a711b189f3c74800b0b5e4c9\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\f3e8b87dd6e2e8691912b6dd664f416a\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\982c17dbe21ea4918cddd3cad2bd46bc\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\db8f2ad8e551501954cb830e6688a7c5\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\c728a2e5d2bf1d4375b954b929118127\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\e4c5bed6ab30178ceeae2c1c3bce6b4d\metadata.bin
+   > Could not read workspace metadata from C:\Users\User\.gradle\caches\8.9\transforms\e318cec40aeecce68c8b033772bee059\metadata.bin
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s
+PS C:\ILMBUDS\android>
