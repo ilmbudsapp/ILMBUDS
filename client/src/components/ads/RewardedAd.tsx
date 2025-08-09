@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CapacitorAdMobService from '@/services/capacitor-admob';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -18,6 +18,16 @@ const RewardedAd: React.FC<RewardedAdProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showWebPreview, setShowWebPreview] = useState(false);
   const [watchProgress, setWatchProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   const handleWatchAd = async () => {
     setIsLoading(true);
@@ -49,15 +59,35 @@ const RewardedAd: React.FC<RewardedAdProps> = ({
 
   const startWebAdWatch = () => {
     setWatchProgress(0);
-    const interval = setInterval(() => {
+    
+    // Clear existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    intervalRef.current = setInterval(() => {
       setWatchProgress(prev => {
         if (prev >= 100) {
-          clearInterval(interval);
-          // Give reward after watching complete ad
-          setTimeout(() => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+          // Give reward after watching complete ad - safer handling
+          try {
+            console.log('Web ad watch completed, giving reward');
             onRewardEarned({ amount: 10, type: 'points' });
+            setTimeout(() => {
+              console.log('Closing rewarded ad after completion');
+              try {
+                onClose();
+              } catch (error) {
+                console.error('Error closing rewarded ad:', error);
+              }
+            }, 500);
+          } catch (error) {
+            console.error('Error giving reward:', error);
             onClose();
-          }, 1000);
+          }
           return 100;
         }
         return prev + 5; // 5% every 150ms = 3 seconds total
