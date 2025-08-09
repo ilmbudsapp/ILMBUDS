@@ -20,7 +20,7 @@ export class CapacitorAdMobService {
   
   static async initialize() {
     if (this.isInitialized || !Capacitor.isNativePlatform()) {
-      return;
+      return true;
     }
     
     try {
@@ -30,8 +30,10 @@ export class CapacitorAdMobService {
       });
       this.isInitialized = true;
       console.log('AdMob initialized successfully');
+      return true;
     } catch (error) {
       console.error('AdMob initialization failed:', error);
+      return false;
     }
   }
   
@@ -66,19 +68,28 @@ export class CapacitorAdMobService {
     }
     
     try {
-      await this.initialize();
+      const initialized = await this.initialize();
+      if (!initialized) {
+        console.error('AdMob initialization failed for interstitial');
+        return false;
+      }
       
       const options = {
         adId: useTestAds ? this.TEST_IDS.INTERSTITIAL : this.PROD_IDS.INTERSTITIAL,
         isTesting: useTestAds
       };
       
+      console.log('Preparing interstitial ad with options:', options);
       await AdMob.prepareInterstitial(options);
+      
+      console.log('Showing interstitial ad...');
       await AdMob.showInterstitial();
-      console.log('Interstitial ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
+      
+      console.log('Interstitial ad shown successfully:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
       return true;
     } catch (error) {
       console.error('Error showing interstitial ad:', error);
+      console.error('Interstitial error details:', JSON.stringify(error));
       return false;
     }
   }
@@ -90,19 +101,29 @@ export class CapacitorAdMobService {
     }
     
     try {
-      await this.initialize();
+      const initialized = await this.initialize();
+      if (!initialized) {
+        console.error('AdMob initialization failed');
+        return { watched: false, reward: null };
+      }
       
       const options = {
         adId: useTestAds ? this.TEST_IDS.REWARDED : this.PROD_IDS.REWARDED,
         isTesting: useTestAds
       };
       
+      console.log('Preparing rewarded ad with options:', options);
       await AdMob.prepareRewardVideoAd(options);
+      
+      console.log('Showing rewarded ad...');
       const result = await AdMob.showRewardVideoAd();
+      
+      console.log('Rewarded ad completed:', result);
       console.log('Rewarded ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
       return { watched: true, reward: result };
     } catch (error) {
       console.error('Error showing rewarded ad:', error);
+      console.error('Error details:', JSON.stringify(error));
       return { watched: false, reward: null };
     }
   }

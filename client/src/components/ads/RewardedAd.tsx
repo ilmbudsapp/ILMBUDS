@@ -26,7 +26,7 @@ const RewardedAd: React.FC<RewardedAdProps> = ({
       console.log('Attempting to show rewarded ad...');
       const result = await CapacitorAdMobService.showRewarded(useTestAds);
       
-      if (result.watched) {
+      if (result && result.watched) {
         console.log('Rewarded ad completed successfully');
         // Standard reward for watching complete ad
         onRewardEarned({ amount: 10, type: 'points' });
@@ -39,7 +39,7 @@ const RewardedAd: React.FC<RewardedAdProps> = ({
       }
     } catch (error) {
       console.error('Rewarded ad error:', error);
-      // Show web preview as fallback
+      // Always show web preview as safe fallback
       setShowWebPreview(true);
       startWebAdWatch();
     } finally {
