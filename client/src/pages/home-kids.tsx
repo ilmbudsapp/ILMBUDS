@@ -226,16 +226,12 @@ export default function HomeKids() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Quiz Card with Metallic effect */}
+            {/* Quiz Card with Light effect */}
             <motion.div 
-              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group bg-white shadow-lg hover:shadow-xl"
               style={{
-                background: 'linear-gradient(145deg, #3B82F6 0%, #1E40AF 25%, #1E3A8A 50%, #312E81 75%, #1E1B4B 100%)',
-                backgroundSize: '200% 200%',
-                animation: 'metallic-shimmer 3s ease-in-out infinite',
-                border: '2px solid rgba(255,255,255,0.4)',
-                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
-                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+                border: '2px solid #E5E7EB',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
               }}
               variants={cardVariants}
               whileHover="hover"
@@ -247,13 +243,6 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('quiz')}
               onHoverEnd={() => setHoveredCard(null)}
             >
-              {/* Glass reflection effect */}
-              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-400/20 rounded-full blur-2xl"></div>
-              <div className="absolute left-4 top-4 w-16 h-16 bg-yellow-300/30 rounded-full blur-md"></div>
-              {/* Animated light reflection */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -263,15 +252,15 @@ export default function HomeKids() {
                   >
                     <img src="/images/01.QUIZ.png" alt="Quiz" className="w-12 h-12" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>{t('home', 'islamicQuiz')}</h3>
+                  <h3 className="text-2xl font-bold text-blue-600">{t('home', 'islamicQuiz')}</h3>
                 </div>
                 
-                <p className="text-white/90 text-base mb-4">
+                <p className="text-gray-600 text-base mb-4">
                   {t('home', 'quizSectionDescription')}
                 </p>
                 
                 <motion.button 
-                  className="bg-white text-indigo-600 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
+                  className="bg-blue-500 text-white py-2 px-6 rounded-full font-medium shadow-lg flex items-center hover:bg-blue-600"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -296,16 +285,12 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
 
-            {/* Stories Card with Metallic effect */}
+            {/* Stories Card with Light effect */}
             <motion.div 
-              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group bg-white shadow-lg hover:shadow-xl"
               style={{
-                background: 'linear-gradient(145deg, #FBBF24 0%, #F59E0B 25%, #EA580C 50%, #DC2626 75%, #B91C1C 100%)',
-                backgroundSize: '200% 200%',
-                animation: 'metallic-shimmer 3s ease-in-out infinite',
-                border: '2px solid rgba(255,255,255,0.4)',
-                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
-                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+                border: '2px solid #E5E7EB',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
               }}
               variants={cardVariants}
               whileHover="hover"
@@ -717,8 +702,6 @@ export default function HomeKids() {
             setShowInterstitialAd(false);
             setLocation('/cartoons');
           }}
-          testMode={false}
-          adUnitId="ca-app-pub-9746293142643974/7649626393"
         />
       )}
       
@@ -730,8 +713,6 @@ export default function HomeKids() {
             setShowArabicAlphabetAd(false);
             setLocation('/arabic-alphabet');
           }}
-          testMode={false}
-          adUnitId="ca-app-pub-9746293142643974/7649626393"
         />
       )}
       
