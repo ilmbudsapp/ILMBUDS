@@ -1425,14 +1425,14 @@ export default function Stories() {
             // Stories list view
             <>
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                <h2 className="text-2xl font-bold text-white mb-4">
                   {language === 'sq' ? 'Tregime Islame për Fëmijë' : 
                    language === 'bs' ? 'Islamske priče za djecu' : 
                    language === 'de' ? 'Islamische Geschichten für Kinder' : 
                    language === 'it' ? 'Storie Islamiche per Bambini' : 
                    'Islamic Stories for Children'}
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   {language === 'sq' 
                     ? 'Hulumtoni këto tregime të bukura që mësojnë mësime të vlefshme islame në një mënyrë tërheqëse. Perfekte për t\'i lexuar së bashku me fëmijët tuaj.'
                     : language === 'bs'
