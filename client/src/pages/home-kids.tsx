@@ -226,9 +226,17 @@ export default function HomeKids() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Quiz Card */}
+            {/* Quiz Card with Light effect */}
             <motion.div 
-              className="ilmbuds-quiz-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #3B82F6 0%, #2563EB 25%, #1D4ED8 50%, #1E40AF 75%, #1E3A8A 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -239,6 +247,13 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('quiz')}
               onHoverEnd={() => setHoveredCard(null)}
             >
+              {/* Glass reflection effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute left-4 bottom-4 w-16 h-16 bg-indigo-300/30 rounded-full blur-md"></div>
+              {/* Animated light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -248,7 +263,7 @@ export default function HomeKids() {
                   >
                     <img src="/images/01.QUIZ.png" alt="Quiz" className="w-12 h-12" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">{t('home', 'islamicQuiz')}</h3>
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>{t('home', 'islamicQuiz')}</h3>
                 </div>
                 
                 <p className="text-white/90 text-base mb-4">
@@ -281,9 +296,17 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
 
-            {/* Stories Card */}
+            {/* Stories Card with Light effect */}
             <motion.div 
-              className="ilmbuds-stories-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #F59E0B 0%, #D97706 25%, #B45309 50%, #92400E 75%, #78350F 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -348,9 +371,17 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
 
-            {/* Quran Card */}
+            {/* Quran Card with Metallic effect */}
             <motion.div 
-              className="ilmbuds-quran-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #2DD4BF 0%, #14B8A6 25%, #0F766E 50%, #065F46 75%, #064E3B 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -360,6 +391,13 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('quran')}
               onHoverEnd={() => setHoveredCard(null)}
             >
+              {/* Glass reflection effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-teal-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute left-4 bottom-4 w-16 h-16 bg-teal-300/30 rounded-full blur-md"></div>
+              {/* Animated light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -369,7 +407,7 @@ export default function HomeKids() {
                   >
                     <img src="/images/03.QURAN.png" alt="Quran" className="w-12 h-12" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
                     {currentLanguage === 'en' ? "Quran" : 
                      currentLanguage === 'sq' ? "Kuran" : 
                      currentLanguage === 'de' ? "Koran" :
@@ -408,9 +446,17 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
 
-            {/* Catechism Card */}
+            {/* Catechism Card with Metallic effect */}
             <motion.div 
-              className="ilmbuds-catechism-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #A855F7 0%, #9333EA 25%, #7C3AED 50%, #6D28D9 75%, #5B21B6 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -420,6 +466,13 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('catechism')}
               onHoverEnd={() => setHoveredCard(null)}
             >
+              {/* Glass reflection effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
+              <div className="absolute -left-10 -top-10 w-40 h-40 bg-purple-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute right-4 bottom-4 w-16 h-16 bg-purple-300/30 rounded-full blur-md"></div>
+              {/* Animated light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -429,7 +482,7 @@ export default function HomeKids() {
                   >
                     <img src="/images/04.CATECHISM ILMIHAL.png" alt="Ilmihal" className="w-12 h-12" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
                     {currentLanguage === 'en' ? "Catechism" : 
                      currentLanguage === 'sq' ? "Ilmihal" : 
                      currentLanguage === 'de' ? "Katechismus-Ilmihal" :
@@ -468,9 +521,17 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
             
-            {/* Cartoons Card */}
+            {/* Cartoons Card with Metallic effect */}
             <motion.div 
-              className="ilmbuds-cartoons-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #F87171 0%, #EF4444 25%, #DC2626 50%, #B91C1C 75%, #991B1B 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -481,6 +542,13 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('cartoons')}
               onHoverEnd={() => setHoveredCard(null)}
             >
+              {/* Glass reflection effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
+              <div className="absolute -left-10 -top-10 w-40 h-40 bg-red-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute right-4 bottom-4 w-16 h-16 bg-purple-300/30 rounded-full blur-md"></div>
+              {/* Animated light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -490,7 +558,7 @@ export default function HomeKids() {
                   >
                     <img src="/images/05.CARTOONS.png" alt="Cartoons" className="w-12 h-12" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
                     {currentLanguage === 'en' ? "Cartoons" : 
                      currentLanguage === 'sq' ? "Filma vizatimorë" : 
                      currentLanguage === 'de' ? "Zeichentrickfilme" :
@@ -525,9 +593,17 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
             
-            {/* Arabic Alphabet Card */}
+            {/* Arabic Alphabet Card with Metallic effect */}
             <motion.div 
-              className="ilmbuds-alphabet-card rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
+              style={{
+                background: 'linear-gradient(145deg, #D97706 0%, #B45309 25%, #92400E 50%, #78350F 75%, #451A03 100%)',
+                backgroundSize: '200% 200%',
+                animation: 'metallic-shimmer 3s ease-in-out infinite',
+                border: '2px solid rgba(255,255,255,0.4)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
+                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
+              }}
               variants={cardVariants}
               whileHover="hover"
               onClick={() => {
@@ -537,6 +613,13 @@ export default function HomeKids() {
               onHoverStart={() => setHoveredCard('arabic-alphabet')}
               onHoverEnd={() => setHoveredCard(null)}
             >
+              {/* Glass reflection effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-yellow-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute left-4 top-4 w-16 h-16 bg-emerald-300/30 rounded-full blur-md"></div>
+              {/* Animated light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
@@ -548,7 +631,7 @@ export default function HomeKids() {
                       أ
                     </div>
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
                     {currentLanguage === 'en' ? "Arabic Alphabet" : 
                      currentLanguage === 'sq' ? "Alfabeti Arab" : 
                      currentLanguage === 'de' ? "Arabisches Alphabet" :
