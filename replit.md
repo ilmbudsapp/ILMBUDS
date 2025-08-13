@@ -6,9 +6,12 @@ ILMBUDS is a comprehensive Islamic educational mobile application designed for c
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+Preferred communication style: Simple, everyday language in Serbian (Latin script).
 **CRITICAL**: Never take any actions without explicit user instruction - wait for user commands before proceeding.
 **IMPORTANT**: When user asks questions, only provide answers - do not take any actions or make changes unless explicitly requested.
+Language preference: Serbian (Latin script) for all communication.
+UI Design: Maintain glass effects with metallic shimmer animations and gradient colors for all cards on home page.
+Recent Issues: User reported UI regressions requiring rollbacks - important to preserve glass effects and original card designs.
 
 ## System Architecture
 
