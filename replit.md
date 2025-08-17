@@ -13,6 +13,14 @@ Language preference: Serbian (Latin script) for all communication.
 UI Design: Maintain glass effects with metallic shimmer animations and gradient colors for all cards on home page.
 Recent Issues: User reported UI regressions requiring rollbacks - important to preserve glass effects and original card designs.
 
+## Current Issues to Fix (Session resumed 2025-01-18)
+1. **Islamic Stories page color problem**: Fixed from light to dark theme but created new issues with card backgrounds 
+2. **UI Regression**: Agent made unwanted changes to card backgrounds while fixing Islamic Stories colors
+3. **Glass Effects**: Must maintain glass effects with metallic shimmer animations and gradient colors for ALL cards
+4. **Stories Page**: Should have proper dark theme with reversed colors (not black background with white text)
+5. **User Preference**: Fix step by step, no changes without explicit permission
+6. **Status**: Application "broke a bit" due to previous changes, needs careful restoration
+
 ## System Architecture
 
 ### Frontend
