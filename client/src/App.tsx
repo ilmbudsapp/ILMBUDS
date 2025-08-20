@@ -91,7 +91,7 @@ function App() {
         <UserProvider>
           <ThemeProvider>
             <QuizProvider>
-              <div className="font-quicksand touch-manipulation flex flex-col h-screen overflow-hidden bg-background text-foreground">
+              <div className="font-quicksand touch-manipulation flex flex-col h-screen overflow-hidden bg-gradient-to-b from-sky-400 to-blue-500 text-foreground">
                 {/* Status bar spacer */}
                 <div className="status-bar-spacer"></div>
                 
