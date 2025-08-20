@@ -1202,7 +1202,7 @@ export default function Stories() {
     : stories.filter(story => story.category === activeTab);
   
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-sky-400 to-blue-500 text-white">
+    <div className="flex flex-col min-h-screen bg-white text-black">
       <header className="bg-gradient-to-r from-blue-600 to-sky-700 text-white p-4 flex justify-between items-center shadow-md">
         <div className="flex items-center">
           <Icon name="auto_stories" className="text-3xl mr-2" />
@@ -1221,7 +1221,7 @@ export default function Stories() {
         <div className="max-w-4xl mx-auto">
           {selectedStory ? (
             // Story detail view
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl shadow-md overflow-hidden">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
               <button 
                 onClick={handleBack}
                 className="flex items-center p-4 text-blue-600 hover:text-blue-800 transition-colors"
@@ -1425,14 +1425,14 @@ export default function Stories() {
             // Stories list view
             <>
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-white mb-4">
+                <h2 className="text-2xl font-bold text-black mb-4">
                   {language === 'sq' ? 'Tregime Islame për Fëmijë' : 
                    language === 'bs' ? 'Islamske priče za djecu' : 
                    language === 'de' ? 'Islamische Geschichten für Kinder' : 
                    language === 'it' ? 'Storie Islamiche per Bambini' : 
                    'Islamic Stories for Children'}
                 </h2>
-                <p className="text-gray-300">
+                <p className="text-gray-700">
                   {language === 'sq' 
                     ? 'Hulumtoni këto tregime të bukura që mësojnë mësime të vlefshme islame në një mënyrë tërheqëse. Perfekte për t\'i lexuar së bashku me fëmijët tuaj.'
                     : language === 'bs'
