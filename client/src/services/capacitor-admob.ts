@@ -26,7 +26,7 @@ export class CapacitorAdMobService {
     try {
       await AdMob.initialize({
         testingDevices: ['EMULATOR'],
-        initializeForTesting: true, // IMPORTANT: true for development
+        initializeForTesting: false, // IMPORTANT: false for production
       });
       this.isInitialized = true;
       console.log('AdMob initialized successfully');
@@ -37,7 +37,7 @@ export class CapacitorAdMobService {
     }
   }
   
-  static async showBanner(useTestAds = true) {
+  static async showBanner(useTestAds = false) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Banner ad - Web environment detected');
       return;
@@ -61,7 +61,7 @@ export class CapacitorAdMobService {
     }
   }
   
-  static async showInterstitial(useTestAds = true) {
+  static async showInterstitial(useTestAds = false) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Interstitial ad - Web environment detected');
       return false;
@@ -94,7 +94,7 @@ export class CapacitorAdMobService {
     }
   }
   
-  static async showRewarded(useTestAds = true) {
+  static async showRewarded(useTestAds = false) {
     if (!Capacitor.isNativePlatform()) {
       console.log('Rewarded ad - Web environment detected');
       return { watched: false, reward: null };
