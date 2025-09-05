@@ -62,9 +62,9 @@ export class CapacitorAdMobService {
   }
   
   static async showInterstitial(useTestAds = false) {
-    // Check if AndroidBridge is available (native app)
+    // Check if AndroidBridge is available (native app) - PRIORITET!
     if (typeof (window as any).AndroidBridge !== 'undefined') {
-      console.log('Calling native interstitial ad via AndroidBridge');
+      console.log('🎯 Native app detected - calling AndroidBridge interstitial');
       try {
         (window as any).AndroidBridge.showInterstitialAd();
         return true;
@@ -74,8 +74,9 @@ export class CapacitorAdMobService {
       }
     }
     
+    // SAMO ako nema AndroidBridge (čisti web)
     if (!Capacitor.isNativePlatform()) {
-      console.log('Interstitial ad - Web environment detected');
+      console.log('Web environment - no native ads available');
       return false;
     }
     
@@ -107,9 +108,9 @@ export class CapacitorAdMobService {
   }
   
   static async showRewarded(useTestAds = false) {
-    // Check if AndroidBridge is available (native app)
+    // Check if AndroidBridge is available (native app) - PRIORITET!
     if (typeof (window as any).AndroidBridge !== 'undefined') {
-      console.log('Calling native rewarded ad via AndroidBridge');
+      console.log('🎁 Native app detected - calling AndroidBridge rewarded');
       try {
         (window as any).AndroidBridge.showRewardedAd();
         return { watched: true, reward: { amount: 10, type: 'coins' } };
@@ -119,8 +120,9 @@ export class CapacitorAdMobService {
       }
     }
     
+    // SAMO ako nema AndroidBridge (čisti web)
     if (!Capacitor.isNativePlatform()) {
-      console.log('Rewarded ad - Web environment detected');
+      console.log('Web environment - no native ads available');
       return { watched: false, reward: null };
     }
     

@@ -29,10 +29,12 @@ const BannerWithNav: React.FC = () => {
       // Try native interstitial first
       const nativeShown = await CapacitorAdMobService.showInterstitial(true); // true = test mode
       
-      // If native failed (web environment), show web preview
-      if (!nativeShown) {
-        console.log('Native interstitial failed, showing web preview');
+      // SAMO ako nema AndroidBridge, pokaži web preview
+      if (!nativeShown && typeof (window as any).AndroidBridge === 'undefined') {
+        console.log('No native bridge available, showing web preview');
         setShowInterstitial(true);
+      } else if (nativeShown) {
+        console.log('✅ Native interstitial ad shown successfully');
       }
     }
     
