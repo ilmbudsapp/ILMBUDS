@@ -105,7 +105,7 @@ const BannerWithNav: React.FC = () => {
   return (
     <div className="w-full">
       {/* Bottom Navigation - FIXED positioning above AdMob banner */}
-      <nav className="fixed bottom-28 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+      <nav className="fixed bottom-16 left-0 right-0 z-50 w-full h-14 bg-white border-t border-gray-200 flex items-center justify-around px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
         <div className="w-full max-w-lg mx-auto flex justify-between px-2">
           {navItems.map(item => (
             <button 
@@ -156,11 +156,9 @@ const BannerWithNav: React.FC = () => {
         </div>
       </nav>
 
-      {/* AdMob Banner - FIXED directly below navigation - Native Implementation */}
-      <div className="fixed bottom-14 left-0 right-0 z-40 w-full">
-        <NativeAdMobBanner 
-          useTestAds={true}
-        />
+      {/* AdMob Banner Space - Native banner will be positioned by Android */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 w-full h-16 bg-transparent">
+        {/* Native AdMob banner handled by Android MainActivity */}
       </div>
       
       {/* Interstitial Ad Modal */}
