@@ -15,7 +15,7 @@ const TestBannerAd: React.FC = () => {
       if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544';
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9746293142643974';
         script.crossOrigin = 'anonymous';
         document.head.appendChild(script);
       }
@@ -44,8 +44,8 @@ const TestBannerAd: React.FC = () => {
         <ins
           className="adsbygoogle block"
           style={{ display: 'block', width: '320px', height: '50px' }}
-          data-ad-client="ca-pub-3940256099942544"
-          data-ad-slot="6300978111"
+          data-ad-client="ca-pub-9746293142643974"
+          data-ad-slot="3548505956"
           data-ad-format="auto"
           data-full-width-responsive="true"
         />

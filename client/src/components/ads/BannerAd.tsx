@@ -7,7 +7,7 @@ const BannerAd = () => {
     if (!document.querySelector('script[src*="adsbygoogle"]')) {
       const script = document.createElement('script');
       script.async = true;
-      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544';
+      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9746293142643974';
       script.crossOrigin = 'anonymous';
       document.head.appendChild(script);
     }
@@ -31,8 +31,8 @@ const BannerAd = () => {
         <ins 
           className="adsbygoogle"
           style={{ display: 'block', width: '100%', height: '50px' }}
-          data-ad-client="ca-pub-3940256099942544"
-          data-ad-slot="6300978111"
+          data-ad-client="ca-pub-9746293142643974"
+          data-ad-slot="3548505956"
           data-ad-format="rectangle"
         ></ins>
       </div>
