@@ -62,6 +62,18 @@ export class CapacitorAdMobService {
   }
   
   static async showInterstitial(useTestAds = false) {
+    // Check if AndroidBridge is available (native app)
+    if (typeof (window as any).AndroidBridge !== 'undefined') {
+      console.log('Calling native interstitial ad via AndroidBridge');
+      try {
+        (window as any).AndroidBridge.showInterstitialAd();
+        return true;
+      } catch (error) {
+        console.error('AndroidBridge interstitial error:', error);
+        return false;
+      }
+    }
+    
     if (!Capacitor.isNativePlatform()) {
       console.log('Interstitial ad - Web environment detected');
       return false;
@@ -95,6 +107,18 @@ export class CapacitorAdMobService {
   }
   
   static async showRewarded(useTestAds = false) {
+    // Check if AndroidBridge is available (native app)
+    if (typeof (window as any).AndroidBridge !== 'undefined') {
+      console.log('Calling native rewarded ad via AndroidBridge');
+      try {
+        (window as any).AndroidBridge.showRewardedAd();
+        return { watched: true, reward: { amount: 10, type: 'coins' } };
+      } catch (error) {
+        console.error('AndroidBridge rewarded error:', error);
+        return { watched: false, reward: null };
+      }
+    }
+    
     if (!Capacitor.isNativePlatform()) {
       console.log('Rewarded ad - Web environment detected');
       return { watched: false, reward: null };
