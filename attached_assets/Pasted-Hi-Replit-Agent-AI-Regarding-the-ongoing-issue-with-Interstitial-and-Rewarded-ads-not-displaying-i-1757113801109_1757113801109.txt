@@ -1,0 +1,35 @@
+Hi Replit Agent AI,
+Regarding the ongoing issue with Interstitial and Rewarded ads not displaying in our Android WebView app, we've identified several key areas that need immediate attention. Please follow these steps systematically:
+Phase 1: Verify Ad Loading and Lifecycle Management
+Implement Asynchronous Ad Loading (If Not Already Done):
+Ensure that both Interstitial and Rewarded ads are loaded asynchronously well in advance of being shown.
+The load methods (InterstitialAd.load() and RewardedAd.load()) should be called early (e.g., in MainActivity.onCreate or after MobileAds.initialize).
+Crucially, confirm that the show methods are only called after the onAdLoaded callback for the respective ad type has successfully fired.
+Implement FullScreenContentCallback for Both Ad Types:
+Attach a FullScreenContentCallback to both mInterstitialAd and mRewardedAd instances after they have successfully loaded (onAdLoaded).
+Inside onAdDismissedFullScreenContent() for both ad types, immediately call the respective load method again to pre-load the next ad. This is essential, as full-screen ads can only be shown once.
+Log all callbacks (onAdLoaded, onAdFailedToLoad, onAdShowedFullScreenContent, onAdDismissedFullScreenContent, onAdFailedToShowFullScreenContent) to Logcat for clear visibility.
+Add null Checks Before Showing Ads:
+In the showInterstitialAd() and showRewardedAd() methods within WebAppInterface, add a check to ensure mInterstitialAd or mRewardedAd is not null before attempting to call .show(). If null, log a message indicating the ad is not ready.
+Phase 2: Ad Unit IDs and Debugging
+Switch to AdMob Test Unit IDs for Development:
+Immediately replace all production Interstitial and Rewarded Ad Unit IDs with the official AdMob test IDs for debugging purposes.
+Interstitial Test ID: ca-app-pub-3940256099942544/1033173712
+Rewarded Test ID: ca-app-pub-3940256099942544/5224354917
+Verify that the AdMob App ID (ca-app-pub-9746293142643974~5047751469) is correctly initialized.
+Enable Detailed AdMob Logging and Monitor Logcat:
+Add MobileAds.setRequestConfiguration(...) in onCreate to enable more verbose logging.
+Continuously monitor Logcat in Android Studio for any AdMob-related error messages (e.g., onAdFailedToLoad messages, No fill errors, or other warnings).
+Share any specific error messages from Logcat.
+Verify JavaScript Bridge Calls:
+Add console.log() statements in the web application's JavaScript before and after calling AndroidBridge.showInterstitialAd() and AndroidBridge.showRewardedAd() to confirm the calls are being initiated from the web side.
+Use Chrome Developer Tools to inspect the WebView and confirm JavaScript execution and any potential console errors.
+Phase 3: Code Review and Environment
+Review MainActivity.kt for Consistency:
+Ensure the mInterstitialAd and mRewardedAd variables are correctly scoped and accessible where needed.
+Confirm that this@MainActivity correctly refers to the active MainActivity instance when calling .show().
+Confirm AdMob SDK Version:
+Double-check that the latest AdMob SDK version is being used in build.gradle and that there are no version conflicts.
+Goal:
+The primary goal is to first get test ads displaying consistently by ensuring correct ad loading, lifecycle management, and callback handling. Once test ads are stable, we can then transition back to production Ad Unit IDs.
+Please provide updates on each of these steps, especially any relevant Logcat output.
