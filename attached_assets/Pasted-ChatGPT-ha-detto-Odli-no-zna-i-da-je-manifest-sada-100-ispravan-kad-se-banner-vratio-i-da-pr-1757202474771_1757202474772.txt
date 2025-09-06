@@ -1,0 +1,112 @@
+ChatGPT ha detto:
+
+Odlično ✨ znači da je manifest sada 100% ispravan (kad se banner vratio), i da problem više nije u konfiguraciji fajla nego u kodu za prikaz fullscreen oglasa (Interstitial i Rewarded).
+
+Evo šta bih savetovao da uradiš ti / Replit AI Agent da reši problem:
+
+✅ Koraci za Interstitial i Rewarded oglase
+
+Pravilno čuvanje reference na oglas
+
+Kada pozoveš InterstitialAd.load(), rezultat dolazi asinhrono u onAdLoaded().
+
+Moraš da sačuvaš oglas u globalnoj promenljivoj (npr. private var mInterstitialAd: InterstitialAd? = null) i da ga prikažeš samo ako nije null.
+
+Primer:
+
+private var mInterstitialAd: InterstitialAd? = null
+
+private fun loadInterstitialAd() {
+    val adRequest = AdRequest.Builder().build()
+    InterstitialAd.load(this, "ca-app-pub-9746293142643974/7649626393", adRequest,
+        object : InterstitialAdLoadCallback() {
+            override fun onAdLoaded(ad: InterstitialAd) {
+                mInterstitialAd = ad
+                Log.d("AdMob", "Interstitial ad loaded")
+            }
+            override fun onAdFailedToLoad(error: LoadAdError) {
+                Log.e("AdMob", "Failed to load interstitial: $error")
+                mInterstitialAd = null
+            }
+        })
+}
+
+fun showInterstitialAd() {
+    if (mInterstitialAd != null) {
+        mInterstitialAd?.show(this)
+        mInterstitialAd = null // 🔑 posle prikaza moraš ponovo da učitaš
+        loadInterstitialAd()
+    } else {
+        Log.d("AdMob", "Interstitial not ready yet")
+    }
+}
+
+
+Rewarded oglasi se prikazuju sa callback-om za nagradu
+
+private var mRewardedAd: RewardedAd? = null
+
+private fun loadRewardedAd() {
+    val adRequest = AdRequest.Builder().build()
+    RewardedAd.load(this, "ca-app-pub-9746293142643974/2411518252", adRequest,
+        object : RewardedAdLoadCallback() {
+            override fun onAdLoaded(ad: RewardedAd) {
+                mRewardedAd = ad
+                Log.d("AdMob", "Rewarded ad loaded")
+            }
+            override fun onAdFailedToLoad(error: LoadAdError) {
+                Log.e("AdMob", "Failed to load rewarded: $error")
+                mRewardedAd = null
+            }
+        })
+}
+
+fun showRewardedAd() {
+    if (mRewardedAd != null) {
+        mRewardedAd?.show(this) { rewardItem ->
+            Log.d("AdMob", "User earned reward: ${rewardItem.amount}")
+        }
+        mRewardedAd = null // 🔑 moraš opet da učitaš sledeći
+        loadRewardedAd()
+    } else {
+        Log.d("AdMob", "Rewarded not ready yet")
+    }
+}
+
+
+Pozivanje iz WebView JavaScript bridge-a
+
+U WebAppInterface umesto direktnog show() poziva, samo okini ove metode:
+
+@JavascriptInterface
+fun showInterstitialAd() {
+    runOnUiThread {
+        showInterstitialAd()
+    }
+}
+
+@JavascriptInterface
+fun showRewardedAd() {
+    runOnUiThread {
+        showRewardedAd()
+    }
+}
+
+
+Proveri logove u Logcat-u
+
+Ako vidiš Interstitial not ready yet ili Rewarded not ready yet → znači da pokušavaš da prikažeš pre nego što je oglas učitan.
+
+Ako vidiš onAdLoaded → oglas je spreman. Tek tada show() može raditi.
+
+🚀 Šta sad da radi Replit Agent
+
+Pregleda tvoj MainActivity kod.
+
+Uveri se da:
+
+reference (mInterstitialAd, mRewardedAd) su globalne,
+
+da se loadInterstitialAd() i loadRewardedAd() pozivaju u onCreate(),
+
+da se nakon svakog show() ponovo učitava novi oglas.
