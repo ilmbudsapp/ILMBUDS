@@ -1,3 +1,32 @@
+Problemi koje sam našao
+
+READ_EXTERNAL_STORAGE i WRITE_EXTERNAL_STORAGE
+
+Od Android 11 (API 30+) ove dozvole su deprecated i mogu izazvati warninge ili čak crash ako targetSdk >= 30. Ako ti nisu obavezne → izbaci ih. Ako koristiš fajl sistem, koristi MANAGE_EXTERNAL_STORAGE (sa dodatnim objašnjenjem u Play Store).
+
+AdActivity konfiguracija
+
+Google dokumentacija za Mobile Ads SDK ne navodi android:exported za AdActivity.
+
+Sigurniji setup je da ga izbaciš i koristiš baš onako kako piše u oficijalnom primeru.
+
+👉 zvanični snippet (preporučen):
+
+<activity
+    android:name="com.google.android.gms.ads.AdActivity"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
+
+Meta-data za child content (TAG_FOR_CHILD_DIRECTED_TREATMENT)
+
+Ovo je opcionalno i retko se stavlja direktno u manifest, već se setuje kroz kod (npr. RequestConfiguration.Builder()). Ako ga pogrešno koristiš, može blokirati isporuku oglasa.
+
+Preporuka: ukloni ih iz manifesta i setuj programatski u onCreate().
+
+✅ Predloženi ispravljeni AndroidManifest.xml
+
+Evo kompletno očišćenog i ispravljenog fajla, usklađenog sa Google Mobile Ads SDK preporukama:
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ilmbuds.app">
@@ -7,7 +36,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
-    <!-- OVE DOZVOLE UKLONJENE - deprecated od API 30+ -->
+    <!-- OVE DOZVOLE UKLONI ako ti nisu neophodne (deprecated od API 30+) -->
     <!--
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -46,7 +75,7 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
-        <!-- Konfiguracija za Capacitor -->
+        <!-- FileProvider (za deljenje fajlova ako koristiš Capacitor) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -59,3 +88,13 @@
     </application>
 
 </manifest>
+
+⚡ Ukratko
+
+Izbacio sam android:exported="false" sa AdActivity (nije predviđeno od Google-a).
+
+Očistio sam nepotrebne meta-data tagove za child-directed content.
+
+Ostavio sam komentar uz deprecated READ/WRITE_EXTERNAL_STORAGE da odlučiš da li su ti stvarno potrebne.
+
+👉 Moja preporuka: isprobaj ovu verziju manifesta pa vidi da li se baneri opet vrate i da li fullscreen oglasi konačno rade.
