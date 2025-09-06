@@ -1,0 +1,81 @@
+Ovo je jako dobro opisano 👌 – znači baneri rade (znači da je AdMob inicijalizacija OK i da mreža komunicira), ali fullscreen formati (interstitial i rewarded) se učitavaju (onAdLoaded se javlja), ali se ne prikazuju kad pozoveš show().
+
+To odmah sužava problem na način prikazivanja, a ne na mrežu, ID-eve ili inicijalizaciju. Evo glavnih stvari koje treba proveriti:
+
+🔎 Najčešći uzroci
+
+Context / Activity problem
+
+InterstitialAd.show(activity) i RewardedAd.show(activity, callback) zahtevaju da activity bude aktivna i da se koristi Activity context, ne applicationContext.
+
+Ako je show() pozvan iz WebAppInterface (koji možda koristi drugi context), proveri da li tamo prosleđuješ baš this@MainActivity.
+
+Provera isReady
+
+Za interstitial i rewarded moraš da proveriš da li je oglas instanciran:
+
+if (mInterstitialAd != null) {
+    mInterstitialAd?.show(this@MainActivity)
+} else {
+    Log.d("AdMob", "Interstitial not ready")
+}
+
+
+Ako pozoveš show() odmah posle onAdLoaded, zna da radi, ali ako kasnije pokušavaš, možda si izgubio referencu (npr. mInterstitialAd je null jer se garbage collectovao ili nije sačuvan).
+
+Lifecycle
+
+Fullscreen oglasi se potroše nakon prikaza. Nakon što se zatvore, moraš ponovo da pozoveš InterstitialAd.load() ili RewardedAd.load() da bi imali sledeći oglas.
+
+UI Thread
+
+Dobro je što koristiš runOnUiThread, ali probaj da pozoveš direktno iz MainActivity umesto preko bridge-a, da eliminišeš threading problem.
+
+Logovi AdMob-a
+
+Kad pozoveš show(), da li se u Logcat pojavljuje nešto poput:
+
+"Ad failed to show: Ad is not ready"
+
+"AdActivity not declared in manifest"
+
+Ako ti ovo fali u AndroidManifest.xml:
+
+<activity
+    android:name="com.google.android.gms.ads.AdActivity"
+    android:exported="false"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
+
+fullscreen reklame se neće prikazati.
+
+Razlika Banner vs Fullscreen
+
+Baneri se ubacuju kao View u layout i ne trebaju dodatne aktivnosti.
+
+Interstitial i Rewarded se otvaraju preko AdActivity koju moraš da deklariraš u AndroidManifest.xml (inače neće moći da prikaže fullscreen ekran).
+
+✅ Predlog rešenja
+
+Uveri se da u AndroidManifest.xml postoji ovo:
+
+<activity
+    android:name="com.google.android.gms.ads.AdActivity"
+    android:exported="false"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
+
+Čuvaj referencu na interstitial i rewarded oglas dok ga ne prikažeš.
+
+Ako pozoveš load() pa show() odmah – OK.
+
+Ako je razmak veći – proveri da li mInterstitialAd nije null.
+
+Za rewarded:
+
+mRewardedAd?.show(this@MainActivity) { rewardItem ->
+    Log.d("AdMob", "User earned reward: ${rewardItem.amount}")
+}
+
+
+👉 Ukratko: banner radi jer je samo View, ali fullscreen formati zahtevaju AdActivity u manifestu i ispravan Activity context. Najčešće je problem upravo nedostajući AdActivity ili pogrešan context.

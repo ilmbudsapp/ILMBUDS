@@ -47,6 +47,12 @@
             </intent-filter>
         </activity>
 
+        <!-- ✅ KRITIČNO: AdActivity za Interstitial i Rewarded reklame -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:exported="false"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
         <!-- Konfiguracija za Capacitor -->
         <provider
             android:name="androidx.core.content.FileProvider"
