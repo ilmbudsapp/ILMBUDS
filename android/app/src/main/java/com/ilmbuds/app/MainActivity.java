@@ -63,7 +63,7 @@ public class MainActivity extends ComponentActivity {
     private void loadInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this, "ca-app-pub-9746293142643974/7649626393", adRequest,
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
             new InterstitialAdLoadCallback() {
                 @Override
                 public void onAdLoaded(InterstitialAd ad) {
@@ -106,7 +106,7 @@ public class MainActivity extends ComponentActivity {
     private void loadRewardedAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        RewardedAd.load(this, "ca-app-pub-9746293142643974/2411518252", adRequest,
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917", adRequest,
             new RewardedAdLoadCallback() {
                 @Override
                 public void onAdLoaded(RewardedAd ad) {
@@ -273,7 +273,7 @@ public static void BannerAdView(Modifier modifier, androidx.compose.runtime.Comp
         factory -> {
             AdView adView = new AdView(context);
             // TVOJ PRODUCTION BANNER ID (koji već radi!)
-            adView.setAdUnitId("ca-app-pub-9746293142643974/3548505956");
+            adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
             adView.setAdSize(AdSize.LARGE_BANNER);
             
             AdRequest adRequest = new AdRequest.Builder().build();
