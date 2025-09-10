@@ -269,11 +269,11 @@ export default function QuizCategories() {
                              currentLanguage === 'de' ? 'Geschichte des Islams' :
                              currentLanguage === 'it' ? 'Storia dell\'Islam' :
                              'Historija Islama')}
-                          {category.name === 'Five Pillars' && 
-                            (currentLanguage === 'en' ? 'Five Pillars' :
+                          {category.name === 'Five Pillars of Islam' && 
+                            (currentLanguage === 'en' ? 'Five Pillars of Islam' :
                              currentLanguage === 'sq' ? 'Pesë shtyllat e Islamit' :
-                             currentLanguage === 'de' ? 'Die fünf Säulen' :
-                             currentLanguage === 'it' ? 'I cinque pilastri' :
+                             currentLanguage === 'de' ? 'Die fünf Säulen des Islam' :
+                             currentLanguage === 'it' ? 'I cinque pilastri dell\'Islam' :
                              'Pet stupova Islama')}
                           {category.name === 'Prophets' && 
                             (currentLanguage === 'en' ? 'Prophets' :
