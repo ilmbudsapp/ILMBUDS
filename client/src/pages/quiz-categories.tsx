@@ -39,6 +39,69 @@ const Navbar = () => {
   );
 };
 
+// Centralized translations lookup map
+const categoryTranslations: Record<string, Record<string, string>> = {
+  "History of Islam": {
+    en: "History of Islam",
+    sq: "Historia e Islamit", 
+    de: "Geschichte des Islams",
+    it: "Storia dell'Islam",
+    bs: "Historija Islama"
+  },
+  "Five Pillars of Islam": {
+    en: "Five Pillars of Islam",
+    sq: "Pesë shtyllat e Islamit",
+    de: "Die fünf Säulen des Islam", 
+    it: "I cinque pilastri dell'Islam",
+    bs: "Pet stupova Islama"
+  },
+  "Prophets": {
+    en: "Prophets",
+    sq: "Pejgamberët",
+    de: "Propheten",
+    it: "Profeti", 
+    bs: "Poslanici"
+  },
+  "Quran": {
+    en: "Quran",
+    sq: "Kuran",
+    de: "Koran",
+    it: "Corano",
+    bs: "Kuran"
+  },
+  "Quran for Children": {
+    en: "Quran for Children",
+    sq: "Kurani për fëmijë",
+    de: "Koran für Kinder",
+    it: "Corano per bambini",
+    bs: "Kuran za djecu"
+  },
+  "Islamic Stories": {
+    en: "Islamic Stories", 
+    sq: "Tregime Islame",
+    de: "Islamische Geschichten",
+    it: "Storie Islamiche",
+    bs: "Islamske priče"
+  },
+  "ILMIHAL": {
+    en: "Catechism",
+    sq: "Ilmihal", 
+    de: "Katechismus-Ilmihal",
+    it: "Catechismo",
+    bs: "Ilmihal"
+  }
+};
+
+const categoryDescriptions: Record<string, Record<string, string>> = {
+  "History of Islam": {
+    en: "Explore the rich heritage of Islam",
+    sq: "Zbuloni trashëgiminë e pasur të Islamit",
+    de: "Entdecken Sie das reiche Erbe des Islam", 
+    it: "Esplora la ricca eredità dell'Islam",
+    bs: "Istražite bogatu baštinu Islama"
+  }
+};
+
 export default function QuizCategories() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +110,16 @@ export default function QuizCategories() {
   const { selectCategory } = useQuizContext();
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
+
+  // Helper function to get translated category name
+  const getCategoryName = (categoryName: string): string => {
+    return categoryTranslations[categoryName]?.[currentLanguage] || categoryName;
+  };
+
+  // Helper function to get category description  
+  const getCategoryDescription = (categoryName: string): string => {
+    return categoryDescriptions[categoryName]?.[currentLanguage] || t('topics', 'tapToStart');
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -263,63 +336,14 @@ export default function QuizCategories() {
                             ? 'text-amber-800 drop-shadow-sm' 
                             : ''
                         }`}>
-                          {category.name === 'History of Islam' && 
-                            (currentLanguage === 'en' ? 'History of Islam' :
-                             currentLanguage === 'sq' ? 'Historia e Islamit' :
-                             currentLanguage === 'de' ? 'Geschichte des Islams' :
-                             currentLanguage === 'it' ? 'Storia dell\'Islam' :
-                             'Historija Islama')}
-                          {category.name === 'Five Pillars of Islam' && 
-                            (currentLanguage === 'en' ? 'Five Pillars of Islam' :
-                             currentLanguage === 'sq' ? 'Pesë shtyllat e Islamit' :
-                             currentLanguage === 'de' ? 'Die fünf Säulen des Islam' :
-                             currentLanguage === 'it' ? 'I cinque pilastri dell\'Islam' :
-                             'Pet stupova Islama')}
-                          {category.name === 'Prophets' && 
-                            (currentLanguage === 'en' ? 'Prophets' :
-                             currentLanguage === 'sq' ? 'Pejgamberët' :
-                             currentLanguage === 'de' ? 'Propheten' :
-                             currentLanguage === 'it' ? 'Profeti' :
-                             'Poslanici')}
-                          {category.name === 'Quran' && 
-                            (currentLanguage === 'en' ? 'Quran' :
-                             currentLanguage === 'sq' ? 'Kuran' :
-                             currentLanguage === 'de' ? 'Koran' :
-                             currentLanguage === 'it' ? 'Corano' :
-                             'Kuran')}
-                          {category.name === 'Quran for Children' && 
-                            (currentLanguage === 'en' ? 'Quran for Children' :
-                             currentLanguage === 'sq' ? 'Kurani për fëmijë' :
-                             currentLanguage === 'de' ? 'Koran für Kinder' :
-                             currentLanguage === 'it' ? 'Corano per bambini' :
-                             'Kuran za djecu')}
-                          {category.name === 'Islamic Stories' && 
-                            (currentLanguage === 'en' ? 'Islamic Stories' :
-                             currentLanguage === 'sq' ? 'Tregime Islame' :
-                             currentLanguage === 'de' ? 'Islamische Geschichten' :
-                             currentLanguage === 'it' ? 'Storie Islamiche' :
-                             'Islamske priče')}
-                          {category.name === 'ILMIHAL' && 
-                            (currentLanguage === 'en' ? 'Catechism' :
-                             currentLanguage === 'sq' ? 'Ilmihal' :
-                             currentLanguage === 'de' ? 'Katechismus-Ilmihal' :
-                             currentLanguage === 'it' ? 'Catechismo' :
-                             'Ilmihal')}
-                          {!['History of Islam', 'Five Pillars', 'Prophets', 'Quran', 'Quran for Children', 'Islamic Stories', 'ILMIHAL'].includes(category.name) && category.name}
+                          {getCategoryName(category.name)}
                         </h3>
                         <p className={`text-sm ${
                           category.name === 'History of Islam' 
                             ? 'text-amber-700' 
                             : 'text-gray-600'
                         }`}>
-                          {category.name === 'History of Islam' 
-                            ? (currentLanguage === 'en' ? 'Explore the rich heritage of Islam' :
-                               currentLanguage === 'sq' ? 'Zbuloni trashëgiminë e pasur të Islamit' :
-                               currentLanguage === 'de' ? 'Entdecken Sie das reiche Erbe des Islam' :
-                               currentLanguage === 'it' ? 'Esplora la ricca eredità dell\'Islam' :
-                               'Istražite bogatu baštinu Islama')
-                            : t('topics', 'tapToStart')
-                          }
+                          {getCategoryDescription(category.name)}
                         </p>
                         <div className="flex items-center mt-2">
                           <Icon name="star" className={`mr-1 ${
