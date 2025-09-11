@@ -99,6 +99,13 @@ const categoryDescriptions: Record<string, Record<string, string>> = {
     de: "Entdecken Sie das reiche Erbe des Islam", 
     it: "Esplora la ricca eredità dell'Islam",
     bs: "Istražite bogatu baštinu Islama"
+  },
+  "Five Pillars of Islam": {
+    en: "Learn the foundation of Islamic faith",
+    sq: "Mësoni themelin e besimit islam",
+    de: "Lernen Sie die Grundlagen des islamischen Glaubens",
+    it: "Impara le fondamenta della fede islamica",
+    bs: "Naučite temelj islamske vjere"
   }
 };
 
