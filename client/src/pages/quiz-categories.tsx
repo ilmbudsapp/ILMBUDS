@@ -53,7 +53,7 @@ const categoryTranslations: Record<string, Record<string, string>> = {
     sq: "Pesë shtyllat e Islamit",
     de: "Die fünf Säulen des Islam", 
     it: "I cinque pilastri dell'Islam",
-    bs: "Pet stupova Islama"
+    bs: "Pet stubova Islama"
   },
   "Prophets": {
     en: "Prophets",
@@ -126,8 +126,6 @@ export default function QuizCategories() {
     fetch('/api/categories')
       .then(res => res.json())
       .then(data => {
-        console.log('Categories from API:', data);
-        console.log('Categories count:', data.length);
         setCategories(data);
         setLoading(false);
       })
@@ -268,9 +266,7 @@ export default function QuizCategories() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {categories.map((category) => {
-              console.log('Rendering category:', category.name, category.id);
-              return (
+            {categories.map((category) => (
                 <motion.div
                 key={category.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -428,8 +424,7 @@ export default function QuizCategories() {
                   </div>
                 )}
                 </motion.div>
-              );
-            })}
+            ))}
           </div>
         )}
       </main>
