@@ -1,0 +1,176 @@
+Razumem situaciju. Problemi sa AdMob Interstitial i Rewarded reklamama, kao i sa JavaScript bridge komunikacijom, su česti u WebView aplikacijama. Hajde da prođemo kroz vaša pitanja i ponudimo rešenja.
+1. JavaScript Bridge komunikacija:
+Da li je @JavascriptInterface pravilno implementiran?
+Generalno, implementacija @JavascriptInterface izgleda ovako:
+code
+Kotlin
+class WebAppInterface(private val mContext: Context) {
+    @JavascriptInterface
+    fun showToast(toast: String) {
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show()
+    }
+
+    @JavascriptInterface
+    fun showInterstitialAd() {
+        // Your Interstitial ad loading/showing logic here
+        // This will call a method in your MainActivity or a designated AdManager
+    }
+
+    @JavascriptInterface
+    fun showRewardedAd() {
+        // Your Rewarded ad loading/showing logic here
+    }
+}
+A u vašem WebView podešavanju:
+code
+Kotlin
+webView.settings.javaScriptEnabled = true
+webView.addJavascriptInterface(WebAppInterface(this), "Android") // "Android" je ime objekta u JS-u
+Sa JS strane, pozivate ovako:
+code
+JavaScript
+// Za pozivanje Toasta
+if (typeof Android !== 'undefined' && Android !== null) {
+    Android.showToast("Hello from web!");
+}
+
+// Za pozivanje Interstitial reklame
+if (typeof Android !== 'undefined' && Android !== null) {
+    Android.showInterstitialAd();
+}
+Kako testirati da li web app može da pozove Android funkcije?
+Najlakši način je da počnete sa jednostavnom funkcijom poput showToast. Ako Toast iskoči kada ga pozovete iz web aplikacije, znate da je bridge osnovno funkcionalan.
+Dodajte showToast funkciju u vaš WebAppInterface kao što je prikazano iznad.
+Pozovite Android.showToast("Test message"); iz vaše Replit web aplikacije (npr. preko dugmeta ili odmah po učitavanju).
+Pogledajte da li se Toast prikazuje na Android uređaju.
+Takođe, koristite Chrome Remote Debugging. Povežite Android uređaj sa računarom, otvorite chrome://inspect/#devices u Chrome-u, pronađite vaš WebView i otvorite konzolu. Svi console.log iz vaše web aplikacije će se tamo prikazivati, a takođe možete da vidite greške i pozivate JavaScript funkcije direktno.
+2. Lifecycle management:
+Kad da učitavam Interstitial reklame? (onCreate, onResume?)
+Najbolje je da počnete sa učitavanjem Interstitial reklama u onCreate ili onResume. Međutim, prikazivanje reklame treba da bude kada je to logično za korisničko iskustvo (npr. nakon završetka nivoa, prelaska sa jedne sekcije aplikacije na drugu, ili kada je to eksplicitno zatraženo preko JS bridge-a).
+Preporučuje se da se reklama učita mnogo pre nego što je planirate prikazati, jer učitavanje može potrajati.
+Primer logike za učitavanje u MainActivity.kt:
+code
+Kotlin
+private var mInterstitialAd: InterstitialAd? = null
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    // ... ostali kod ...
+
+    loadInterstitialAd() // Pozovite ovo rano
+}
+
+private fun loadInterstitialAd() {
+    var adRequest = AdRequest.Builder().build()
+    InterstitialAd.load(this, "YOUR_INTERSTITIAL_AD_UNIT_ID", adRequest, object : InterstitialAdLoadCallback() {
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            Log.d(TAG, adError?.message)
+            mInterstitialAd = null
+        }
+
+        override fun onAdLoaded(interstitialAd: InterstitialAd) {
+            Log.d(TAG, "Ad was loaded.")
+            mInterstitialAd = interstitialAd
+            mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    Log.d(TAG, "Ad was dismissed.")
+                    mInterstitialAd = null
+                    loadInterstitialAd() // Učitajte novu reklamu čim se stara odbaci
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    Log.d(TAG, "Ad failed to show.")
+                    mInterstitialAd = null
+                }
+
+                override fun onAdShowedFullScreenContent() {
+                    Log.d(TAG, "Ad showed on screen.")
+                }
+            }
+        }
+    })
+}
+
+// Funkcija koju će pozvati JavaScript bridge
+@JavascriptInterface
+fun showInterstitialAdFromWeb() {
+    runOnUiThread {
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        } else {
+            Log.d(TAG, "The interstitial ad wasn't ready yet.")
+            // Opcionalno, pokušajte da ponovo učitate ako nije spremna
+            loadInterstitialAd()
+        }
+    }
+}
+Važno: Kod za prikazivanje reklame (mInterstitialAd?.show(this)) mora se pokrenuti na glavnoj (UI) niti. Ako ga pozivate iz @JavascriptInterface funkcije, obavezno koristite runOnUiThread jer JavaScript bridge pozivi nisu na glavnoj niti.
+Kako da rukujem sa reklamama kada korisnik izađe/vrati se u app?
+Kada se Interstitial reklama prikaže i korisnik je odbaci, onAdDismissedFullScreenContent() callback je idealno mesto da odmah započnete učitavanje sledeće Interstitial reklame. Ovo osigurava da je reklama skoro uvek spremna kada vam zatreba.
+Ne morate posebno da brinete o samim reklamama u onPause/onResume metodama, jer AdMob SDK sam upravlja time. Glavna stvar je da obezbedite kontinualno pre-učitavanje reklama.
+3. Timing i preloading:
+Da li treba da preload-ujemo Interstitial reklame?
+Apsolutno da. Interstitial i Rewarded reklame uvek treba pre-učitati. Ako pokušate da učitate i odmah prikažete reklamu, često će doći do greške ili će korisnik videti prazan ekran dok se reklama učitava.
+Koliko vremena treba da čekamo pre poziva?
+Nema fiksnog "vremena čekanja". Umesto toga, oslanjate se na callback-ove. Učitavate reklamu, a kada se onAdLoaded pozove, tada znate da je reklama spremna za prikazivanje. Nema potrebe za Thread.sleep() ili Handler().postDelayed().
+4. Error handling:
+Kako da debug-ujemo zašto se reklame ne prikazuju?
+Logcat: Ovo je najvažniji alat. Filtrirajte po AdMob, Ads, ili paketu vaše aplikacije. AdMob SDK često ispisuje korisne poruke o greškama.
+Potražite poruke iz onAdFailedToLoad i onAdFailedToShowFullScreenContent.
+Log.d(TAG, adError?.message) će vam dati specifičnu poruku greške.
+Test Ad Units: Obavezno koristite test ID-jeve za reklame tokom razvoja (ca-app-pub-3940256099942544/1033173712 za Interstitial, ca-app-pub-3940256099942544/5224354917 za Rewarded). Ovo osigurava da ne generišete lažne impresije i da dobijate test reklame koje su uvek dostupne.
+AdRequest isTesting(): Tokom razvoja, dodajte adRequest.isTesting() (iako noviji SDK-ovi automatski prepoznaju test uređaje kada je USB debugging uključen).
+Proverite AdMob Dashboard: Ponekad postoje ograničenja naloga ili problemi sa odobrenjem aplikacije koji sprečavaju prikazivanje reklama.
+Network State: Proverite da li uređaj ima aktivnu internet vezu.
+GDPR/Privacy: Da li ste implementirali mehanizme za pristanak korisnika na personalizovane reklame (ako je aplikacija za EU/UK)? Ako ne, to može uticati na prikazivanje reklama.
+Da li ima AdMob test console logova?
+Kada se koristi testni oglasni ID, AdMob će ispisati poruke u Logcat-u koje ukazuju da se radi o testnoj reklami. Sam AdMob nema "konzolu" u smislu interaktivne alatke za debagovanje reklama na uređaju, ali Logcat je vaša konzola za AdMob.
+Ako se pojave greške prilikom učitavanja, Logcat će često prikazati Reason for ad failed to load: 3 (No fill), Reason for ad failed to load: 0 (Internal error), itd. Brojevi grešaka su definisani u AdRequest.ERROR_CODE_... konstantama.
+5. WebView settings:
+Da li trebaju specifična WebView podešavanja za JavaScript bridge?
+setJavaScriptEnabled(true) je apsolutno neophodno i jeste dovoljno za osnovno funkcionisanje JavaScript bridge-a.
+Za naprednije scenarije, možda će vam trebati setDomStorageEnabled(true) ili setDatabaseEnabled(true) ako vaša web aplikacija koristi Web Storage ili IndexedDB. Za većinu JS bridge interakcija ovo nije neophodno.
+webView.webChromeClient = WebChromeClient(): Preporučuje se da postavite WebChromeClient kako biste rukovali JavaScript dijalozima (alert, confirm, prompt) i prikazivali napredak učitavanja stranice. Iako nije striktno neophodan za bridge, poboljšava korisničko iskustvo. Bez njega, JS alert neće prikazati ništa.
+Dodatni saveti:
+Jedinstven WebAppInterface: Pobrinite se da imate samo jednu instancu WebAppInterface dodatu u WebView.
+Context: Vodite računa o Context-u. Ako vaša WebAppInterface klasa pokušava da prikaže reklame, možda će joj trebati Activity kontekst umesto samo ApplicationContext da bi se pravilno prikazale full-screen reklame. Prosleđivanje this (kao MainActivity) kada instancirate WebAppInterface je ispravno.
+MainActivity kao slušalac: Razmislite o tome da MainActivity implementira interfejs za AdMob callback-ove ili da imate posebnu klasu za upravljanje reklamama koju MainActivity koristi, a WebAppInterface poziva metode u MainActivity ili tom menadžeru. Ovo održava kod čistijim.
+Verzije SDK-a: Proverite da li koristite najnovije verzije AdMob i WebView biblioteka u vašem build.gradle fajlu.
+code
+Gradle
+implementation 'com.google.android.gms:play-services-ads:23.0.0' // Proverite za najnoviju verziju
+Evo i vizuelnog prikaza strukture komunikacije:
+code
+Mermaid
+graph TD
+    A[Replit Web App (HTML/CSS/JS)] -->|Poziva JS funkciju npr. Android.showInterstitialAd()| B(Android WebView)
+    B -->|Prosledjuje poziv Android aplikaciji preko WebAppInterface| C{WebAppInterface @JavascriptInterface}
+    C -->|Poziva funkciju u MainActivity npr. showInterstitialAdFromWeb()| D[MainActivity.kt]
+    D -->|Inicira AdMob SDK za prikaz Interstitial/Rewarded reklame| E[AdMob SDK]
+    E -->|Prikazuje reklamu korisniku| F(Korisnički Interfejs)
+    E -->|Šalje callback-ove (učitano, greška, prikazano, odbaceno) nazad u MainActivity| D
+    D -->|Učitava sledeću reklamu nakon odbacivanja prethodne| E
+I još jedan dijagram toka za učitavanje/prikazivanje reklama:
+code
+Mermaid
+graph TD
+    A[MainActivity onCreate()] --> B{loadInterstitialAd()}
+    B --> C{AdRequest.Builder().build()}
+    C --> D{InterstitialAd.load(..., object : InterstitialAdLoadCallback() {...})}
+
+    D --onAdLoaded--> E[mInterstitialAd = interstitialAd]
+    E --> F[Podesi FullScreenContentCallback]
+    F --> G{Korisnik pozove showInterstitialAdFromWeb() iz JS-a}
+    G --runOnUiThread--> H{Ako mInterstitialAd != null, mInterstitialAd.show(this)}
+    H --Prikaže se reklama--> I[AdMob Prikazuje reklamu]
+
+    D --onAdFailedToLoad--> J[Loguj grešku, mInterstitialAd = null]
+
+    I --Korisnik odbaci reklamu--> K{onAdDismissedFullScreenContent()}
+    K --> L[mInterstitialAd = null]
+    L --> M[loadInterstitialAd() - Učitaj novu reklamu]
+
+    H --mInterstitialAd == null--> N[Loguj "Ad wasn't ready", Opcionalno: ponovo učitaj]
+Nadam se da će vam ovo pomoći da rešite probleme sa AdMob reklamama i JavaScript bridge-om!
