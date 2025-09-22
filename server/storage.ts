@@ -230,22 +230,13 @@ export class MemStorage implements IStorage {
   }
 
   private async initializeData() {
-    // Create categories: History of Islam + Pet Stubova Islama
+    // Create categories: History of Islam
     const categories = [
       {
         name: "History of Islam",
         icon: "menu_book",
         iconColor: "hsl(240 85% 59%)",
         backgroundColor: "hsl(240 85% 97%)",
-        difficulty: Difficulty.Beginner,
-        totalQuizzes: 1,
-        folder: "QUIZ"
-      },
-      {
-        name: "Five Pillars of Islam",
-        icon: "mosque",
-        iconColor: "hsl(142 76% 36%)",
-        backgroundColor: "hsl(142 50% 96%)",
         difficulty: Difficulty.Beginner,
         totalQuizzes: 1,
         folder: "QUIZ"
@@ -263,9 +254,8 @@ export class MemStorage implements IStorage {
       });
     });
     
-    // Create sample quizzes - History of Islam + Five Pillars
+    // Create sample quizzes - History of Islam
     this.createQuiz({ title: "History of Islam", categoryId: 1, difficulty: 1 });
-    this.createQuiz({ title: "Five Pillars of Islam", categoryId: 2, difficulty: 1 });
     
     // Add sample questions to the History of Islam quiz - kid-friendly version
     const historyOfIslamQuestions = [
@@ -320,65 +310,6 @@ export class MemStorage implements IStorage {
       }
     ];
     
-    // Add Five Pillars of Islam questions
-    const fivePillarsQuestions = [
-      {
-        text: "What is the first pillar of Islam that Muslims say when they accept Islam?",
-        imageUrl: "/images/quiz/SHAHADA.jpg",
-        options: ["Prayer", "Shahada", "Fasting", "Hajj"],
-        correctOption: 1,
-        explanation: "The Shahada is the declaration of faith: 'There is no god but Allah, and Muhammad is his messenger.' It's the first and most important pillar of Islam."
-      },
-      {
-        text: "How many times a day do Muslims pray?",
-        imageUrl: "/images/quiz/SALAH_TIMES.jpg", 
-        options: ["3 times", "4 times", "5 times", "6 times"],
-        correctOption: 2,
-        explanation: "Muslims pray 5 times a day: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (sunset), and Isha (night). This is called Salah."
-      },
-      {
-        text: "What is the third pillar of Islam where Muslims give to help poor people?",
-        imageUrl: "/images/quiz/ZAKAT.jpg",
-        options: ["Sadaqah", "Zakat", "Khums", "Fitrah"],
-        correctOption: 1,
-        explanation: "Zakat is giving a small amount of money (2.5% of savings) every year to help poor and needy people. This helps everyone in the community."
-      },
-      {
-        text: "During which month do Muslims fast from sunrise to sunset?",
-        imageUrl: "/images/quiz/RAMADAN_FASTING.jpg",
-        options: ["Ramadan", "Shawwal", "Dhul-Hijjah", "Muharram"],
-        correctOption: 0,
-        explanation: "During Ramadan, Muslims fast from dawn to sunset. They don't eat or drink during daylight hours. This teaches patience and helps them understand how poor people feel."
-      },
-      {
-        text: "What is the name of the pilgrimage to Makkah that Muslims do once in their lifetime?",
-        imageUrl: "/images/quiz/HAJJ_PILGRIMAGE.jpg",
-        options: ["Umrah", "Hajj", "Tawaf", "Sa'i"],
-        correctOption: 1,
-        explanation: "Hajj is the special journey to Makkah that Muslims make at least once if they can afford it and are healthy enough. It brings Muslims from all over the world together."
-      },
-      {
-        text: "Which direction do Muslims face when they pray?",
-        imageUrl: "/images/quiz/QIBLA_DIRECTION.jpg",
-        options: ["Towards the sun", "Towards Makkah", "Towards Jerusalem", "Towards Madinah"],
-        correctOption: 1,
-        explanation: "Muslims face towards Makkah (the Qibla direction) when they pray. This is where the Kaaba is located, and it unites all Muslims in prayer."
-      },
-      {
-        text: "What do Muslims say before starting their prayer?",
-        imageUrl: "/images/quiz/TAKBIR.jpg", 
-        options: ["Bismillah", "Allahu Akbar", "Alhamdulillah", "SubhanAllah"],
-        correctOption: 1,
-        explanation: "Muslims say 'Allahu Akbar' (Allah is the Greatest) when they start their prayer. This is called Takbir and shows that Allah is more important than anything else."
-      },
-      {
-        text: "What is the special prayer that Muslims do together on Fridays?",
-        imageUrl: "/images/quiz/JUMAH_PRAYER.jpg",
-        options: ["Eid Prayer", "Jumah Prayer", "Tarawih Prayer", "Witr Prayer"], 
-        correctOption: 1,
-        explanation: "Jumah Prayer is the special weekly prayer that Muslims pray together on Friday afternoon. It includes a sermon (khutbah) and brings the community together."
-      }
-    ];
     
     // Add History of Islam questions to the quiz
     historyOfIslamQuestions.forEach(q => {
@@ -401,26 +332,6 @@ export class MemStorage implements IStorage {
       });
     });
     
-    // Add Five Pillars questions to the quiz
-    fivePillarsQuestions.forEach(q => {
-      // Ensure image paths use direct file reference
-      let imageUrl = q.imageUrl;
-      if (imageUrl && imageUrl.includes('images/quiz/')) {
-        // Extract just the filename
-        const filename = imageUrl.split('/').pop() || '';
-        imageUrl = `/images/quiz/${filename}`;
-      }
-      
-      this.createQuestion({
-        quizId: 2, // Five Pillars quiz ID
-        text: q.text,
-        imageUrl: imageUrl,
-        audioUrl: undefined,
-        options: q.options,
-        correctOption: q.correctOption,
-        explanation: q.explanation
-      });
-    });
     
     // Update quizzes with total questions
     const historyOfIslamQuiz = this.quizzes.get(1);
@@ -428,10 +339,6 @@ export class MemStorage implements IStorage {
       this.quizzes.set(1, { ...historyOfIslamQuiz, totalQuestions: historyOfIslamQuestions.length });
     }
     
-    const fivePillarsQuiz = this.quizzes.get(2);
-    if (fivePillarsQuiz) {
-      this.quizzes.set(2, { ...fivePillarsQuiz, totalQuestions: fivePillarsQuestions.length });
-    }
     
     // Update categories with total quizzes
     const category1 = this.categories.get(1);
@@ -444,15 +351,6 @@ export class MemStorage implements IStorage {
       });
     }
     
-    const category2 = this.categories.get(2);
-    if (category2) {
-      // Set actual quiz count: Five Pillars has 1 quiz with 8 questions
-      this.categories.set(2, { 
-        ...category2, 
-        totalQuizzes: 1,
-        folder: category2.folder
-      });
-    }
     
     // Initialize sample Quran surahs for children
     const sampleSurahs = [

@@ -48,13 +48,6 @@ const categoryTranslations: Record<string, Record<string, string>> = {
     it: "Storia dell'Islam",
     bs: "Historija Islama"
   },
-  "Five Pillars of Islam": {
-    en: "Five Pillars of Islam",
-    sq: "Pesë shtyllat e Islamit",
-    de: "Die fünf Säulen des Islam", 
-    it: "I cinque pilastri dell'Islam",
-    bs: "Pet stubova Islama"
-  },
   "Prophets": {
     en: "Prophets",
     sq: "Pejgamberët",
@@ -100,13 +93,6 @@ const categoryDescriptions: Record<string, Record<string, string>> = {
     it: "Esplora la ricca eredità dell'Islam",
     bs: "Istražite bogatu baštinu Islama"
   },
-  "Five Pillars of Islam": {
-    en: "Learn the foundation of Islamic faith",
-    sq: "Mësoni themelin e besimit islam",
-    de: "Lernen Sie die Grundlagen des islamischen Glaubens",
-    it: "Impara le fondamenta della fede islamica",
-    bs: "Naučite temelj islamske vjere"
-  }
 };
 
 export default function QuizCategories() {
