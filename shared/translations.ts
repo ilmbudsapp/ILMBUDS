@@ -2054,6 +2054,69 @@ export const translations: Translations = {
       bs: 'Gledaj',
       de: 'Ansehen',
       it: 'Guarda'
+    },
+    partners: {
+      en: 'Partners',
+      sq: 'Partnerët',
+      bs: 'Partneri',
+      de: 'Partner',
+      it: 'Partner'
+    },
+    contact: {
+      en: 'Contact',
+      sq: 'Kontakt',
+      bs: 'Kontakt',
+      de: 'Kontakt',
+      it: 'Contatti'
+    },
+    privacy: {
+      en: 'Privacy',
+      sq: 'Privatësia',
+      bs: 'Privatnost',
+      de: 'Datenschutz',
+      it: 'Privacy'
+    },
+    legalInfo: {
+      en: 'Legal information',
+      sq: 'Informacione ligjore',
+      bs: 'Pravne informacije',
+      de: 'Rechtliche Informationen',
+      it: 'Informazioni legali'
+    },
+    donations: {
+      en: 'Donate',
+      sq: 'Donacione',
+      bs: 'Donacije',
+      de: 'Spenden',
+      it: 'Donazioni'
+    },
+    footerNavAria: {
+      en: 'Footer navigation',
+      sq: 'Navigimi i fundfaqes',
+      bs: 'Podnožje navigacija',
+      de: 'Fußzeilen-Navigation',
+      it: 'Navigazione piè di pagina'
+    },
+    skipToContent: {
+      en: 'Skip to content',
+      sq: 'Kalo te përmbajtja',
+      bs: 'Preskoči na sadržaj',
+      de: 'Zum Inhalt springen',
+      it: 'Vai al contenuto'
+    },
+    mainMenuAria: {
+      en: 'Main menu',
+      sq: 'Menyja kryesore',
+      bs: 'Glavni meni',
+      de: 'Hauptmenü',
+      it: 'Menu principale'
+    },
+    webTagline: {
+      en: 'Islamic website for children',
+      sq: 'Faqja web islamike për fëmijë',
+      bs: 'Islamska web stranica za djecu',
+      de: 'Islamische Website für Kinder',
+      it: 'Sito web islamico per bambini'
     }
   },
   cartoons: {
