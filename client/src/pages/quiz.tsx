@@ -5,14 +5,19 @@ import { QuizComplete } from '@/components/quiz-complete';
 import { Celebration } from '@/components/celebration';
 import { useQuizContext } from '@/context/quiz-context';
 import { useUserContext } from '@/context/user-context';
+import { useTranslation } from '@/hooks/use-translation';
 import { ProfileBadge } from '@/components/profile-badge';
 import { Icon } from '@/components/ui/icons';
 import audioService from '@/services/audio-service';
 import { Button } from '@/components/ui/button';
+// AdMob imports DISABLED to prevent crash
+// import { showInterstitialAd, showRewardedAd } from '@/services/ad-service';
+// AdMob test button removed
 
 export default function Quiz() {
   const [_, setLocation] = useLocation();
   const { user } = useUserContext();
+  const { t } = useTranslation();
   const { 
     selectedCategory,
     selectedQuiz,
@@ -35,6 +40,49 @@ export default function Quiz() {
   } = useQuizContext();
   
   const [showCelebration, setShowCelebration] = useState(false);
+  const [isWatchingAd, setIsWatchingAd] = useState(false);
+  
+  // Helper function to navigate with interstitial ad
+  const navigateWithAd = async (path: string) => {
+    try {
+      // Show interstitial ad after quiz completion (50% chance)
+      if (Math.random() < 0.5) {
+        console.log('🎯 Showing interstitial ad after quiz completion');
+        // AdMob interstitial DISABLED to prevent crash
+        // await showInterstitialAd(true); // true = use TEST IDs - SAFE
+        console.log('🎯 Interstitial ad DISABLED');
+      }
+    } catch (error) {
+      console.error('Error showing interstitial ad:', error);
+    } finally {
+      // Navigate regardless of ad success/failure
+      setLocation(path);
+    }
+  };
+
+  // Function to watch rewarded ad for bonus points
+  const watchAdForBonus = async () => {
+    setIsWatchingAd(true);
+    try {
+      console.log('🎁 Showing rewarded ad for bonus points');
+      // AdMob rewarded ad DISABLED to prevent crash
+      // const result = await showRewardedAd(false); // false = use production IDs
+      const result = { success: true }; // Mock result
+      
+      if (result.watched) {
+        console.log('✅ Rewarded ad watched successfully, user earned bonus!');
+        // You can add bonus points logic here
+        audioService.playSubhanallah(); // Play success sound
+        // Show success message
+      } else {
+        console.log('❌ Rewarded ad was not watched or failed');
+      }
+    } catch (error) {
+      console.error('Error showing rewarded ad:', error);
+    } finally {
+      setIsWatchingAd(false);
+    }
+  };
   
   // Initialize and handle selected category with enhanced loading logic
   useEffect(() => {
@@ -103,6 +151,7 @@ export default function Quiz() {
       finishQuiz().catch(error => {
         console.error("Failed to finish quiz:", error);
       });
+      
     } else {
       nextQuestion();
     }
@@ -119,10 +168,11 @@ export default function Quiz() {
         <div className="flex items-center">
           <Button 
             variant="ghost" 
-            className="mr-2 p-1 text-white" 
+            className="mr-2 p-2 text-white flex items-center" 
             onClick={() => setLocation('/')}
           >
-            <Icon name="arrow_back" className="text-2xl" />
+            <Icon name="arrow_back" className="text-xl mr-2" />
+            {t('common', 'backToHome')}
           </Button>
           <h1 className="text-lg font-bold">
             {selectedCategory?.name || "Quiz"}
@@ -157,7 +207,7 @@ export default function Quiz() {
                 selectedAnswers={selectedAnswers}
               />
             ) : (
-              <div className="bg-white rounded-2xl p-5 shadow-lg mb-6 text-center">
+              <div className="bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 border border-emerald-200/50 rounded-2xl p-5 shadow-lg mb-6 text-center">
                 <div className="animate-pulse">
                   <div className="w-16 h-16 bg-primary/20 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <Icon name="quiz" className="text-2xl text-primary" />
@@ -188,6 +238,8 @@ export default function Quiz() {
           isVisible={showCelebration} 
           onComplete={() => setShowCelebration(false)} 
         />
+        
+        {/* AdMob handled in Android MainActivity */}
       </main>
     </div>
   );

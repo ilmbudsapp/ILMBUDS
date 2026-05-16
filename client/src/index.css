@@ -1,32 +1,7 @@
-/* Import fonts - must come first */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
-
-/* Status bar fix styles - DO NOT REMOVE - v8 update */
-:root {
-  --status-bar-height: 40px;
-  --safe-area-inset-top: env(safe-area-inset-top, 40px);
-  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-area-inset-left: env(safe-area-inset-left, 0px);
-  --safe-area-inset-right: env(safe-area-inset-right, 0px);
-}
-
-/* Body padding for fixed layout with AdMob banner and navigation */
-body {
-  padding-bottom: 170px; /* Banner (56px) + Navigation (56px) + Extra margin for stacked positioning */
-}
-
-/* Enable safe area support for mobile devices */
-@supports (padding-top: env(safe-area-inset-top)) {
-  :root {
-    --status-bar-height: env(safe-area-inset-top, 40px);
-  }
-}
+/* Modular CSS Architecture - ILMBUDS v8+ */
+@import './styles/base.css';
+@import './styles/animations.css';
+@import './styles/components.css';
 
 @tailwind base;
 @tailwind components;

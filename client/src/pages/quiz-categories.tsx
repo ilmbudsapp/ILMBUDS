@@ -232,10 +232,11 @@ export default function QuizCategories() {
         <div className="flex items-center">
           <Button 
             variant="ghost" 
-            className="mr-2 p-1 text-white" 
+            className="mr-2 p-2 text-white flex items-center" 
             onClick={() => setLocation('/')}
           >
-            <Icon name="arrow_back" className="text-2xl" />
+            <Icon name="arrow_back" className="text-xl mr-2" />
+            {t('common', 'backToHome')}
           </Button>
           <h1 className="text-xl font-bold">{t('topics', 'selectCategory')}</h1>
         </div>

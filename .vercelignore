@@ -1,0 +1,7 @@
+android
+.local
+*.apk
+*.aab
+attached_assets
+replit.md
+replit.nix

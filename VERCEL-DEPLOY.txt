@@ -1,0 +1,32 @@
+ILMBUDS — deploy na Vercel (kao agrmultimedia.eu)
+================================================
+
+1. GitHub
+   - Repo: https://github.com/ilmbudsapp/ILMBUDS
+   - Push samo web fajlove (android/ i .local/ su u .gitignore)
+
+2. Vercel (https://vercel.com)
+   - New Project → Import GitHub repo ILMBUDS
+   - Framework: Other
+   - Build Command: npm run build:client
+   - Output Directory: dist/public
+   - Install Command: npm install
+
+3. Domen ilmbuds.com
+   - Vercel → Project → Settings → Domains
+   - Dodaj: ilmbuds.com i www.ilmbuds.com
+   - Na DNS kod registrara:
+     - A record @ → 76.76.21.21 (Vercel)
+     - CNAME www → cname.vercel-dns.com
+   (ili koristi Vercel nameservers ako želiš)
+
+4. Lokalno testiranje
+   - npm run dev:web        → http://localhost:5173
+   - npm run build:client   → build kao na Vercelu
+   - npm run preview:web    → pregled production builda
+
+5. Veličina
+   - GitHub repo (web): ~40–80 MB
+   - Live sajt na Vercelu: ~20–25 MB
+
+AGRMULTIMEDIA: https://agrmultimedia.eu

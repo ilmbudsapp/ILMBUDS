@@ -4,7 +4,8 @@ import { BackButton } from '@/components/back-button';
 import { useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@/components/ui/icons';
-import { getTranslation } from '@shared/translations';
+import { useTranslation } from '@/hooks/use-translation';
+import { CapacitorAdMobService } from '@/services/capacitor-admob';
 
 // Globalna deklaracija za YouTube Player API
 declare global {
@@ -34,6 +35,14 @@ export default function Cartoons() {
   const { currentLanguage } = useLanguage();
   const [location, setLocation] = useLocation();
   const [fullscreenCartoon, setFullscreenCartoon] = useState<CartoonItem | null>(null);
+  const [showContent, setShowContent] = useState(true);
+  const [countdown, setCountdown] = useState(5);
+
+  // Show content immediately - no AdMob blocking
+  useEffect(() => {
+    console.log('Setting showContent to true');
+    setShowContent(true);
+  }, []);
 
   // Cartoon data using centralized translations - 8 cartoons per language
   const cartoons: CartoonItem[] = [
@@ -41,7 +50,7 @@ export default function Cartoons() {
       id: 1,
       titleKey: "alhamdulillahTitle",
       descriptionKey: "alhamdulillahDescription",
-      thumbnailUrl: "/attached_assets/Alhamdulillah, Bismillah, InshaAllah .jpg",
+      thumbnailUrl: "https://img.youtube.com/vi/AwW8s_r4g4w/maxresdefault.jpg",
       videoUrls: {
         en: "https://www.youtube.com/embed/AwW8s_r4g4w", // English
         bs: "https://www.youtube.com/embed/kFS9B3RP5X0", // Bosnian
@@ -56,7 +65,7 @@ export default function Cartoons() {
       id: 2,
       titleKey: "bacaanSurahTitle",
       descriptionKey: "bacaanSurahDescription",
-      thumbnailUrl: "/attached_assets/Bacaan Surah Pendek, Al-Fatihah & 4Qul.jpg",
+      thumbnailUrl: "https://img.youtube.com/vi/ChzxXMwL2RE/maxresdefault.jpg",
       videoUrls: {
         en: "https://www.youtube.com/embed/ChzxXMwL2RE", // English
         bs: "https://www.youtube.com/embed/8krpklCb6F4", // Bosnian
@@ -159,6 +168,18 @@ export default function Cartoons() {
     }
   ];
 
+  // Translation hook
+  const { t } = useTranslation();
+  
+  // Helper functions
+  const getTitle = (cartoon: CartoonItem) => {
+    return t('cartoons', cartoon.titleKey);
+  };
+  
+  const getVideoUrl = (cartoon: CartoonItem) => {
+    return cartoon.videoUrls[currentLanguage as keyof typeof cartoon.videoUrls] || cartoon.videoUrls.en;
+  };
+  
   // YouTube player state
   const [playerReady, setPlayerReady] = useState(false);
   const playerRef = useRef<any>(null);
@@ -177,6 +198,26 @@ export default function Cartoons() {
     } else {
       setPlayerReady(true);
     }
+  }, []);
+
+  // Show interstitial ad when component loads
+  useEffect(() => {
+    const showInterstitialAd = async () => {
+      try {
+        console.log('Showing interstitial ad for CARTOONS section');
+        await CapacitorAdMobService.showInterstitial(true);
+        console.log('Interstitial ad shown successfully');
+      } catch (error) {
+        console.error('Failed to show interstitial ad:', error);
+      }
+    };
+
+    // Show ad after a short delay to ensure component is fully loaded
+    const timer = setTimeout(() => {
+      showInterstitialAd();
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleBackClick = () => {
@@ -207,19 +248,58 @@ export default function Cartoons() {
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, [fullscreenCartoon]);
 
-  // Get current title and description using centralized translations
-  const getTitle = (cartoon: CartoonItem) => {
-    return getTranslation('cartoons', cartoon.titleKey, currentLanguage);
-  };
-
+  // Get current description using translations
   const getDescription = (cartoon: CartoonItem) => {
-    return getTranslation('cartoons', cartoon.descriptionKey, currentLanguage);
+    return t('cartoons', cartoon.descriptionKey);
   };
 
-  // Get current video URL based on language
-  const getVideoUrl = (cartoon: CartoonItem) => {
-    return cartoon.videoUrls[currentLanguage] || cartoon.videoUrls.en;
-  };
+  // Show loading screen with countdown if content is not ready
+  if (!showContent) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+        <div className="text-center">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <div className="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="text-4xl"
+              >
+                🎬
+              </motion.div>
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              {t('cartoons', 'loading') || "Loading Cartoons..."}
+            </h2>
+            <p className="text-white/80 text-lg mb-6">
+              {t('cartoons', 'preparing') || "Preparing your favorite cartoons..."}
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+            className="relative"
+          >
+            <div className="w-20 h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center border-4 border-white/30">
+              <span className="text-3xl font-bold text-white">{countdown}</span>
+            </div>
+            <motion.div
+              className="absolute inset-0 border-4 border-transparent border-t-white/50 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
@@ -232,7 +312,7 @@ export default function Cartoons() {
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold text-white mb-4">
-            {getTranslation('cartoons', 'title', currentLanguage)}
+            {t('cartoons', 'title')}
           </h1>
         </motion.div>
 
@@ -281,7 +361,7 @@ export default function Cartoons() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: cartoon.id * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 border border-emerald-200/50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <div className="aspect-video bg-black relative">
                 <iframe
@@ -296,7 +376,7 @@ export default function Cartoons() {
                   <button
                     onClick={() => toggleFullscreen(cartoon)}
                     className="p-2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full transition-colors text-white"
-                    title={getTranslation('cartoons', 'fullscreen', currentLanguage)}
+                    title={t('cartoons', 'fullscreen')}
                   >
                     <Icon name="maximize" size={16} />
                   </button>
@@ -311,7 +391,7 @@ export default function Cartoons() {
                   {getDescription(cartoon)}
                 </p>
                 <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>{cartoon.ageGroup} {getTranslation('cartoons', 'years', currentLanguage)}</span>
+                  <span>{cartoon.ageGroup} {t('cartoons', 'years')}</span>
                   <span>{cartoon.duration}</span>
                 </div>
               </div>
@@ -326,7 +406,7 @@ export default function Cartoons() {
           className="text-center mt-8"
         >
           <p className="text-white text-lg">
-            {getTranslation('cartoons', 'comingSoon', currentLanguage)}
+            {t('cartoons', 'comingSoon')}
           </p>
         </motion.div>
       </div>

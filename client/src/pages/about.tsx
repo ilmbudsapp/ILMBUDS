@@ -32,7 +32,7 @@ export default function About() {
 
       <main className="flex-1 overflow-auto p-4 pb-20">
         <div className="max-w-4xl mx-auto">
-          {/* App Info Section */}
+          {/* Web site info */}
           <Card className="mb-6">
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row items-center mb-4">
@@ -46,25 +46,25 @@ export default function About() {
                 <div className="text-center sm:text-left">
                   <h2 className="text-2xl font-bold text-blue-800 mb-2">
                     {language === 'bs' 
-                      ? 'ILMBUDS 1.0 - Islamska aplikacija za djecu'
+                      ? 'ILMBUDS — ISLAMSKA WEB STRANICA ZA DECU'
                       : language === 'de'
-                      ? 'ILMBUDS 1.0 - Islamische Kinder-App'
+                      ? 'ILMBUDS — ISLAMISCHE WEBSEITE FÜR KINDER'
                       : language === 'sq'
-                      ? 'ILMBUDS 1.0 - Aplikacion islamik për fëmijë'
+                      ? 'ILMBUDS — FAQE WEB ISLAMIKE PËR FËMIJË'
                       : language === 'it'
-                      ? 'ILMBUDS 1.0 - App islamica per bambini'
-                      : 'ILMBUDS 1.0 - Islamic Children\'s App'}
+                      ? 'ILMBUDS — SITO WEB ISLAMICO PER BAMBINI'
+                      : 'ILMBUDS — ISLAMIC WEBSITE FOR CHILDREN'}
                   </h2>
                   <p className="text-gray-600">
                     {language === 'sq' 
-                      ? 'Një platformë arsimore islame për fëmijë dhe prindër' 
+                      ? 'Një faqe web edukative islame për fëmijë dhe prindër — në kompjuter, tablet dhe telefon' 
                       : language === 'bs'
-                      ? 'Islamska obrazovna platforma za djecu i roditelje'
+                      ? 'Islamska obrazovna web stranica za djecu i roditelje — na računaru, tabletu i telefonu'
                       : language === 'de'
-                      ? 'Eine islamische Bildungsplattform für Kinder und Eltern'
+                      ? 'Islamische Bildungs-Webseite für Kinder und Eltern — auf PC, Tablet und Smartphone'
                       : language === 'it'
-                      ? 'Una piattaforma educativa islamica per bambini e genitori'
-                      : 'An Islamic educational platform for children and parents'}
+                      ? 'Sito web educativo islamico per bambini e genitori — su computer, tablet e telefono'
+                      : 'An Islamic educational website for children and parents — on computer, tablet and phone'}
                   </p>
                 </div>
               </div>
@@ -82,12 +82,12 @@ export default function About() {
                 {language === 'sq' 
                   ? 'Misioni ynë është të ofrojmë një platformë edukative islame të aksesueshme dhe angazhuese për fëmijët, duke i ndihmuar ata të mësojnë për fenë e tyre në një mjedis interaktiv dhe argëtues. Ne besojmë se edukimi islamik duhet të jetë i përshtatshëm për moshën, tërheqës, dhe i disponueshëm në shumë gjuhë.' 
                   : language === 'bs'
-                  ? 'Naša misija je da pružimo pristupačnu i zanimljivu islamsku obrazovnu platformu za djecu, pomažući im da uče o svojoj vjeri u interaktivnom i zabavnom okruženju. Vjerujemo da islamsko obrazovanje treba biti primjereno uzrastu, privlačno i dostupno na više jezika.'
+                  ? 'Naša misija je da pružimo pristupačnu i zanimljivu islamsku obrazovnu web stranicu za djecu, pomažući im da uče o svojoj vjeri u interaktivnom i zabavnom okruženju. Vjerujemo da islamsko obrazovanje treba biti primjereno uzrastu, privlačno i dostupno na više jezika — bilo gdje imate internet.'
                   : language === 'de'
-                  ? 'Unsere Mission ist es, eine zugängliche und ansprechende islamische Bildungsplattform für Kinder anzubieten, die ihnen hilft, ihren Glauben in einer interaktiven und unterhaltsamen Umgebung zu lernen. Wir glauben, dass islamische Bildung altersgerecht, ansprechend und in mehreren Sprachen verfügbar sein sollte.'
+                  ? 'Unsere Mission ist es, eine zugängliche und ansprechende islamische Bildungs-Webseite für Kinder anzubieten, die ihnen hilft, ihren Glauben in einer interaktiven und unterhaltsamen Umgebung zu lernen. Wir glauben, dass islamische Bildung altersgerecht, ansprechend und in mehreren Sprachen verfügbar sein sollte — überall, wo es Internet gibt.'
                   : language === 'it'
                   ? 'La nostra missione è fornire una piattaforma educativa islamica accessibile e coinvolgente per i bambini, aiutandoli a conoscere la loro fede in un ambiente interattivo e divertente. Crediamo che l\'educazione islamica debba essere adatta all\'età, attraente e disponibile in più lingue.'
-                  : 'Our mission is to provide an accessible and engaging Islamic educational platform for children, helping them learn about their faith in an interactive and fun environment. We believe Islamic education should be age-appropriate, appealing, and available in multiple languages.'}
+                  : 'Our mission is to provide an accessible and engaging Islamic educational website for children, helping them learn about their faith in an interactive and fun environment. We believe Islamic education should be age-appropriate, appealing, and available in multiple languages — wherever you have internet.'}
               </p>
               
               {/* Developer Bio Section */}
@@ -101,14 +101,14 @@ export default function About() {
                 </h4>
                 <p className="text-gray-700 mb-3 italic">
                   {language === 'sq' 
-                    ? 'Unë jam Agron Osmani, Dizajner Grafik dhe Zhvillues. E kam filluar këtë aplikacion për t\'i ndihmuar fëmijët e moshës së vogël të mësojnë besimin Islam në një mënyrë që është e lehtë për ta kuptuar dhe angazhuese. Qëllimi im është të krijoj një përvojë mësimore që jo vetëm informon por edhe frymëzon.' 
+                    ? 'Unë jam Agron Osmani, Dizajner Grafik dhe Zhvillues. E kam filluar këtë faqe web për t\'i ndihmuar fëmijët e moshës së vogël të mësojnë besimin Islam në një mënyrë që është e lehtë për ta kuptuar dhe angazhuese. Qëllimi im është të krijoj një përvojë mësimore që jo vetëm informon por edhe frymëzon.' 
                     : language === 'bs'
-                    ? 'Ja sam Agron Osmani, grafički dizajner i developer po profesiji. Pokrenuo sam ovu aplikaciju kako bih pomogao maloj djeci da uče o islamskoj vjeri na način koji je lak za razumijevanje i zanimljiv. Moj cilj je stvoriti iskustvo učenja koje ne samo da informiše već i inspiriše.'
+                    ? 'Ja sam Agron Osmani, grafički dizajner i developer po profesiji. Pokrenuo sam ovu web stranicu kako bih pomogao maloj djeci da uče o islamskoj vjeri na način koji je lak za razumijevanje i zanimljiv. Moj cilj je stvoriti iskustvo učenja koje ne samo da informiše već i inspiriše.'
                     : language === 'de'
-                    ? 'Ich bin Agron Osmani, von Beruf Grafikdesigner und Entwickler. Ich habe diese Anwendung gestartet, um kleinen Kindern zu helfen, den islamischen Glauben auf eine Weise zu erlernen, die sowohl leicht verständlich als auch ansprechend ist. Mein Ziel ist es, eine Lernerfahrung zu schaffen, die nicht nur informiert, sondern auch inspiriert.'
+                    ? 'Ich bin Agron Osmani, von Beruf Grafikdesigner und Entwickler. Ich habe diese Webseite gestartet, um kleinen Kindern zu helfen, den islamischen Glauben auf eine Weise zu erlernen, die sowohl leicht verständlich als auch ansprechend ist. Mein Ziel ist es, eine Lernerfahrung zu schaffen, die nicht nur informiert, sondern auch inspiriert.'
                     : language === 'it'
-                    ? 'Sono Agron Osmani, Designer Grafico e Sviluppatore di professione. Ho iniziato questa applicazione per aiutare i bambini a conoscere la fede islamica in un modo facile da capire e coinvolgente. Il mio obiettivo è creare un\'esperienza di apprendimento che non solo informi ma anche ispiri.'
-                    : 'I am Agron Osmani, a Graphic Designer and Developer by profession. I started this application to help young children learn about the Islamic faith in a way that is both easy to understand and engaging. My goal is to create a learning experience that not only informs but also inspires.'}
+                    ? 'Sono Agron Osmani, Designer Grafico e Sviluppatore di professione. Ho creato questo sito web per aiutare i bambini a conoscere la fede islamica in un modo facile da capire e coinvolgente. Il mio obiettivo è creare un\'esperienza di apprendimento che non solo informi ma anche ispiri.'
+                    : 'I am Agron Osmani, a Graphic Designer and Developer by profession. I started this website to help young children learn about the Islamic faith in a way that is both easy to understand and engaging. My goal is to create a learning experience that not only informs but also inspires.'}
                 </p>
               </div>
               
@@ -219,14 +219,14 @@ export default function About() {
                   </p>
                   <p className="text-sm text-gray-500 text-center mt-1 mb-2">
                     {language === 'sq' 
-                      ? 'Krijuesi i ILMBUDS dhe zhvilluesi kryesor i aplikacionit'
+                      ? 'Krijuesi i ILMBUDS dhe zhvilluesi kryesor i faqes web'
                       : language === 'bs'
-                      ? 'Tvorac ILMBUDS-a i glavni developer aplikacije'
+                      ? 'Tvorac ILMBUDS-a i glavni developer web stranice'
                       : language === 'de'
-                      ? 'Schöpfer von ILMBUDS und leitender Anwendungsentwickler'
+                      ? 'Schöpfer von ILMBUDS und leitender Webentwickler'
                       : language === 'it'
-                      ? 'Creatore di ILMBUDS e sviluppatore principale dell\'applicazione'
-                      : 'Creator of ILMBUDS and lead application developer'}
+                      ? 'Creatore di ILMBUDS e sviluppatore principale del sito web'
+                      : 'Creator of ILMBUDS and lead website developer'}
                   </p>
                 </div>
                 
@@ -246,14 +246,14 @@ export default function About() {
                   </p>
                   <p className="text-sm text-gray-500 text-center mt-1 mb-2">
                     {language === 'sq' 
-                      ? 'Hoxha Afrim Osmani ka rishikuar dhe kontrolluar të gjithë përmbajtjen islame në aplikacion'
+                      ? 'Hoxha Afrim Osmani ka rishikuar dhe kontrolluar të gjithë përmbajtjen islame në faqen web'
                       : language === 'bs'
-                      ? 'Hodža Afrim Osmani je recenzirao i kontrolisao sav islamski sadržaj u aplikaciji' 
+                      ? 'Hodža Afrim Osmani je recenzirao i kontrolisao sav islamski sadržaj na web stranici' 
                       : language === 'de'
-                      ? 'Imam Afrim Osmani hat alle islamischen Inhalte in der Anwendung überprüft und kontrolliert'
+                      ? 'Imam Afrim Osmani hat alle islamischen Inhalte auf der Webseite überprüft und kontrolliert'
                       : language === 'it'
-                      ? 'Imam Afrim Osmani ha recensito e controllato tutti i contenuti islamici nell\'applicazione'
-                      : 'Imam Afrim Osmani has reviewed and verified all Islamic content in the application'}
+                      ? 'Imam Afrim Osmani ha recensito e controllato tutti i contenuti islamici sul sito web'
+                      : 'Imam Afrim Osmani has reviewed and verified all Islamic content on the website'}
                   </p>
                 </div>
                 
@@ -300,14 +300,14 @@ export default function About() {
                   </p>
                   <p className="text-sm text-gray-500 text-center mt-1 mb-2">
                     {language === 'sq' 
-                      ? 'Agron Osmani ka krijuar të gjithë dizajnin grafik në aplikacion'
+                      ? 'Agron Osmani ka krijuar të gjithë dizajnin grafik në faqen web'
                       : language === 'bs'
-                      ? 'Agron Osmani je kreirao sav grafički dizajn u aplikaciji'
+                      ? 'Agron Osmani je kreirao sav grafički dizajn na web stranici'
                       : language === 'de'
-                      ? 'Agron Osmani hat das gesamte grafische Design der Anwendung erstellt'
+                      ? 'Agron Osmani hat das gesamte grafische Design der Webseite erstellt'
                       : language === 'it'
-                      ? 'Agron Osmani ha creato tutto il design grafico nell\'applicazione'
-                      : 'Agron Osmani created all graphic design in the application'}
+                      ? 'Agron Osmani ha creato tutto il design grafico sul sito web'
+                      : 'Agron Osmani created all graphic design on the website'}
                   </p>
                 </div>
               </div>
@@ -393,14 +393,14 @@ export default function About() {
                 </h4>
                 <p>
                   {language === 'sq' 
-                    ? 'ILMBUDS është një aplikacion edukativ islamik për fëmijë i zhvilluar dhe menaxhuar nga AGRONDESIGN. Pronari i AGRONDESIGN është Agron Osmani, një dizajner grafik dhe zhvillues, me seli në Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Gjermani.' 
+                    ? 'ILMBUDS është një faqe web edukative islame për fëmijë e zhvilluar dhe menaxhuar nga AGRMULTIMEDIA. Pronari i AGRMULTIMEDIA është Agron Osmani, një dizajner grafik dhe zhvillues, me seli në Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Gjermani. E gjeni në www.ilmbuds.com.' 
                     : language === 'bs'
-                    ? 'ILMBUDS je islamska obrazovna aplikacija za djecu koju je razvio i kojom upravlja AGRONDESIGN. Vlasnik AGRONDESIGN-a je Agron Osmani, grafički dizajner i developer, sa sjedištem na adresi Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Njemačka.'
+                    ? 'ILMBUDS je islamska obrazovna web stranica za djecu koju je razvio i kojom upravlja AGRMULTIMEDIA. Vlasnik AGRMULTIMEDIA-a je Agron Osmani, grafički dizajner i developer, sa sjedištem na adresi Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Njemačka. Dostupna je na www.ilmbuds.com.'
                     : language === 'de'
-                    ? 'ILMBUDS ist eine islamische Bildungs-App für Kinder, die von AGRONDESIGN entwickelt und verwaltet wird. Der Inhaber von AGRONDESIGN ist Agron Osmani, ein Grafikdesigner und Entwickler, mit Sitz in Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Deutschland.'
+                    ? 'ILMBUDS ist eine islamische Bildungs-Webseite für Kinder, die von AGRMULTIMEDIA entwickelt und verwaltet wird. Der Inhaber von AGRMULTIMEDIA ist Agron Osmani, ein Grafikdesigner und Entwickler, mit Sitz in Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Deutschland. Erreichbar unter www.ilmbuds.com.'
                     : language === 'it'
-                    ? 'ILMBUDS è un\'applicazione educativa islamica per bambini sviluppata e gestita da AGRONDESIGN. Il proprietario di AGRONDESIGN è Agron Osmani, un designer grafico e sviluppatore, con sede in Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Germania.'
-                    : 'ILMBUDS is an Islamic educational application for children developed and managed by AGRONDESIGN. The owner of AGRONDESIGN is Agron Osmani, a graphic designer and developer, based at Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Germany.'}
+                    ? 'ILMBUDS è un sito web educativo islamico per bambini sviluppato e gestito da AGRMULTIMEDIA. Il proprietario di AGRMULTIMEDIA è Agron Osmani, un designer grafico e sviluppatore, con sede in Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Germania. Disponibile su www.ilmbuds.com.'
+                    : 'ILMBUDS is an Islamic educational website for children developed and managed by AGRMULTIMEDIA. The owner of AGRMULTIMEDIA is Agron Osmani, a graphic designer and developer, based at Luise-Hainlen-Weg 4/4, 73312 Geislingen an der Steige, Germany. Available at www.ilmbuds.com.'}
                 </p>
                 <p>
                   {language === 'sq' 
@@ -423,14 +423,14 @@ export default function About() {
                 </h4>
                 <p>
                   {language === 'sq' 
-                    ? 'Ne mbledhim lloje të ndryshme të të dhënave kur përdorni aplikacionin ILMBUDS:' 
+                    ? 'Ne mbledhim lloje të ndryshme të të dhënave kur përdorni faqen web ILMBUDS:' 
                     : language === 'bs'
-                    ? 'Prikupljamo različite vrste podataka kada koristite ILMBUDS aplikaciju:'
+                    ? 'Prikupljamo različite vrste podataka kada koristite ILMBUDS web stranicu:'
                     : language === 'de'
-                    ? 'Wir sammeln verschiedene Arten von Daten, wenn Sie die ILMBUDS-Anwendung verwenden:'
+                    ? 'Wir sammeln verschiedene Arten von Daten, wenn Sie die ILMBUDS-Webseite verwenden:'
                     : language === 'it'
-                    ? 'Raccogliamo diversi tipi di dati quando utilizzi l\'applicazione ILMBUDS:'
-                    : 'We collect various types of data when you use the ILMBUDS application:'}
+                    ? 'Raccogliamo diversi tipi di dati quando utilizzi il sito web ILMBUDS:'
+                    : 'We collect various types of data when you use the ILMBUDS website:'}
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
@@ -457,14 +457,14 @@ export default function About() {
                   </li>
                   <li>
                     {language === 'sq' 
-                      ? 'Të dhëna të përdorimit anonim për të përmirësuar aplikacionin' 
+                      ? 'Të dhëna të përdorimit anonim për të përmirësuar faqen web' 
                       : language === 'bs'
-                      ? 'Anonimni podaci o korištenju za poboljšanje aplikacije'
+                      ? 'Anonimni podaci o korištenju za poboljšanje web stranice'
                       : language === 'de'
-                      ? 'Anonyme Nutzungsdaten zur Verbesserung der Anwendung'
+                      ? 'Anonyme Nutzungsdaten zur Verbesserung der Webseite'
                       : language === 'it'
-                      ? 'Dati di utilizzo anonimi per migliorare l\'applicazione'
-                      : 'Anonymous usage data to improve the application'}
+                      ? 'Dati di utilizzo anonimi per migliorare il sito web'
+                      : 'Anonymous usage data to improve the website'}
                   </li>
                 </ul>
 
@@ -511,34 +511,34 @@ export default function About() {
                   </li>
                   <li>
                     {language === 'sq' 
-                      ? 'Për të përmirësuar dhe optimizuar aplikacionin dhe përmbajtjen e tij' 
+                      ? 'Për të përmirësuar dhe optimizuar faqen web dhe përmbajtjen e saj' 
                       : language === 'bs'
-                      ? 'Za poboljšanje i optimizaciju aplikacije i njenog sadržaja'
+                      ? 'Za poboljšanje i optimizaciju web stranice i njenog sadržaja'
                       : language === 'de'
-                      ? 'Um die Anwendung und ihre Inhalte zu verbessern und zu optimieren'
+                      ? 'Um die Webseite und ihre Inhalte zu verbessern und zu optimieren'
                       : language === 'it'
-                      ? 'Per migliorare e ottimizzare l\'applicazione e i suoi contenuti'
-                      : 'To improve and optimize the application and its content'}
+                      ? 'Per migliorare e ottimizzare il sito web e i suoi contenuti'
+                      : 'To improve and optimize the website and its content'}
                   </li>
                 </ul>
 
                 <h4 className="font-bold text-blue-600">
-                  {language === 'sq' ? '4. Reklamat dhe AdMob' : 
-                   language === 'bs' ? '4. Oglasi i AdMob' : 
-                   language === 'de' ? '4. Werbung und AdMob' :
-                   language === 'it' ? '4. Pubblicità e AdMob' :
-                   '4. Advertising and AdMob'}
+                  {language === 'sq' ? '4. Reklamat në web' : 
+                   language === 'bs' ? '4. Oglasi na web stranici' : 
+                   language === 'de' ? '4. Werbung auf der Webseite' :
+                   language === 'it' ? '4. Pubblicità sul sito web' :
+                   '4. Advertising on the website'}
                 </h4>
                 <p>
                   {language === 'sq' 
-                    ? 'Aplikacioni ILMBUDS përdor Google AdMob për të shfaqur reklama. AdMob mund të mbledhë informacione anonim dhe informacione identifikuese jo personale për të përmirësuar cilësinë e reklamave. Ne jemi të përkushtuar që të filtrojmë përmbajtje të papërshtatshme të reklamave duke përdorur filtrat e AdMob, duke garantuar që vetëm reklamat e përshtatshme për fëmijë dhe për mjedise fetare shfaqen në aplikacion.' 
+                    ? 'Në www.ilmbuds.com nuk shfaqim reklama, që të mbetet një mjedis i qetë dhe i përshtatshëm për fëmijët. Fokusi ynë është vetëm edukimi islamik.' 
                     : language === 'bs'
-                    ? 'ILMBUDS aplikacija koristi Google AdMob za prikazivanje oglasa. AdMob može prikupljati anonimne i neidentificirajuće informacije za poboljšanje kvalitete oglasa. Posvećeni smo filtriranju neprikladnog sadržaja oglasa koristeći AdMob filtere, osiguravajući da se u aplikaciji prikazuju samo oglasi prikladni za djecu i vjersko okruženje.'
+                    ? 'Na www.ilmbuds.com ne prikazujemo oglase — učenje ostaje mirno i bez ometanja za djecu. Fokus je isključivo na islamskom obrazovanju.'
                     : language === 'de'
-                    ? 'Die ILMBUDS-Anwendung verwendet Google AdMob, um Werbung anzuzeigen. AdMob kann anonyme und nicht identifizierende Informationen sammeln, um die Qualität der Werbung zu verbessern. Wir sind bestrebt, unangemessene Werbeinhalte mit AdMob-Filtern zu filtern und sicherzustellen, dass in der Anwendung nur kindgerechte und für religiöse Umgebungen geeignete Werbung angezeigt wird.'
+                    ? 'Auf www.ilmbuds.com zeigen wir keine Werbung — das Lernen bleibt ruhig und kindgerecht. Der Fokus liegt ausschließlich auf islamischer Bildung.'
                     : language === 'it'
-                    ? 'L\'applicazione ILMBUDS utilizza Google AdMob per visualizzare annunci pubblicitari. AdMob può raccogliere informazioni anonime e non identificative per migliorare la qualità degli annunci. Ci impegniamo a filtrare contenuti pubblicitari inappropriati utilizzando i filtri di AdMob, garantendo che solo annunci adatti ai bambini e agli ambienti religiosi vengano visualizzati nell\'applicazione.'
-                    : 'The ILMBUDS application uses Google AdMob to display advertisements. AdMob may collect anonymous and non-identifying information to improve the quality of advertisements. We are committed to filtering inappropriate advertising content using AdMob filters, ensuring that only advertisements suitable for children and religious environments are displayed in the application.'}
+                    ? 'Su www.ilmbuds.com non mostriamo pubblicità: l\'apprendimento resta tranquillo e adatto ai bambini. Il focus è solo sull\'educazione islamica.'
+                    : 'On www.ilmbuds.com we do not display advertisements — learning stays calm and child-friendly. The focus is solely on Islamic education.'}
                 </p>
 
                 <h4 className="font-bold text-blue-600">
@@ -656,7 +656,7 @@ export default function About() {
                          language === 'de' ? 'Firmenname:' :
                          language === 'it' ? 'Nome dell\'azienda:' :
                          'Company name:'}
-                      </span> AGRONDESIGN
+                      </span> AGRMULTIMEDIA
                     </p>
                     <p className="mb-1">
                       <span className="font-medium">
@@ -732,14 +732,14 @@ export default function About() {
                     </p>
                     <p className="mt-4">
                       {language === 'sq' 
-                        ? 'Përfaqësuar ligjërisht nga Agron Osmani, pronari i AGRONDESIGN.' 
+                        ? 'Përfaqësuar ligjërisht nga Agron Osmani, pronari i AGRMULTIMEDIA.' 
                         : language === 'bs'
-                        ? 'Pravno zastupano od strane Agron Osmani, vlasnika AGRONDESIGN-a.'
+                        ? 'Pravno zastupano od strane Agron Osmani, vlasnika AGRMULTIMEDIA-a.'
                         : language === 'de'
-                        ? 'Rechtlich vertreten durch Agron Osmani, Inhaber von AGRONDESIGN.'
+                        ? 'Rechtlich vertreten durch Agron Osmani, Inhaber von AGRMULTIMEDIA.'
                         : language === 'it'
-                        ? 'Legalmente rappresentato da Agron Osmani, proprietario di AGRONDESIGN.'
-                        : 'Legally represented by Agron Osmani, owner of AGRONDESIGN.'}
+                        ? 'Legalmente rappresentato da Agron Osmani, proprietario di AGRMULTIMEDIA.'
+                        : 'Legally represented by Agron Osmani, owner of AGRMULTIMEDIA.'}
                     </p>
                   </div>
                 </div>

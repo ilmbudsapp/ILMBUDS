@@ -18,6 +18,11 @@ export default function BeliefDetail() {
   const [, params] = useRoute('/belief/:id');
   const [belief, setBelief] = useState<any>(null);
 
+  // Handle back button
+  const handleBack = () => {
+    setLocation('/beliefs');
+  };
+
   useEffect(() => {
     if (params?.id) {
       const foundBelief = islamicBeliefsData.find(b => b.id === params.id);
@@ -38,6 +43,14 @@ export default function BeliefDetail() {
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-purple-50 to-indigo-50 pb-16">
       <header className="bg-gradient-to-r from-purple-700 to-indigo-800 text-white p-4 flex justify-between items-center shadow-md">
         <div className="flex items-center">
+          <Button 
+            variant="ghost" 
+            className="mr-2 text-white" 
+            onClick={handleBack}
+          >
+            <Icon name="arrow_back" className="text-xl mr-2" />
+            {t('games', 'backToCatechism')}
+          </Button>
           <Icon name="mosque" className="text-3xl mr-2" />
           <h1 className="text-lg font-bold">
             {currentLanguage === 'en' ? 'Islamic Beliefs' : 

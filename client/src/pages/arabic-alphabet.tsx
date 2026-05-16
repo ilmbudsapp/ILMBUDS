@@ -1,666 +1,279 @@
-import React, { useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { useTranslation } from "@/hooks/use-translation";
-import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/ui/icons";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'wouter';
+import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/language-context';
+import { useTranslation } from '@/hooks/use-translation';
+import { Navbar } from '@/components/navbar';
+import { Icon } from '@/components/ui/icons';
+import { Button } from '@/components/ui/button';
+import audioService from '../services/audio-service';
+import { CapacitorAdMobService } from '@/services/capacitor-admob';
 
-import InterstitialAd from "@/components/ads/InterstitialAd";
-
-// Arabic alphabet data with pronunciations
+// Arabic alphabet with 28 letters - each with unique colors and proper pronunciation
 const arabicAlphabet = [
-  {
-    id: 1,
-    arabic: "أ",
-    name: "Alif",
-    pronunciation: "A",
-    example: {
-      en: "Apple",
-      bs: "Alif",
-      sq: "Alif",
-      de: "Alif",
-      it: "Alif"
-    },
-    color: "bg-gradient-to-br from-red-500 to-red-600"
-  },
-  {
-    id: 2,
-    arabic: "ب",
-    name: "Ba",
-    pronunciation: "B",
-    example: {
-      en: "Book",
-      bs: "Knjiga",
-      sq: "Libër",
-      de: "Buch",
-      it: "Libro"
-    },
-    color: "bg-gradient-to-br from-blue-500 to-blue-600"
-  },
-  {
-    id: 3,
-    arabic: "ت",
-    name: "Ta",
-    pronunciation: "T",
-    example: {
-      en: "Tree",
-      bs: "Drvo",
-      sq: "Pemë",
-      de: "Baum",
-      it: "Albero"
-    },
-    color: "bg-gradient-to-br from-green-500 to-green-600"
-  },
-  {
-    id: 4,
-    arabic: "ث",
-    name: "Tha",
-    pronunciation: "TH",
-    example: {
-      en: "Think",
-      bs: "Misliti",
-      sq: "Mendoj",
-      de: "Denken",
-      it: "Pensare"
-    },
-    color: "bg-gradient-to-br from-yellow-500 to-orange-500"
-  },
-  {
-    id: 5,
-    arabic: "ج",
-    name: "Jim",
-    pronunciation: "J",
-    example: {
-      en: "Jump",
-      bs: "Skakati",
-      sq: "Kërcej",
-      de: "Springen",
-      it: "Saltare"
-    },
-    color: "bg-gradient-to-br from-purple-500 to-purple-600"
-  },
-  {
-    id: 6,
-    arabic: "ح",
-    name: "Ha",
-    pronunciation: "H",
-    example: {
-      en: "House",
-      bs: "Kuća",
-      sq: "Shtëpi",
-      de: "Haus",
-      it: "Casa"
-    },
-    color: "bg-gradient-to-br from-pink-500 to-pink-600"
-  },
-  {
-    id: 7,
-    arabic: "خ",
-    name: "Kha",
-    pronunciation: "KH",
-    example: {
-      en: "Loch",
-      bs: "Hladno",
-      sq: "Ftohtë",
-      de: "Kalt",
-      it: "Freddo"
-    },
-    color: "bg-gradient-to-br from-indigo-500 to-indigo-600"
-  },
-  {
-    id: 8,
-    arabic: "د",
-    name: "Dal",
-    pronunciation: "D",
-    example: {
-      en: "Door",
-      bs: "Vrata",
-      sq: "Derë",
-      de: "Tür",
-      it: "Porta"
-    },
-    color: "bg-gradient-to-br from-teal-500 to-teal-600"
-  },
-  {
-    id: 9,
-    arabic: "ذ",
-    name: "Dhal",
-    pronunciation: "DH",
-    example: {
-      en: "This",
-      bs: "Ovo",
-      sq: "Kjo",
-      de: "Dies",
-      it: "Questo"
-    },
-    color: "bg-gradient-to-br from-cyan-500 to-cyan-600"
-  },
-  {
-    id: 10,
-    arabic: "ر",
-    name: "Ra",
-    pronunciation: "R",
-    example: {
-      en: "Run",
-      bs: "Trčati",
-      sq: "Vrapoj",
-      de: "Laufen",
-      it: "Correre"
-    },
-    color: "bg-gradient-to-br from-rose-500 to-rose-600"
-  },
-  {
-    id: 11,
-    arabic: "ز",
-    name: "Zay",
-    pronunciation: "Z",
-    example: {
-      en: "Zoo",
-      bs: "Zoološki vrt",
-      sq: "Zoo",
-      de: "Zoo",
-      it: "Zoo"
-    },
-    color: "bg-gradient-to-br from-amber-500 to-amber-600"
-  },
-  {
-    id: 12,
-    arabic: "س",
-    name: "Sin",
-    pronunciation: "S",
-    example: {
-      en: "Sun",
-      bs: "Sunce",
-      sq: "Diell",
-      de: "Sonne",
-      it: "Sole"
-    },
-    color: "bg-gradient-to-br from-orange-500 to-orange-600"
-  },
-  {
-    id: 13,
-    arabic: "ش",
-    name: "Shin",
-    pronunciation: "SH",
-    example: {
-      en: "Ship",
-      bs: "Brod",
-      sq: "Anije",
-      de: "Schiff",
-      it: "Nave"
-    },
-    color: "bg-gradient-to-br from-lime-500 to-lime-600"
-  },
-  {
-    id: 14,
-    arabic: "ص",
-    name: "Sad",
-    pronunciation: "S",
-    example: {
-      en: "Sand",
-      bs: "Pijesak",
-      sq: "Rërë",
-      de: "Sand",
-      it: "Sabbia"
-    },
-    color: "bg-gradient-to-br from-emerald-500 to-emerald-600"
-  },
-  {
-    id: 15,
-    arabic: "ض",
-    name: "Dad",
-    pronunciation: "D",
-    example: {
-      en: "Dad",
-      bs: "Otac",
-      sq: "Baba",
-      de: "Vater",
-      it: "Papà"
-    },
-    color: "bg-gradient-to-br from-violet-500 to-violet-600"
-  },
-  {
-    id: 16,
-    arabic: "ط",
-    name: "Ta",
-    pronunciation: "T",
-    example: {
-      en: "Top",
-      bs: "Vrh",
-      sq: "Lart",
-      de: "Oben",
-      it: "Sopra"
-    },
-    color: "bg-gradient-to-br from-sky-500 to-sky-600"
-  },
-  {
-    id: 17,
-    arabic: "ظ",
-    name: "Zha",
-    pronunciation: "ZH",
-    example: {
-      en: "Measure",
-      bs: "Mjeriti",
-      sq: "Matë",
-      de: "Messen",
-      it: "Misurare"
-    },
-    color: "bg-gradient-to-br from-fuchsia-500 to-fuchsia-600"
-  },
-  {
-    id: 18,
-    arabic: "ع",
-    name: "Ain",
-    pronunciation: "'",
-    example: {
-      en: "Eye",
-      bs: "Oko",
-      sq: "Sy",
-      de: "Auge",
-      it: "Occhio"
-    },
-    color: "bg-gradient-to-br from-stone-500 to-stone-600"
-  },
-  {
-    id: 19,
-    arabic: "غ",
-    name: "Ghain",
-    pronunciation: "GH",
-    example: {
-      en: "Ghaib",
-      bs: "Nevidljivo",
-      sq: "I padukshëm",
-      de: "Unsichtbar",
-      it: "Invisibile"
-    },
-    color: "bg-gradient-to-br from-neutral-500 to-neutral-600"
-  },
-  {
-    id: 20,
-    arabic: "ف",
-    name: "Fa",
-    pronunciation: "F",
-    example: {
-      en: "Fish",
-      bs: "Riba",
-      sq: "Peshk",
-      de: "Fisch",
-      it: "Pesce"
-    },
-    color: "bg-gradient-to-br from-red-400 to-red-500"
-  },
-  {
-    id: 21,
-    arabic: "ق",
-    name: "Qaf",
-    pronunciation: "Q",
-    example: {
-      en: "Quran",
-      bs: "Kuran",
-      sq: "Kuran",
-      de: "Koran",
-      it: "Corano"
-    },
-    color: "bg-gradient-to-br from-blue-400 to-blue-500"
-  },
-  {
-    id: 22,
-    arabic: "ك",
-    name: "Kaf",
-    pronunciation: "K",
-    example: {
-      en: "Key",
-      bs: "Ključ",
-      sq: "Çelës",
-      de: "Schlüssel",
-      it: "Chiave"
-    },
-    color: "bg-gradient-to-br from-green-400 to-green-500"
-  },
-  {
-    id: 23,
-    arabic: "ل",
-    name: "Lam",
-    pronunciation: "L",
-    example: {
-      en: "Love",
-      bs: "Ljubav",
-      sq: "Dashuri",
-      de: "Liebe",
-      it: "Amore"
-    },
-    color: "bg-gradient-to-br from-yellow-400 to-yellow-500"
-  },
-  {
-    id: 24,
-    arabic: "م",
-    name: "Mim",
-    pronunciation: "M",
-    example: {
-      en: "Moon",
-      bs: "Mjesec",
-      sq: "Hënë",
-      de: "Mond",
-      it: "Luna"
-    },
-    color: "bg-gradient-to-br from-purple-400 to-purple-500"
-  },
-  {
-    id: 25,
-    arabic: "ن",
-    name: "Nun",
-    pronunciation: "N",
-    example: {
-      en: "Night",
-      bs: "Noć",
-      sq: "Natë",
-      de: "Nacht",
-      it: "Notte"
-    },
-    color: "bg-gradient-to-br from-pink-400 to-pink-500"
-  },
-  {
-    id: 26,
-    arabic: "ه",
-    name: "Hah",
-    pronunciation: "H",
-    example: {
-      en: "Heart",
-      bs: "Srce",
-      sq: "Zemër",
-      de: "Herz",
-      it: "Cuore"
-    },
-    color: "bg-gradient-to-br from-indigo-400 to-indigo-500"
-  },
-  {
-    id: 27,
-    arabic: "و",
-    name: "Waw",
-    pronunciation: "W",
-    example: {
-      en: "Water",
-      bs: "Voda",
-      sq: "Ujë",
-      de: "Wasser",
-      it: "Acqua"
-    },
-    color: "bg-gradient-to-br from-teal-400 to-teal-500"
-  },
-  {
-    id: 28,
-    arabic: "ي",
-    name: "Ya",
-    pronunciation: "Y",
-    example: {
-      en: "Yes",
-      bs: "Da",
-      sq: "Po",
-      de: "Ja",
-      it: "Sì"
-    },
-    color: "bg-gradient-to-br from-cyan-400 to-cyan-500"
-  }
+  { letter: 'ا', name: 'Alif', pronunciation: 'alif', color: 'from-red-400 to-red-600', audio: '/audio/arabic-letters/alif.mp3' },
+  { letter: 'ب', name: 'Ba', pronunciation: 'ba', color: 'from-blue-400 to-blue-600', audio: '/audio/arabic-letters/ba.mp3' },
+  { letter: 'ت', name: 'Ta', pronunciation: 'ta', color: 'from-green-400 to-green-600', audio: '/audio/arabic-letters/ta.mp3' },
+  { letter: 'ث', name: 'Tha', pronunciation: 'tha', color: 'from-yellow-400 to-yellow-600', audio: '/audio/arabic-letters/tha.mp3' },
+  { letter: 'ج', name: 'Jeem', pronunciation: 'jeem', color: 'from-purple-400 to-purple-600', audio: '/audio/arabic-letters/jeem.mp3' },
+  { letter: 'ح', name: 'Haa', pronunciation: 'haa', color: 'from-pink-400 to-pink-600', audio: '/audio/arabic-letters/haa.mp3' },
+  { letter: 'خ', name: 'Khaa', pronunciation: 'khaa', color: 'from-indigo-400 to-indigo-600', audio: '/audio/arabic-letters/khaa.mp3' },
+  { letter: 'د', name: 'Dal', pronunciation: 'dal', color: 'from-teal-400 to-teal-600', audio: '/audio/arabic-letters/dal.mp3' },
+  { letter: 'ذ', name: 'Dhal', pronunciation: 'dhal', color: 'from-orange-400 to-orange-600', audio: '/audio/arabic-letters/dhal.mp3' },
+  { letter: 'ر', name: 'Ra', pronunciation: 'ra', color: 'from-cyan-400 to-cyan-600', audio: '/audio/arabic-letters/ra.mp3' },
+  { letter: 'ز', name: 'Zay', pronunciation: 'zay', color: 'from-lime-400 to-lime-600', audio: '/audio/arabic-letters/zay.mp3' },
+  { letter: 'س', name: 'Seen', pronunciation: 'seen', color: 'from-rose-400 to-rose-600', audio: '/audio/arabic-letters/seen.mp3' },
+  { letter: 'ش', name: 'Sheen', pronunciation: 'sheen', color: 'from-violet-400 to-violet-600', audio: '/audio/arabic-letters/sheen.mp3' },
+  { letter: 'ص', name: 'Sad', pronunciation: 'sad', color: 'from-emerald-400 to-emerald-600', audio: '/audio/arabic-letters/sad.mp3' },
+  { letter: 'ض', name: 'Dad', pronunciation: 'dad', color: 'from-amber-400 to-amber-600', audio: '/audio/arabic-letters/dad.mp3' },
+  { letter: 'ط', name: 'Ta', pronunciation: 'ta', color: 'from-sky-400 to-sky-600', audio: '/audio/arabic-letters/ta.mp3' },
+  { letter: 'ظ', name: 'Za', pronunciation: 'za', color: 'from-fuchsia-400 to-fuchsia-600', audio: '/audio/arabic-letters/za.mp3' },
+  { letter: 'ع', name: 'Ayn', pronunciation: 'ayn', color: 'from-slate-400 to-slate-600', audio: '/audio/arabic-letters/ayn.mp3' },
+  { letter: 'غ', name: 'Ghayn', pronunciation: 'ghayn', color: 'from-stone-400 to-stone-600', audio: '/audio/arabic-letters/ghayn.mp3' },
+  { letter: 'ف', name: 'Fa', pronunciation: 'fa', color: 'from-zinc-400 to-zinc-600', audio: '/audio/arabic-letters/fa.mp3' },
+  { letter: 'ق', name: 'Qaf', pronunciation: 'qaf', color: 'from-neutral-400 to-neutral-600', audio: '/audio/arabic-letters/qaf.mp3' },
+  { letter: 'ك', name: 'Kaf', pronunciation: 'kaf', color: 'from-red-500 to-red-700', audio: '/audio/arabic-letters/kaf.mp3' },
+  { letter: 'ل', name: 'Lam', pronunciation: 'lam', color: 'from-blue-500 to-blue-700', audio: '/audio/arabic-letters/lam.mp3' },
+  { letter: 'م', name: 'Meem', pronunciation: 'meem', color: 'from-green-500 to-green-700', audio: '/audio/arabic-letters/meem.mp3' },
+  { letter: 'ن', name: 'Noon', pronunciation: 'noon', color: 'from-yellow-500 to-yellow-700', audio: '/audio/arabic-letters/noon.mp3' },
+  { letter: 'ه', name: 'Haa', pronunciation: 'haa', color: 'from-purple-500 to-purple-700', audio: '/audio/arabic-letters/haa.mp3' },
+  { letter: 'و', name: 'Waw', pronunciation: 'waw', color: 'from-pink-500 to-pink-700', audio: '/audio/arabic-letters/waw.mp3' },
+  { letter: 'ي', name: 'Yaa', pronunciation: 'yaa', color: 'from-indigo-500 to-indigo-700', audio: '/audio/arabic-letters/yaa.mp3' }
 ];
 
 export default function ArabicAlphabet() {
-  const { t, currentLanguage } = useTranslation();
-  const [selectedLetter, setSelectedLetter] = useState<typeof arabicAlphabet[0] | null>(null);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showInterstitial, setShowInterstitial] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [, setLocation] = useLocation();
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation();
+  const [playingLetter, setPlayingLetter] = useState<string | null>(null);
 
-  const handlePlayLetter = (letter: typeof arabicAlphabet[0]) => {
-    // If the same letter is playing, stop it
-    if (currentlyPlaying === letter.id && isPlaying) {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+  // Show interstitial ad when component loads (when user enters ARABIC ALPHABET section)
+  useEffect(() => {
+    const showInterstitialAd = async () => {
+      try {
+        console.log('🎯 Showing interstitial ad for ARABIC ALPHABET section');
+        
+        // Check if we're in native app
+        if (typeof (window as any).Capacitor !== 'undefined' && (window as any).Capacitor.isNativePlatform()) {
+          console.log('🎯 Native platform detected - initializing AdMob...');
+          
+          try {
+            // Initialize AdMob first
+            await CapacitorAdMobService.initialize();
+            console.log('🎯 AdMob initialized successfully');
+            
+            // Show interstitial
+            await CapacitorAdMobService.showInterstitial(false); // Use production ads
+            console.log('🎯 Interstitial ad shown successfully for ARABIC ALPHABET');
+            
+          } catch (error) {
+            console.error('🚨 AdMob initialization/interstitial error:', error);
+          }
+        } else {
+          console.log('🎯 Web platform - no native ads available');
+        }
+        
+      } catch (error) {
+        console.error('🚨 Failed to show interstitial ad for ARABIC ALPHABET:', error);
       }
-      setIsPlaying(false);
-      setCurrentlyPlaying(null);
-      return;
-    }
-    
-    // Stop current audio if playing
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    
-    // Play new letter
-    setCurrentlyPlaying(letter.id);
-    setIsPlaying(true);
-    
-    // Direct audio implementation for Android compatibility
-    const audioFileMap: Record<string, string> = {
-      'Alif': 'alif',
-      'Ba': 'ba',
-      'Ta': 'ta',
-      'Tha': 'tha',
-      'Jim': 'jim',
-      'Ha': 'hha',  // Letter 6: ح
-      'Kha': 'kha',
-      'Dal': 'dal',
-      'Dhal': 'dhal',
-      'Ra': 'ra',
-      'Zay': 'zay',
-      'Sin': 'sin',
-      'Shin': 'shin',
-      'Sad': 'sad',
-      'Dad': 'dad',
-      'Tah': 'tah',
-      'Zha': 'zah',
-      'Ain': 'ayn',
-      'Ghain': 'ghayn',
-      'Fa': 'fa',
-      'Qaf': 'qaf',
-      'Kaf': 'kaf',
-      'Lam': 'lam',
-      'Mim': 'mim',
-      'Nun': 'nun',
-      'Hah': 'ha',  // Letter 26: ه (different letter)
-      'Waw': 'waw',
-      'Ya': 'ya'
     };
-    
-    const audioFileName = audioFileMap[letter.name] || letter.name.toLowerCase();
-    const audioPath = `/audio/arabic/${audioFileName}.mp3`;
-    
-    // Create new audio instance for each play
-    const audio = new Audio(audioPath);
-    audioRef.current = audio;
-    audio.volume = 1.0;
-    
-    audio.onended = () => {
-      setIsPlaying(false);
-      setCurrentlyPlaying(null);
-    };
-    
-    audio.onerror = () => {
-      console.warn(`Failed to load Arabic audio for ${letter.name}`);
-      setIsPlaying(false);
-      setCurrentlyPlaying(null);
-    };
-    
-    audio.play()
-      .then(() => {
-        console.log(`Playing Arabic pronunciation for ${letter.name}`);
-      })
-      .catch(() => {
-        console.warn(`Failed to play Arabic audio for ${letter.name}`);
-        setIsPlaying(false);
-        setCurrentlyPlaying(null);
-      });
+
+    // Show ad after a short delay to ensure component is fully loaded
+    const timer = setTimeout(() => {
+      showInterstitialAd();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleBack = () => {
+    audioService.playBismillah();
+    setLocation('/');
   };
 
-  const getTitle = () => {
-    switch (currentLanguage) {
-      case 'en': return 'Arabic Alphabet';
-      case 'bs': return 'Sufara-Arapska slova';
-      case 'sq': return 'Alfabeti arab';
-      case 'de': return 'Arabisches Alphabet';
-      case 'it': return 'Alfabeto arabo';
-      default: return 'Arabic Alphabet';
+  const handleLetterClick = async (letter: typeof arabicAlphabet[0]) => {
+    try {
+      setPlayingLetter(letter.letter);
+      
+      // Try to play the specific audio file for this letter
+      try {
+        const audio = new Audio(letter.audio);
+        audio.onended = () => setPlayingLetter(null);
+        audio.onerror = () => {
+          console.warn(`Failed to load audio for ${letter.letter}, falling back to Web Speech API`);
+          // Fallback to Web Speech API if audio file doesn't exist
+          if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(letter.pronunciation);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 0.8;
+            utterance.pitch = 1.2;
+            utterance.volume = 0.8;
+            utterance.onend = () => setPlayingLetter(null);
+            utterance.onerror = () => setPlayingLetter(null);
+            speechSynthesis.speak(utterance);
+          } else {
+            setPlayingLetter(null);
+          }
+        };
+        
+        await audio.play();
+        console.log(`Playing audio for ${letter.letter}: ${letter.pronunciation}`);
+      } catch (audioError) {
+        console.warn(`Audio file not found for ${letter.letter}, using Web Speech API`);
+        // Fallback to Web Speech API
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(letter.pronunciation);
+          utterance.lang = 'ar-SA';
+          utterance.rate = 0.8;
+          utterance.pitch = 1.2;
+          utterance.volume = 0.8;
+          utterance.onend = () => setPlayingLetter(null);
+          utterance.onerror = () => setPlayingLetter(null);
+          speechSynthesis.speak(utterance);
+        } else {
+          setPlayingLetter(null);
+        }
+      }
+    } catch (error) {
+      console.error('Error playing letter audio:', error);
+      setPlayingLetter(null);
     }
   };
 
-  const getSubtitle = () => {
+  const getLocalizedTitle = () => {
     switch (currentLanguage) {
-      case 'en': return 'Learn the 28 letters of Arabic';
-      case 'bs': return 'Naučite 28 slova arapskog jezika';
-      case 'sq': return 'Mësoni 28 shkronjat e gjuhës arabe';
-      case 'de': return 'Lernen Sie die 28 Buchstaben des Arabischen';
-      case 'it': return 'Impara le 28 lettere dell\'arabo';
-      default: return 'Learn the 28 letters of Arabic';
+      case 'en': return "Arabic Alphabet";
+      case 'sq': return "Alfabeti Arab";
+      case 'de': return "Arabisches Alphabet";
+      case 'it': return "Alfabeto Arabo";
+      default: return "Arapska slova";
     }
   };
 
-  const getListenText = () => {
+  const getLocalizedSubtitle = () => {
     switch (currentLanguage) {
-      case 'en': return 'Listen';
-      case 'bs': return 'Slušaj';
-      case 'sq': return 'Dëgjo';
-      case 'de': return 'Hören';
-      case 'it': return 'Ascolta';
-      default: return 'Listen';
+      case 'en': return "Learn Arabic Letters";
+      case 'sq': return "Mësoni Shkronjat Arabe";
+      case 'de': return "Lerne Arabische Buchstaben";
+      case 'it': return "Impara le Lettere Arabe";
+      default: return "Naučite Arapska Slova";
     }
   };
 
-  const getPlayingText = () => {
+  const getLocalizedDescription = () => {
     switch (currentLanguage) {
-      case 'en': return 'Playing...';
-      case 'bs': return 'U reprodukciji...';
-      case 'sq': return 'Në riprodhim...';
-      case 'de': return 'In Wiedergabe...';
-      case 'it': return 'In riproduzione...';
-      default: return 'Playing...';
-    }
-  };
-
-  const getExampleText = () => {
-    switch (currentLanguage) {
-      case 'en': return 'Example';
-      case 'bs': return 'Primjer';
-      case 'sq': return 'Shembull';
-      case 'de': return 'Beispiel';
-      case 'it': return 'Esempio';
-      default: return 'Example';
+      case 'en': return "Click on each letter to hear its pronunciation";
+      case 'sq': return "Klikoni në çdo shkronjë për të dëgjuar shqiptimin e saj";
+      case 'de': return "Klicken Sie auf jeden Buchstaben, um seine Aussprache zu hören";
+      case 'it': return "Clicca su ogni lettera per sentire la sua pronuncia";
+      default: return "Kliknite na svako slovo da čujete njegov izgovor";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 pb-20">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
+    <div className="min-h-screen bg-gradient-to-b from-sky-400 to-blue-500 text-foreground">
+      {/* Header */}
+      <header className="bg-white/20 backdrop-blur-sm text-white p-4 flex items-center shadow-md z-10">
+        <motion.button
+          onClick={handleBack}
+          className="mr-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Icon name="arrow-left" className="w-6 h-6" />
+        </motion.button>
+        
+        <div className="flex items-center">
+          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+            <span className="text-white text-xl font-bold">أ</span>
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold">{getLocalizedTitle()}</h1>
+            <p className="text-sm opacity-90">{getLocalizedSubtitle()}</p>
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto p-4 pb-24">
+        {/* Introduction */}
+        <motion.div 
+          className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 mb-6 shadow-lg"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            {getTitle()}
-          </h1>
-          <p className="text-lg text-gray-600">
-            {getSubtitle()}
+          <h2 className="text-2xl font-bold text-white mb-4">
+            {getLocalizedTitle()}
+          </h2>
+          <p className="text-white/90 text-lg">
+            {getLocalizedDescription()}
           </p>
         </motion.div>
 
-        {/* Alphabet Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+        {/* Arabic Letters Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {arabicAlphabet.map((letter, index) => (
             <motion.div
-              key={letter.id}
+              key={letter.letter}
+              className={`bg-gradient-to-br ${letter.color} rounded-2xl p-4 shadow-lg cursor-pointer group hover:shadow-xl transition-all duration-300`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className={`${letter.color} rounded-xl p-6 text-white shadow-lg cursor-pointer transform hover:scale-105 transition-all duration-200`}
-              onClick={() => {
-                setSelectedLetter(letter);
-                handlePlayLetter(letter);
-              }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
+              onClick={() => handleLetterClick(letter)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="text-center">
-                {/* Arabic Letter */}
-                <div className="text-6xl font-bold mb-2 arabic-text">
-                  {letter.arabic}
+              {/* Arabic Letter */}
+              <div className="text-center mb-3">
+                <div className="text-4xl font-bold text-white mb-2 arabic-text drop-shadow-lg">
+                  {letter.letter}
                 </div>
-                
-                {/* Letter Name */}
-                <h3 className="text-xl font-semibold mb-2">
+                <div className="text-sm text-white/90 font-medium">
                   {letter.name}
-                </h3>
-                
-                {/* Pronunciation */}
-                <p className="text-white/90 text-sm mb-3">
-                  [{letter.pronunciation}]
-                </p>
-                
-                {/* Listen Button */}
-                <Button
-                  className="w-full bg-white/20 hover:bg-white/30 text-white border-none"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePlayLetter(letter);
-                  }}
-                >
-                  {currentlyPlaying === letter.id && isPlaying 
-                    ? getPlayingText()
-                    : getListenText()}
-                </Button>
+                </div>
+                <div className="text-xs text-white/70">
+                  {letter.pronunciation}
+                </div>
               </div>
+
+              {/* Listen Button */}
+              <Button
+                className="w-full bg-white/20 hover:bg-white/30 text-white border-none backdrop-blur-sm"
+                disabled={playingLetter === letter.letter}
+              >
+                {playingLetter === letter.letter ? (
+                  <div className="flex items-center justify-center">
+                    <Icon name="volume_up" className="w-4 h-4 mr-2 animate-pulse" />
+                    Playing...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <Icon name="play_arrow" className="w-4 h-4 mr-2" />
+                    Listen
+                  </div>
+                )}
+              </Button>
             </motion.div>
           ))}
         </div>
 
-        {/* Selected Letter Detail */}
-        {selectedLetter && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white rounded-xl p-6 shadow-lg mb-8"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <div className="text-6xl arabic-text mr-4">
-                  {selectedLetter.arabic}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800">
-                    {selectedLetter.name}
-                  </h3>
-                  <p className="text-gray-600">
-                    [{selectedLetter.pronunciation}]
-                  </p>
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                onClick={() => setSelectedLetter(null)}
-              >
-                <Icon name="close" className="text-lg" />
-              </Button>
-            </div>
-            
-            <div className="border-t pt-4">
-              <h4 className="font-semibold text-gray-700 mb-2">
-                {getExampleText()}:
-              </h4>
-              <p className="text-gray-600">
-                {selectedLetter.example[currentLanguage as keyof typeof selectedLetter.example]}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </div>
+        {/* Instructions */}
+        <motion.div 
+          className="mt-8 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1 }}
+        >
+          <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+            <Icon name="info" className="text-2xl text-white mb-2" />
+            <p className="text-white/90">
+              {getLocalizedDescription()}
+            </p>
+          </div>
+        </motion.div>
+      </main>
 
-      {/* Interstitial Ad Modal - uklanja se automatski nakon što korisnik klikne X */}
-      <InterstitialAd
-        isOpen={showInterstitial}
-        onClose={() => setShowInterstitial(false)}
-      />
+      <Navbar />
     </div>
   );
 }

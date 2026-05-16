@@ -40,11 +40,7 @@ export default function Beliefs() {
             onClick={handleBack}
           >
             <Icon name="arrow-left" className="text-xl mr-1" />
-            {currentLanguage === 'en' ? 'Back to Catechism' : 
-             currentLanguage === 'sq' ? 'Kthehu te Ilmihal' : 
-             currentLanguage === 'de' ? 'Zurück zu Katechismus' :
-             currentLanguage === 'it' ? 'Torna a Catechismo' :
-             'Nazad na Ilmihal'}
+{t('games', 'backToCatechism')}
           </Button>
           <Icon name="mosque" className="text-3xl mr-2" />
           <h1 className="text-lg font-bold">

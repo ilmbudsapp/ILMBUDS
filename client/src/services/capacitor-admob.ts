@@ -19,90 +19,114 @@ export class CapacitorAdMobService {
   };
   
   static async initialize() {
-    if (this.isInitialized || !Capacitor.isNativePlatform()) {
+    console.log('🎯 AdMob initialize called - isInitialized:', this.isInitialized);
+    console.log('🎯 Platform check:', Capacitor.isNativePlatform());
+    console.log('🎯 Capacitor platform:', Capacitor.getPlatform());
+    
+    if (this.isInitialized) {
+      console.log('🎯 AdMob already initialized');
       return true;
     }
     
     try {
+      console.log('🎯 Starting AdMob initialization...');
+      console.log('🎯 AdMob object available:', typeof AdMob);
+      console.log('🎯 AdMob.initialize available:', typeof AdMob.initialize);
+      
       await AdMob.initialize({
         testingDevices: ['EMULATOR'],
-        initializeForTesting: false, // IMPORTANT: false for production
+        initializeForTesting: false, // PRODUCTION MODE
       });
       this.isInitialized = true;
-      console.log('AdMob initialized successfully');
+      console.log('🎯 AdMob initialized successfully');
       return true;
     } catch (error) {
-      console.error('AdMob initialization failed:', error);
+      console.error('🚨 AdMob initialization failed:', error);
+      console.error('🚨 Error details:', JSON.stringify(error));
       return false;
     }
   }
   
   static async showBanner(useTestAds = false) {
-    if (!Capacitor.isNativePlatform()) {
-      console.log('Banner ad - Web environment detected');
-      return;
-    }
+    console.log('🎯 showBanner called - useTestAds:', useTestAds);
+    console.log('🎯 Platform check:', Capacitor.isNativePlatform());
     
-    try {
-      await this.initialize();
-      
-      const options: BannerAdOptions = {
-        adId: useTestAds ? this.TEST_IDS.BANNER : this.PROD_IDS.BANNER,
-        adSize: BannerAdSize.BANNER,
-        position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 168, // 168px to position banner directly under navigation (bottom-28 = 112px + banner height 56px)
-        isTesting: useTestAds
-      };
-      
-      await AdMob.showBanner(options);
-      console.log('Banner ad shown:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
-    } catch (error) {
-      console.error('Error showing banner ad:', error);
-    }
-  }
-  
-  static async showInterstitial(useTestAds = false) {
-    // Check if AndroidBridge is available (native app) - PRIORITET!
-    if (typeof (window as any).AndroidBridge !== 'undefined') {
-      console.log('🎯 Native app detected - calling AndroidBridge interstitial');
-      try {
-        (window as any).AndroidBridge.showInterstitialAd();
-        return true;
-      } catch (error) {
-        console.error('AndroidBridge interstitial error:', error);
-        return false;
-      }
-    }
-    
-    // SAMO ako nema AndroidBridge (čisti web)
     if (!Capacitor.isNativePlatform()) {
-      console.log('Web environment - no native ads available');
+      console.log('🚨 Web environment - no native banner ads available');
       return false;
     }
     
     try {
+      console.log('🎯 Step 1: Initialize AdMob...');
       const initialized = await this.initialize();
       if (!initialized) {
-        console.error('AdMob initialization failed for interstitial');
+        console.error('🚨 AdMob initialization failed for banner');
         return false;
       }
       
-      const options = {
-        adId: useTestAds ? this.TEST_IDS.INTERSTITIAL : this.PROD_IDS.INTERSTITIAL,
-        isTesting: useTestAds
+      console.log('🎯 Step 2: Prepare banner ad...');
+      const options: BannerAdOptions = {
+        adId: this.PROD_IDS.BANNER, // PRODUCTION BANNER ID
+        adSize: BannerAdSize.BANNER,
+        position: BannerAdPosition.BOTTOM_CENTER,
+        margin: 0,
+        isTesting: false // PRODUCTION MODE
       };
       
-      console.log('Preparing interstitial ad with options:', options);
-      await AdMob.prepareInterstitial(options);
+      console.log('🎯 Preparing banner ad with options:', options);
+      await AdMob.prepareBanner(options);
+      console.log('🎯 Banner ad prepared successfully!');
       
-      console.log('Showing interstitial ad...');
-      await AdMob.showInterstitial();
+      console.log('🎯 Step 3: Show banner ad...');
+      await AdMob.showBanner();
+      console.log('🎯 Banner ad shown successfully!');
       
-      console.log('Interstitial ad shown successfully:', useTestAds ? 'TEST MODE' : 'PRODUCTION');
       return true;
     } catch (error) {
-      console.error('Error showing interstitial ad:', error);
-      console.error('Interstitial error details:', JSON.stringify(error));
+      console.error('🚨 Error showing banner ad:', error);
+      console.error('🚨 Error details:', JSON.stringify(error));
+      return false;
+    }
+  }
+  
+  static async showInterstitial(useTestAds = false) {
+    console.log('🎯 showInterstitial called - useTestAds:', useTestAds);
+    console.log('🎯 Using DIRECT Capacitor AdMob approach (ChatGPT suggestion)');
+    console.log('🎯 Platform check:', Capacitor.isNativePlatform());
+    console.log('🎯 Capacitor platform:', Capacitor.getPlatform());
+    
+    // DIRECT Capacitor AdMob approach - NO AndroidBridge needed!
+    if (!Capacitor.isNativePlatform()) {
+      console.log('🚨 Web environment - no native ads available');
+      return false;
+    }
+    
+    try {
+      console.log('🎯 Step 1: Initialize AdMob...');
+      const initialized = await this.initialize();
+      if (!initialized) {
+        console.error('🚨 AdMob initialization failed for interstitial');
+        return false;
+      }
+      
+      console.log('🎯 Step 2: Prepare interstitial ad...');
+      const options = {
+        adId: this.PROD_IDS.INTERSTITIAL, // PRODUCTION ID
+        isTesting: false // PRODUCTION MODE
+      };
+      
+      console.log('🎯 Preparing interstitial ad with options:', options);
+      await AdMob.prepareInterstitial(options);
+      console.log('🎯 Interstitial ad prepared successfully!');
+      
+      console.log('🎯 Step 3: Show interstitial ad...');
+      await AdMob.showInterstitial();
+      console.log('🎯 Interstitial ad shown successfully!');
+      
+      return true;
+    } catch (error) {
+      console.error('🚨 Error showing interstitial ad:', error);
+      console.error('🚨 Error details:', JSON.stringify(error));
       return false;
     }
   }
@@ -134,8 +158,8 @@ export class CapacitorAdMobService {
       }
       
       const options = {
-        adId: useTestAds ? this.TEST_IDS.REWARDED : this.PROD_IDS.REWARDED,
-        isTesting: useTestAds
+        adId: this.PROD_IDS.REWARDED, // PRODUCTION ID
+        isTesting: false // PRODUCTION MODE
       };
       
       console.log('Preparing rewarded ad with options:', options);

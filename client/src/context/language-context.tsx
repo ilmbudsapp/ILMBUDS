@@ -16,22 +16,44 @@ const LanguageContext = createContext<LanguageContextProps | undefined>(undefine
 export function LanguageProvider({ children }: LanguageProviderProps) {
   // Initialize with browser language or saved preference
   const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
-    return savedLanguage || 'en';
+    // Safe localStorage access for Capacitor/React Native
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const savedLanguage = localStorage.getItem('language') as Language;
+        return savedLanguage || 'en';
+      }
+    } catch (error) {
+      console.warn('localStorage not available:', error);
+    }
+    return 'en';
   });
 
   // Check for Bosnian language preference on initialization
   useEffect(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem('useBosanski') === 'true') {
-      window.isBosanski = true;
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        if (localStorage.getItem('useBosanski') === 'true') {
+          window.isBosanski = true;
+        }
+      }
+    } catch (error) {
+      console.warn('localStorage not available for Bosnian check:', error);
     }
   }, []);
 
   // Save language preference when it changes
   useEffect(() => {
-    localStorage.setItem('language', currentLanguage);
-    // Set html lang attribute for accessibility
-    document.documentElement.lang = currentLanguage;
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localStorage.setItem('language', currentLanguage);
+      }
+      // Set html lang attribute for accessibility
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = currentLanguage;
+      }
+    } catch (error) {
+      console.warn('localStorage not available for saving language:', error);
+    }
   }, [currentLanguage]);
 
   const changeLanguage = (language: Language) => {

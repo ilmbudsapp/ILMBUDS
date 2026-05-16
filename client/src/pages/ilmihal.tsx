@@ -412,7 +412,7 @@ export default function Ilmihal() {
             </TabsList>
             
             <TabsContent value="wudu" className="space-y-6">
-              <div className="rounded-xl bg-white shadow-md p-6">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 border border-emerald-200/50 shadow-lg p-6">
                 <h2 className="text-2xl font-bold text-green-800 mb-2">How to Perform Wudu (Ablution)</h2>
                 <p className="text-gray-600 mb-6">
                   Wudu is the Islamic procedure for cleansing parts of the body before prayer. Follow these simple steps to learn how to perform wudu correctly.

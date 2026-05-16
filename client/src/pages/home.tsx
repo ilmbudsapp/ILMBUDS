@@ -21,13 +21,9 @@ export default function Home() {
   useEffect(() => {
     setIsLoaded(true);
     
-    // Initialize both web AdSense and Capacitor AdMob
+    // Initialize web AdSense only (AdMob is handled in App.tsx)
     const initAds = async () => {
       try {
-        // For Capacitor (native APK)
-        await CapacitorAdMobService.initialize();
-        await CapacitorAdMobService.showBannerAd();
-        
         // For web preview (fallback to AdSense)
         if (!document.querySelector('script[src*="pagead2.googlesyndication.com"]')) {
           const script = document.createElement('script');
@@ -41,7 +37,13 @@ export default function Home() {
           try {
             const adElements = document.querySelectorAll('.adsbygoogle');
             adElements.forEach(() => {
-              (window.adsbygoogle = window.adsbygoogle || []).push({});
+              try {
+                if (typeof window !== 'undefined') {
+                  (window.adsbygoogle = window.adsbygoogle || []).push({});
+                }
+              } catch (error) {
+                console.warn('AdSense not available:', error);
+              }
             });
           } catch (err) {
             console.log('AdSense fallback error:', err);

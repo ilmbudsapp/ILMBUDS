@@ -1202,7 +1202,7 @@ export default function Stories() {
     : stories.filter(story => story.category === activeTab);
   
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-100 text-gray-800">
       <header className="bg-gradient-to-r from-blue-600 to-sky-700 text-white p-4 flex justify-between items-center shadow-md">
         <div className="flex items-center">
           <Icon name="auto_stories" className="text-3xl mr-2" />
@@ -1221,7 +1221,7 @@ export default function Stories() {
         <div className="max-w-4xl mx-auto">
           {selectedStory ? (
             // Story detail view
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+            <div className="bg-gradient-to-br from-white via-emerald-50 to-cyan-50 border border-emerald-200/50 rounded-xl shadow-lg overflow-hidden">
               <button 
                 onClick={handleBack}
                 className="flex items-center p-4 text-blue-600 hover:text-blue-800 transition-colors"
@@ -1489,7 +1489,7 @@ export default function Stories() {
                 ))}
               </div>
               
-              <div className="mt-10 p-6 bg-white rounded-xl shadow-md">
+              <div className="mt-10 p-6 bg-gradient-to-br from-white via-emerald-50 to-cyan-50 border border-emerald-200/50 rounded-xl shadow-lg">
                 <h3 className="text-xl font-semibold mb-4">
                   {language === 'sq' ? 'Përfitimet e Tregimeve Islame' : 
                    language === 'bs' ? 'Koristi islamskih priča' : 

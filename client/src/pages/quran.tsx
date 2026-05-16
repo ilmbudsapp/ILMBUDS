@@ -5,6 +5,9 @@ import { useTranslation } from '@/hooks/use-translation';
 import { useLanguage } from '@/context/language-context';
 import { playSound } from '@/lib/sounds';
 import { motion } from 'framer-motion';
+import { CapacitorAdMobService } from '@/services/capacitor-admob';
+import { AdMob } from '@capacitor-community/admob';
+import { Capacitor } from '@capacitor/core';
 
 // Simplified Quran surahs for children - 10 short surahs
 const childrenSurahs = [
@@ -256,6 +259,55 @@ export default function Quran() {
     const translation = surah.nameTranslations[currentLanguage as keyof typeof surah.nameTranslations];
     return translation || surah.nameTranslations.en;
   };
+
+  // Show interstitial ad when component loads (when user enters QURAN section)
+  useEffect(() => {
+    const showInterstitialAd = async () => {
+      try {
+        console.log('🎯 Showing interstitial ad for QURAN section');
+        
+        // Check if we're in native app
+        if (Capacitor.isNativePlatform()) {
+          console.log('🎯 Native platform detected - initializing AdMob...');
+          
+          try {
+            // Initialize AdMob first
+            await AdMob.initialize({
+              testingDevices: [],
+              initializeForTesting: false,
+            });
+            console.log('🎯 AdMob initialized successfully');
+            
+            // Prepare interstitial
+            await AdMob.prepareInterstitial({
+              adId: 'ca-app-pub-9746293142643974/7649626393', // Production ID
+              isTesting: false
+            });
+            console.log('🎯 Interstitial prepared successfully');
+            
+            // Show interstitial
+            await AdMob.showInterstitial();
+            console.log('🎯 Interstitial ad shown successfully for QURAN');
+            
+          } catch (error) {
+            console.error('🚨 AdMob initialization/interstitial error:', error);
+          }
+        } else {
+          console.log('🎯 Web platform - no native ads available');
+        }
+        
+      } catch (error) {
+        console.error('🚨 Failed to show interstitial ad for QURAN:', error);
+      }
+    };
+
+    // Show ad after a short delay to ensure component is fully loaded
+    const timer = setTimeout(() => {
+      showInterstitialAd();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Cleanup audio on unmount

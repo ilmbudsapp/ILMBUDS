@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -11,7 +11,10 @@ import { LanguageProvider } from "@/context/language-context";
 import { ThemeProvider } from "@/context/theme-context";
 import { useTranslation } from "@/hooks/use-translation";
 import { GlobeLanguageSwitcher } from "@/components/globe-language-switcher";
-import BannerWithNav from "@/components/BannerWithNav";
+import { Navbar } from "@/components/navbar";
+import { AdMobBanner } from "@/components/AdMobBanner";
+import WebSiteShell from "@/components/WebSiteShell";
+import { isWebStaticMode } from "@/lib/webApi/install";
 
 
 // Lazy loaded components for better performance
@@ -35,6 +38,7 @@ const Beliefs = lazy(() => import("@/pages/beliefs"));
 const Ablution = lazy(() => import("@/pages/ablution"));
 const PillarDetail = lazy(() => import("@/pages/pillar-detail"));
 const BeliefDetail = lazy(() => import("@/pages/belief-detail"));
+const MiniGames = lazy(() => import("@/pages/mini-games"));
 const ArabicAlphabet = lazy(() => import("@/pages/arabic-alphabet"));
 
 // Simple loading spinner without translation dependency
@@ -71,20 +75,41 @@ function Router() {
         <Route path="/catechism" component={Ilmihal} />
         <Route path="/ilmihal" component={Ilmihal} />
         <Route path="/pillars" component={Pillars} />
-        <Route path="/beliefs" component={Beliefs} />
-        <Route path="/ablution" component={Ablution} />
-        <Route path="/pillar/:id" component={PillarDetail} />
-        <Route path="/belief/:id" component={BeliefDetail} />
-        <Route path="/arabic-alphabet" component={ArabicAlphabet} />
+            <Route path="/beliefs" component={Beliefs} />
+            <Route path="/ablution" component={Ablution} />
+            <Route path="/pillar/:id" component={PillarDetail} />
+            <Route path="/belief/:id" component={BeliefDetail} />
+            <Route path="/mini-games" component={MiniGames} />
+            <Route path="/arabic-alphabet" component={ArabicAlphabet} />
 
-        
-        <Route component={NotFound} />
+            <Route component={NotFound} />
       </Switch>
     </Suspense>
   );
 }
 
 function App() {
+  const webMode = isWebStaticMode();
+
+  if (webMode) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <UserProvider>
+            <ThemeProvider>
+              <QuizProvider>
+                <WebSiteShell>
+                  <Router />
+                  <Toaster />
+                </WebSiteShell>
+              </QuizProvider>
+            </ThemeProvider>
+          </UserProvider>
+        </LanguageProvider>
+      </QueryClientProvider>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
@@ -100,14 +125,32 @@ function App() {
                   <GlobeLanguageSwitcher />
                 </div>
                 
-                {/* Main scrollable content - with bottom padding for fixed navigation/banner */}
-                <div className="flex-1 overflow-auto pb-32">
+                {/* Main scrollable content - with bottom padding for navigation + banner + system nav */}
+                <div className="flex-1 overflow-auto" style={{paddingBottom: '150px'}}>
                   <Router />
                   <Toaster />
                 </div>
 
-                {/* Banner + Navigation at bottom */}
-                <BannerWithNav />
+                {/* DONJA NAVIGACIJA APLIKACIJE - zelena zona */}
+                <Navbar />
+                
+                {/* AdMob Banner zone - real banner */}
+                <AdMobBanner 
+                  adUnitId="ca-app-pub-9746293142643974/3548505956"
+                  style={{
+                    position: 'fixed',
+                    bottom: '16px',
+                    left: 0,
+                    right: 0,
+                    height: '64px',
+                    zIndex: 40
+                  }}
+                />
+                
+                {/* NAVIGACIJA TELEFONA ostavi prazno - crvena zona (50px) */}
+                <div style={{position: 'fixed', bottom: 0, left: 0, right: 0, height: '50px', zIndex: 0, pointerEvents: 'none'}}>
+                  {/* Prazan prostor za sistemsku navigaciju telefona */}
+                </div>
               </div>
             </QuizProvider>
           </ThemeProvider>

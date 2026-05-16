@@ -23,9 +23,16 @@ interface UserProviderProps {
 export function UserProvider({ children }: UserProviderProps) {
   const { toast } = useToast();
   const [userId, setUserId] = useState<number | null>(() => {
-    // Check local storage for saved user ID
-    const savedUserId = localStorage.getItem('userId');
-    return savedUserId ? parseInt(savedUserId) : null;
+    // Check local storage for saved user ID - safe access
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const savedUserId = localStorage.getItem('userId');
+        return savedUserId ? parseInt(savedUserId) : null;
+      }
+    } catch (error) {
+      console.warn('localStorage not available for userId:', error);
+    }
+    return null;
   });
 
   // Fetch user data if we have a userId
@@ -42,7 +49,13 @@ export function UserProvider({ children }: UserProviderProps) {
     },
     onSuccess: (data) => {
       setUserId(data.id);
-      localStorage.setItem('userId', data.id.toString());
+      try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('userId', data.id.toString());
+        }
+      } catch (error) {
+        console.warn('localStorage not available for login:', error);
+      }
       toast({
         title: "Success",
         description: "You are now logged in",
@@ -66,7 +79,13 @@ export function UserProvider({ children }: UserProviderProps) {
     },
     onSuccess: (data) => {
       setUserId(data.id);
-      localStorage.setItem('userId', data.id.toString());
+      try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('userId', data.id.toString());
+        }
+      } catch (error) {
+        console.warn('localStorage not available for register:', error);
+      }
       toast({
         title: "Success",
         description: "Account created successfully",
@@ -92,7 +111,13 @@ export function UserProvider({ children }: UserProviderProps) {
 
   const logout = () => {
     setUserId(null);
-    localStorage.removeItem('userId');
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localStorage.removeItem('userId');
+      }
+    } catch (error) {
+      console.warn('localStorage not available for logout:', error);
+    }
     queryClient.clear();
     toast({
       title: "Logged out",

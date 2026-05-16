@@ -5,8 +5,9 @@ import Confetti from 'react-confetti';
 import { playSound } from '@/lib/sounds';
 import { useIsMobile } from '@/hooks/use-mobile'; 
 import { motion } from 'framer-motion';
-import RewardedAd from '@/components/ads/RewardedAd';
-import { canShowRewarded, markRewardedShown } from '@/services/ad-service';
+// Rewarded ads handled by Android MainActivity
+// AdMob imports DISABLED to prevent crash
+// import { canShowRewarded, markRewardedShown, showInterstitialAd } from '@/services/ad-service';
 import { useTranslation } from '@/hooks/use-translation';
 
 type QuizCompleteProps = {
@@ -86,6 +87,7 @@ export function QuizComplete({
       return () => clearTimeout(timer);
     }
     
+    
     // For good scores, play a success sound
     if (accuracy >= 80) {
       playSound('finish');
@@ -105,7 +107,8 @@ export function QuizComplete({
   // Handler for opening rewarded ad
   const handleWatchAd = () => {
     setShowRewardedAd(true);
-    markRewardedShown();
+    // AdMob function DISABLED to prevent crash
+    // markRewardedShown();
   };
   
   // Handler for when user completes ad and is rewarded

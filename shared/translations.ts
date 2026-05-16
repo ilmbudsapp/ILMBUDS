@@ -17,6 +17,7 @@ export type TranslationKeys =
   | 'settings' // Settings page translations
   | 'quran'    // Quran section translations
   | 'cartoons' // Cartoons section translations
+  | 'games'    // Mini games section translations
 
 // Using a more flexible structure to support backward compatibility
 export type TranslationEntry = {
@@ -946,6 +947,20 @@ export const translations: Translations = {
       de: 'Schauen Sie unterhaltsame und lehrreiche islamische Zeichentrickfilme für Kinder',
       it: 'Guarda cartoni animati islamici divertenti ed educativi per bambini'
     },
+    arabicAlphabet: {
+      en: 'Arabic Alphabet',
+      sq: 'Alfabeti Arab',
+      bs: 'Arapska slova',
+      de: 'Arabisches Alphabet',
+      it: 'Alfabeto Arabo'
+    },
+    arabicAlphabetDescription: {
+      en: 'Learn Arabic letters through fun video lessons and interactive exercises',
+      sq: 'Mësoni shkronjat arabe përmes mësimave video argëtuese dhe ushtrimeve interaktive',
+      bs: 'Naučite arapska slova kroz zabavne video lekcije i interaktivne vježbe',
+      de: 'Lerne arabische Buchstaben durch unterhaltsame Videolektionen und interaktive Übungen',
+      it: 'Impara le lettere arabe attraverso divertenti lezioni video ed esercizi interattivi'
+    },
     findQiblaDescription: {
       en: 'Find the direction of the Kaaba from anywhere in the world',
       sq: 'Gjeni drejtimin e Qabes nga çdo vend në botë',
@@ -1509,12 +1524,12 @@ export const translations: Translations = {
   },
   /* Original topics section already defined above */
   common: {
-    cartoons: {
-      en: 'Cartoons',
-      sq: 'Filma vizatimorë',
-      bs: 'Crtani filmovi',
-      de: 'Zeichentrickfilme',
-      it: 'Cartoni animati'
+    backToHome: {
+      en: 'Back to Home',
+      sq: 'Kthehu në Shtëpi',
+      bs: 'Nazad na Početnu',
+      de: 'Zurück zur Startseite',
+      it: 'Torna alla Home'
     },
     english: {
       en: 'English',
@@ -2039,6 +2054,500 @@ export const translations: Translations = {
       sq: 'Histori të bukura të animuara për profetët e përmendur në Kuran.',
       de: 'Wunderschöne animierte Geschichten über die im Koran erwähnten Propheten.',
       it: 'Bellissime storie animate sui profeti menzionati nel Corano.'
+    }
+  },
+  games: {
+    // Mini Games section
+    title: {
+      en: 'Mini Games',
+      sq: 'Lojëra të vogla',
+      bs: 'Mini Igre',
+      de: 'Mini-Spiele',
+      it: 'Mini Giochi'
+    },
+    subtitle: {
+      en: 'Islamic Learning Games',
+      sq: 'Lojëra Edukuese Islame',
+      bs: 'Islamske Edukativne Igre',
+      de: 'Islamische Lernspiele',
+      it: 'Giochi Educativi Islamici'
+    },
+    description: {
+      en: 'Play educational games and learn Islamic knowledge while having fun!',
+      sq: 'Luani lojëra edukative dhe mësoni dije islame duke u dëfryer!',
+      bs: 'Igrajte edukativne igre i učite islamsko znanje uz zabavu!',
+      de: 'Spielen Sie Lernspiele und lernen Sie islamisches Wissen beim Spaß haben!',
+      it: 'Gioca giochi educativi e impara la conoscenza islamica divertendoti!'
+    },
+    chooseGame: {
+      en: 'Choose Your Game',
+      sq: 'Zgjidhni Lojën Tuaj',
+      bs: 'Izaberite Vašu Igru',
+      de: 'Wählen Sie Ihr Spiel',
+      it: 'Scegli il Tuo Gioco'
+    },
+    learnWhileFun: {
+      en: 'Learn Islamic knowledge while having fun!',
+      sq: 'Mësoni dije islame duke u dëfryer!',
+      bs: 'Učite islamsko znanje uz zabavu!',
+      de: 'Lernen Sie islamisches Wissen beim Spaß haben!',
+      it: 'Impara la conoscenza islamica divertendoti!'
+    },
+    // Memory Game
+    memoryGame: {
+      en: 'Memory Match',
+      sq: 'Përputhja e Kujtesës',
+      bs: 'Memorijska Igra',
+      de: 'Memory-Spiel',
+      it: 'Gioco della Memoria'
+    },
+    memoryDescription: {
+      en: 'Match Arabic words with their translations',
+      sq: 'Përputhni fjalët arabe me përkthimet e tyre',
+      bs: 'Uparite arapske reči sa njihovim prevodima',
+      de: 'Arabische Wörter mit ihren Übersetzungen zuordnen',
+      it: 'Abbina le parole arabe con le loro traduzioni'
+    },
+    testKnowledge: {
+      en: 'Test your knowledge of Islamic vocabulary!',
+      sq: 'Testoni njohuritë tuaja të fjalëve islame!',
+      bs: 'Testiraj svoje znanje islamske terminologije!',
+      de: 'Teste dein Wissen über islamische Begriffe!',
+      it: 'Metti alla prova la tua conoscenza del vocabolario islamico!'
+    },
+    // Word Puzzle
+    wordPuzzle: {
+      en: 'Word Puzzle',
+      sq: 'Puzlle Fjalësh', 
+      bs: 'Slagalica Reči',
+      de: 'Wort-Puzzle',
+      it: 'Puzzle di Parole'
+    },
+    puzzleDescription: {
+      en: 'Find hidden Islamic words in the letter grid',
+      sq: 'Gjeni fjalët e fshehura islame në rrjetën e shkronjave',
+      bs: 'Pronađi skrivene islamske reči u mreži slova',
+      de: 'Finde versteckte islamische Wörter im Buchstabengitter',
+      it: 'Trova le parole islamiche nascoste nella griglia di lettere'
+    },
+    // Quick Quiz
+    quickQuiz: {
+      en: 'Quick Quiz',
+      sq: 'Kuiz i Shpejtë',
+      bs: 'Brzi Kviz',
+      de: 'Schnelles Quiz',
+      it: 'Quiz Veloce'
+    },
+    quickQuizDescription: {
+      en: 'Answer quick questions about Islamic knowledge',
+      sq: 'Përgjigjuni pyetjeve të shpejta për njohuritë islame',
+      bs: 'Odgovori na brza pitanja o islamskom znanju',
+      de: 'Beantworte schnelle Fragen über islamisches Wissen',
+      it: 'Rispondi a domande veloci sulla conoscenza islamica'
+    },
+    // Game Controls
+    play: {
+      en: 'Play',
+      sq: 'Luaj',
+      bs: 'Igraj',
+      de: 'Spielen',
+      it: 'Gioca'
+    },
+    playNow: {
+      en: 'Play Now',
+      sq: 'Luaj Tani',
+      bs: 'Igraj Sada',
+      de: 'Jetzt Spielen',
+      it: 'Gioca Ora'
+    },
+    comingSoon: {
+      en: 'Coming Soon',
+      sq: 'Vjen së shpejti',
+      bs: 'Uskoro',
+      de: 'Bald verfügbar',
+      it: 'Prossimamente'
+    },
+    // Word Puzzle specific
+    words: {
+      en: 'Words',
+      sq: 'Fjalë',
+      bs: 'Reči',
+      de: 'Wörter',
+      it: 'Parole'
+    },
+    wordsToFind: {
+      en: 'Words to Find',
+      sq: 'Fjalët për të Gjetur',
+      bs: 'Reči za Pronalaženje',
+      de: 'Zu findende Wörter',
+      it: 'Parole da Trovare'
+    },
+    found: {
+      en: 'Found',
+      sq: 'Gjetur',
+      bs: 'Pronađeno',
+      de: 'Gefunden',
+      it: 'Trovate'
+    },
+    // Quiz specific
+    questions: {
+      en: 'Questions',
+      sq: 'Pyetje',
+      bs: 'Pitanja',
+      de: 'Fragen',
+      it: 'Domande'
+    },
+    timePerQuestion: {
+      en: 'Time per Question',
+      sq: 'Koha për Pyetje',
+      bs: 'Vreme po Pitanju',
+      de: 'Zeit pro Frage',
+      it: 'Tempo per Domanda'
+    },
+    question: {
+      en: 'Question',
+      sq: 'Pyetja',
+      bs: 'Pitanje',
+      de: 'Frage',
+      it: 'Domanda'
+    },
+    correct: {
+      en: 'Correct',
+      sq: 'Sakte',
+      bs: 'Tačno',
+      de: 'Richtig',
+      it: 'Corretto'
+    },
+    next: {
+      en: 'Next',
+      sq: 'Tjetër',
+      bs: 'Sledeće',
+      de: 'Weiter',
+      it: 'Prossimo'
+    },
+    finish: {
+      en: 'Finish',
+      sq: 'Përfundo',
+      bs: 'Završi',
+      de: 'Beenden',
+      it: 'Finisci'
+    },
+    quizComplete: {
+      en: 'Quiz Complete!',
+      sq: 'Kuizi i Përfunduar!',
+      bs: 'Kviz Završen!',
+      de: 'Quiz Abgeschlossen!',
+      it: 'Quiz Completato!'
+    },
+    completedIn: {
+      en: 'Completed in',
+      sq: 'Përfunduar në',
+      bs: 'Završeno za',
+      de: 'Abgeschlossen in',
+      it: 'Completato in'
+    },
+    backToGames: {
+      en: 'Back to Games',
+      sq: 'Kthehu te Lojërat',
+      bs: 'Nazad na Igre',
+      de: 'Zurück zu den Spielen',
+      it: 'Torna ai Giochi'
+    },
+    level: {
+      en: 'Level',
+      sq: 'Niveli',
+      bs: 'Nivo',
+      de: 'Level',
+      it: 'Livello'
+    },
+    // Navigation
+    backToHome: {
+      en: 'Back to Home',
+      sq: 'Kthehu në Shtëpi',
+      bs: 'Nazad na Početnu',
+      de: 'Zurück zur Startseite',
+      it: 'Torna alla Home'
+    },
+    backToStories: {
+      en: 'Back to Stories',
+      sq: 'Kthehu te Tregimet',
+      bs: 'Nazad na Priče',
+      de: 'Zurück zu Geschichten',
+      it: 'Torna alle Storie'
+    },
+    backToCartoons: {
+      en: 'Back to Cartoons',
+      sq: 'Kthehu te Vizatimet',
+      bs: 'Nazad na Crtaće',
+      de: 'Zurück zu Cartoons',
+      it: 'Torna ai Cartoni'
+    },
+    backToQuran: {
+      en: 'Back to Quran',
+      sq: 'Kthehu te Kurani',
+      bs: 'Nazad na Kuran',
+      de: 'Zurück zum Koran',
+      it: 'Torna al Corano'
+    },
+    backToCatechism: {
+      en: 'Back to Catechism',
+      sq: 'Kthehu te Ilmihali',
+      bs: 'Nazad na Ilmihal',
+      de: 'Zurück zum Katechismus',
+      it: 'Torna al Catechismo'
+    },
+    // Quiz Questions and Answers
+    quizQuestions: {
+      // Easy Questions
+      q1: {
+        en: 'How many pillars of Islam are there?',
+        sq: 'Sa shtylla ka Islami?',
+        bs: 'Koliko Islam ima stubova?',
+        de: 'Wie viele Säulen hat der Islam?',
+        it: 'Quanti pilastri ha l\'Islam?'
+      },
+      q1_options: {
+        en: ['3', '4', '5', '6'],
+        sq: ['3', '4', '5', '6'],
+        bs: ['3', '4', '5', '6'],
+        de: ['3', '4', '5', '6'],
+        it: ['3', '4', '5', '6']
+      },
+      q1_explanation: {
+        en: 'The Five Pillars of Islam are: Shahada, Salah, Zakah, Sawm, and Hajj.',
+        sq: 'Pesë Shtyllat e Islamit janë: Shehada, Namazi, Zekati, Agjërimi dhe Haxhi.',
+        bs: 'Pet stubova Islama su: Šehadet, Namaz, Zekat, Post i Hadž.',
+        de: 'Die fünf Säulen des Islam sind: Schahada, Salah, Zakah, Sawm und Hadsch.',
+        it: 'I Cinque Pilastri dell\'Islam sono: Shahada, Salah, Zakah, Sawm e Hajj.'
+      },
+      q2: {
+        en: 'What is the first pillar of Islam?',
+        sq: 'Cila është shtylla e parë e Islamit?',
+        bs: 'Koji je prvi stub Islama?',
+        de: 'Was ist die erste Säule des Islam?',
+        it: 'Qual è il primo pilastro dell\'Islam?'
+      },
+      q2_options: {
+        en: ['Salah', 'Shahada', 'Zakah', 'Hajj'],
+        sq: ['Namazi', 'Shehada', 'Zekati', 'Haxhi'],
+        bs: ['Namaz', 'Šehadet', 'Zekat', 'Hadž'],
+        de: ['Salah', 'Schahada', 'Zakah', 'Hadsch'],
+        it: ['Salah', 'Shahada', 'Zakah', 'Hajj']
+      },
+      q2_explanation: {
+        en: 'Shahada is the declaration of faith: "There is no god but Allah, and Muhammad is His messenger."',
+        sq: 'Shehada është deklarimi i besimit: "Nuk ka zot tjetër veç Allahut, dhe Muhamedi është i dërguari i Tij."',
+        bs: 'Šehadet je izjavljivanje vere: "Nema boga osim Allaha, a Muhammed je Njegov poslanik."',
+        de: 'Schahada ist das Glaubensbekenntnis: "Es gibt keinen Gott außer Allah, und Muhammad ist sein Gesandter."',
+        it: 'Shahada è la dichiarazione di fede: "Non c\'è dio all\'infuori di Allah, e Muhammad è il Suo messaggero."'
+      },
+      q3: {
+        en: 'In which month do Muslims fast?',
+        sq: 'Në cilin muaj agjërojnë myslimanët?',
+        bs: 'U kom mesecu muslimani poste?',
+        de: 'In welchem Monat fasten Muslime?',
+        it: 'In quale mese digiunano i musulmani?'
+      },
+      q3_options: {
+        en: ['Shawwal', 'Rajab', 'Ramadan', 'Muharram'],
+        sq: ['Shevval', 'Rexheb', 'Ramazan', 'Muharrem'],
+        bs: ['Ševal', 'Redžeb', 'Ramazan', 'Muharrem'],
+        de: ['Schawwal', 'Radschab', 'Ramadan', 'Muharram'],
+        it: ['Shawwal', 'Rajab', 'Ramadan', 'Muharram']
+      },
+      q3_explanation: {
+        en: 'Muslims fast during the month of Ramadan, the 9th month of the Islamic calendar.',
+        sq: 'Myslimanët agjërojnë gjatë muajit Ramazan, muaji i 9-të i kalendarit islam.',
+        bs: 'Muslimani poste tokom meseca Ramazana, devetog meseca islamskog kalendara.',
+        de: 'Muslime fasten während des Monats Ramadan, dem 9. Monat des islamischen Kalenders.',
+        it: 'I musulmani digiunano durante il mese di Ramadan, il 9° mese del calendario islamico.'
+      },
+      q4: {
+        en: 'What is the holy book of Islam?',
+        sq: 'Cili është libri i shenjtë i Islamit?',
+        bs: 'Koja je sveta knjiga Islama?',
+        de: 'Was ist das heilige Buch des Islam?',
+        it: 'Qual è il libro sacro dell\'Islam?'
+      },
+      q4_options: {
+        en: ['Torah', 'Bible', 'Quran', 'Hadith'],
+        sq: ['Teurat', 'Bibla', 'Kurani', 'Hadithi'],
+        bs: ['Tora', 'Biblija', 'Kuran', 'Hadis'],
+        de: ['Thora', 'Bibel', 'Koran', 'Hadith'],
+        it: ['Torah', 'Bibbia', 'Corano', 'Hadith']
+      },
+      q4_explanation: {
+        en: 'The Quran is the holy book of Islam, believed to be the word of Allah revealed to Prophet Muhammad.',
+        sq: 'Kurani është libri i shenjtë i Islamit, besuar të jetë fjala e Allahut e shpallur Profetit Muhamed.',
+        bs: 'Kuran je sveta knjiga Islama, za koju se veruje da je Allahova reč objavljena Pejgamberu Muhammedu.',
+        de: 'Der Koran ist das heilige Buch des Islam, von dem geglaubt wird, es sei das Wort Allahs, das dem Propheten Muhammad offenbart wurde.',
+        it: 'Il Corano è il libro sacro dell\'Islam, creduto essere la parola di Allah rivelata al Profeta Muhammad.'
+      }
+    },
+    // Difficulty Levels
+    selectDifficulty: {
+      en: 'Select Difficulty',
+      sq: 'Zgjidhni Vështirësinë',
+      bs: 'Izaberite Težinu',
+      de: 'Schwierigkeit wählen',
+      it: 'Seleziona Difficoltà'
+    },
+    easy: {
+      en: 'Easy',
+      sq: 'E lehtë',
+      bs: 'Lako',
+      de: 'Einfach',
+      it: 'Facile'
+    },
+    medium: {
+      en: 'Medium',
+      sq: 'Mesatare',
+      bs: 'Srednje',
+      de: 'Mittel',
+      it: 'Medio'
+    },
+    hard: {
+      en: 'Hard',
+      sq: 'E vështirë',
+      bs: 'Teško',
+      de: 'Schwer',
+      it: 'Difficile'
+    },
+    // Game Stats
+    time: {
+      en: 'Time',
+      sq: 'Koha',
+      bs: 'Vrijeme',
+      de: 'Zeit',
+      it: 'Tempo'
+    },
+    attempts: {
+      en: 'Attempts',
+      sq: 'Përpjekjet',
+      bs: 'Pokušaji',
+      de: 'Versuche',
+      it: 'Tentativi'
+    },
+    matches: {
+      en: 'Matches',
+      sq: 'Përputhjet',
+      bs: 'Poklapanja',
+      de: 'Übereinstimmungen',
+      it: 'Corrispondenze'
+    },
+    score: {
+      en: 'Score',
+      sq: 'Rezultati',
+      bs: 'Rezultat',
+      de: 'Punktzahl',
+      it: 'Punteggio'
+    },
+    pairs: {
+      en: 'Pairs',
+      sq: 'Çifte',
+      bs: 'Parovi',
+      de: 'Paare',
+      it: 'Coppie'
+    },
+    // Game Completion
+    congratulations: {
+      en: 'Congratulations!',
+      sq: 'Urime!',
+      bs: 'Čestitamo!',
+      de: 'Glückwunsch!',
+      it: 'Congratulazioni!'
+    },
+    gameCompleted: {
+      en: 'You completed the memory game!',
+      sq: 'E përfunduat lojën e kujtesës!',
+      bs: 'Završili ste memorijsku igru!',
+      de: 'Sie haben das Memory-Spiel abgeschlossen!',
+      it: 'Hai completato il gioco della memoria!'
+    },
+    playAgain: {
+      en: 'Play Again',
+      sq: 'Luaj Përsëri',
+      bs: 'Igraj Ponovo',
+      de: 'Nochmal Spielen',
+      it: 'Gioca di Nuovo'
+    },
+    reset: {
+      en: 'Reset',
+      sq: 'Rivendos',
+      bs: 'Resetuj',
+      de: 'Zurücksetzen',
+      it: 'Ripristina'
+    },
+    close: {
+      en: 'Close',
+      sq: 'Mbyll',
+      bs: 'Zatvori',
+      de: 'Schließen',
+      it: 'Chiudi'
+    },
+    startGame: {
+      en: 'Start Game',
+      sq: 'Fillo Lojën',
+      bs: 'Počni Igru',
+      de: 'Spiel Starten',
+      it: 'Inizia Gioco'
+    },
+    // Islamic vocabulary for memory game
+    salam: {
+      en: 'Esselamu Alejkum',
+      sq: 'Esselamu Alejkum',
+      bs: 'Esselamu Alejkum',
+      de: 'Esselamu Alejkum',
+      it: 'Esselamu Alejkum'
+    },
+    allah: {
+      en: 'Allah',
+      sq: 'Allah',
+      bs: 'Allah',
+      de: 'Allah',
+      it: 'Allah'
+    },
+    muhammad: {
+      en: 'Muhammad',
+      sq: 'Muhammed',
+      bs: 'Muhammed',
+      de: 'Muhammad',
+      it: 'Maometto'
+    },
+    quran: {
+      en: 'Quran',
+      sq: 'Kurani',
+      bs: 'Kuran',
+      de: 'Koran',
+      it: 'Corano'
+    },
+    salah: {
+      en: 'Prayer',
+      sq: 'Namazi',
+      bs: 'Namaz',
+      de: 'Gebet',
+      it: 'Preghiera'
+    },
+    zakah: {
+      en: 'Charity',
+      sq: 'Zekati',
+      bs: 'Zekat',
+      de: 'Almosen',
+      it: 'Elemosina'
+    },
+    hajj: {
+      en: 'Pilgrimage',
+      sq: 'Haxhi',
+      bs: 'Hadž',
+      de: 'Pilgerfahrt',
+      it: 'Pellegrinaggio'
+    },
+    sawm: {
+      en: 'Fasting',
+      sq: 'Agjërimi',
+      bs: 'Post',
+      de: 'Fasten',
+      it: 'Digiuno'
     }
   }
 };

@@ -11,7 +11,9 @@ import { Navbar } from '@/components/navbar';
 import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
 import audioService from '../services/audio-service';
-import InterstitialAd from '@/components/ads/InterstitialAd';
+// Interstitial ads disabled for now
+import { ThemeToggleSimple } from '@/components/theme-toggle';
+import { useTouchGestures, useCardGestures } from '@/hooks/useTouchGestures';
 
 export default function HomeKids() {
   const { selectCategory } = useQuizContext();
@@ -25,8 +27,15 @@ export default function HomeKids() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
-  const [showInterstitialAd, setShowInterstitialAd] = useState(false);
-  const [showArabicAlphabetAd, setShowArabicAlphabetAd] = useState(false);
+
+  // Simple navigation function - no ads for now
+  const navigateWithAd = async (path: string) => {
+    console.log('🎯 Navigating to:', path);
+    setLocation(path);
+  };
+
+  // Banner ad is now handled directly in Android MainActivity
+  // No longer needed in React component
 
   // Floating cloud positions
   const [clouds, setClouds] = useState([
@@ -105,6 +114,7 @@ export default function HomeKids() {
   
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-sky-400 to-blue-500 relative overflow-hidden">
+      
       {/* Decorative elements */}
       {clouds.map(cloud => (
         <div 
@@ -179,7 +189,10 @@ export default function HomeKids() {
             </div>
           </div>
         </div>
-        {user && <ProfileBadge points={user.points} />}
+        <div className="flex items-center gap-3">
+          <ThemeToggleSimple />
+          {user && <ProfileBadge points={user.points} />}
+        </div>
       </header>
 
       <main className="flex-1 container mx-auto p-4 pb-24 z-10">
@@ -226,75 +239,6 @@ export default function HomeKids() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Quiz Card with Light effect */}
-            <motion.div 
-              className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
-              style={{
-                background: 'linear-gradient(145deg, #3B82F6 0%, #2563EB 25%, #1D4ED8 50%, #1E40AF 75%, #1E3A8A 100%)',
-                backgroundSize: '200% 200%',
-                animation: 'metallic-shimmer 3s ease-in-out infinite',
-                border: '2px solid rgba(255,255,255,0.4)',
-                boxShadow: '0 12px 40px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3)',
-                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))',
-              }}
-              variants={cardVariants}
-              whileHover="hover"
-              onClick={() => {
-                audioService.playBismillah();
-                // Navigiramo na novi put za kategorije
-                setLocation('/quiz-categories');
-              }}
-              onHoverStart={() => setHoveredCard('quiz')}
-              onHoverEnd={() => setHoveredCard(null)}
-            >
-              {/* Glass reflection effect */}
-              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
-              <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-400/20 rounded-full blur-2xl"></div>
-              <div className="absolute left-4 bottom-4 w-16 h-16 bg-indigo-300/30 rounded-full blur-md"></div>
-              {/* Animated light reflection */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center mb-3">
-                  <motion.div 
-                    className="mr-3"
-                    animate={{ rotate: hoveredCard === 'quiz' ? [0, 10, 0, -10, 0] : 0 }}
-                    transition={{ repeat: hoveredCard === 'quiz' ? Infinity : 0, duration: 1 }}
-                  >
-                    <img src="/images/01.QUIZ.png" alt="Quiz" className="w-12 h-12" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>{t('home', 'islamicQuiz')}</h3>
-                </div>
-                
-                <p className="text-white/90 text-base mb-4">
-                  {t('home', 'quizSectionDescription')}
-                </p>
-                
-                <motion.button 
-                  className="bg-white text-indigo-600 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {currentLanguage === 'bs' ? "Igraj" : currentLanguage === 'sq' ? "Luaj" : currentLanguage === 'de' ? "Spielen" : currentLanguage === 'it' ? "Gioca" : "Play"}
-                </motion.button>
-              </div>
-              
-              {/* Decorative stars */}
-              <motion.div 
-                className="absolute top-6 right-10 text-yellow-300 text-xl"
-                animate={{ scale: [1, 1.2, 1], rotate: 180 }}
-                transition={{ repeat: Infinity, duration: 2 }}
-              >
-                ✦
-              </motion.div>
-              <motion.div 
-                className="absolute bottom-10 left-10 text-pink-300 text-xl"
-                animate={{ scale: [1, 1.2, 1], rotate: 180 }}
-                transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
-              >
-                ✦
-              </motion.div>
-            </motion.div>
 
             {/* Stories Card with Light effect */}
             <motion.div 
@@ -311,7 +255,7 @@ export default function HomeKids() {
               whileHover="hover"
               onClick={() => {
                 audioService.playBismillah();
-                setLocation('/stories');
+                navigateWithAd('/stories');
               }}
               onHoverStart={() => setHoveredCard('stories')}
               onHoverEnd={() => setHoveredCard(null)}
@@ -386,7 +330,7 @@ export default function HomeKids() {
               whileHover="hover"
               onClick={() => {
                 audioService.playBismillah();
-                setLocation('/quran');
+                navigateWithAd('/quran');
               }}
               onHoverStart={() => setHoveredCard('quran')}
               onHoverEnd={() => setHoveredCard(null)}
@@ -420,13 +364,6 @@ export default function HomeKids() {
                   {t('home', 'quranSectionDescription') || "Learn Quran verses and their meaning with fun interactive activities."}
                 </p>
                 
-                <motion.button 
-                  className="bg-white text-teal-600 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {currentLanguage === 'bs' ? "Uči" : currentLanguage === 'sq' ? "Mëso" : currentLanguage === 'de' ? "Lernen" : currentLanguage === 'it' ? "Impara" : "Learn"}
-                </motion.button>
               </div>
               
               {/* Decorative elements */}
@@ -461,7 +398,7 @@ export default function HomeKids() {
               whileHover="hover"
               onClick={() => {
                 audioService.playBismillah();
-                setLocation('/catechism');
+                navigateWithAd('/catechism');
               }}
               onHoverStart={() => setHoveredCard('catechism')}
               onHoverEnd={() => setHoveredCard(null)}
@@ -536,8 +473,7 @@ export default function HomeKids() {
               whileHover="hover"
               onClick={() => {
                 audioService.playBismillah();
-                // Show interstitial ad before navigating to cartoons
-                setShowInterstitialAd(true);
+                navigateWithAd('/cartoons');
               }}
               onHoverStart={() => setHoveredCard('cartoons')}
               onHoverEnd={() => setHoveredCard(null)}
@@ -593,11 +529,11 @@ export default function HomeKids() {
               </motion.div>
             </motion.div>
             
-            {/* Arabic Alphabet Card with Metallic effect */}
+            {/* Arabic Alphabet Card with Video Lessons */}
             <motion.div 
               className="rounded-3xl p-6 cursor-pointer overflow-hidden relative group"
               style={{
-                background: 'linear-gradient(145deg, #D97706 0%, #B45309 25%, #92400E 50%, #78350F 75%, #451A03 100%)',
+                background: 'linear-gradient(145deg, #8B5CF6 0%, #7C3AED 25%, #6D28D9 50%, #5B21B6 75%, #4C1D95 100%)',
                 backgroundSize: '200% 200%',
                 animation: 'metallic-shimmer 3s ease-in-out infinite',
                 border: '2px solid rgba(255,255,255,0.4)',
@@ -608,69 +544,123 @@ export default function HomeKids() {
               whileHover="hover"
               onClick={() => {
                 audioService.playBismillah();
-                setShowArabicAlphabetAd(true);
+                navigateWithAd('/arabic-alphabet');
               }}
               onHoverStart={() => setHoveredCard('arabic-alphabet')}
               onHoverEnd={() => setHoveredCard(null)}
             >
               {/* Glass reflection effect */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-3xl"></div>
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-yellow-400/20 rounded-full blur-2xl"></div>
-              <div className="absolute left-4 top-4 w-16 h-16 bg-emerald-300/30 rounded-full blur-md"></div>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-purple-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute left-4 bottom-4 w-16 h-16 bg-purple-300/30 rounded-full blur-md"></div>
               {/* Animated light reflection */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               
               <div className="relative z-10">
                 <div className="flex items-center mb-3">
                   <motion.div 
-                    className="mr-3 text-4xl"
+                    className="mr-3"
                     animate={{ rotate: hoveredCard === 'arabic-alphabet' ? [0, 10, 0, -10, 0] : 0 }}
                     transition={{ repeat: hoveredCard === 'arabic-alphabet' ? Infinity : 0, duration: 1 }}
                   >
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                      أ
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">أ</span>
                     </div>
                   </motion.div>
                   <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
-                    {currentLanguage === 'en' ? "Arabic Alphabet" : 
-                     currentLanguage === 'sq' ? "Alfabeti Arab" : 
-                     currentLanguage === 'de' ? "Arabisches Alphabet" :
-                     currentLanguage === 'it' ? "Alfabeto Arabo" :
-                     "Sufara-Arapska slova"}
+                    {t('home', 'arabicAlphabet')}
                   </h3>
                 </div>
                 
                 <p className="text-white/90 text-base mb-4">
-                  {currentLanguage === 'en' ? "Learn the 28 letters of Arabic alphabet with pronunciation and examples." : 
-                   currentLanguage === 'sq' ? "Mësoni 28 shkronjat e alfabetit arab me shqiptim dhe shembuj." : 
-                   currentLanguage === 'de' ? "Lernen Sie die 28 Buchstaben des arabischen Alphabets mit Aussprache und Beispielen." :
-                   currentLanguage === 'it' ? "Impara le 28 lettere dell'alfabeto arabo con pronuncia ed esempi." :
-                   "Naučite 28 slova arapskog alfabeta sa izgovorom i primjerima."}
+                  {t('home', 'arabicAlphabetDescription')}
                 </p>
                 
                 <motion.button 
-                  className="bg-white text-gray-800 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
+                  className="bg-white text-purple-600 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {currentLanguage === 'bs' ? "Učiti" : currentLanguage === 'sq' ? "Mëso" : currentLanguage === 'de' ? "Lernen" : currentLanguage === 'it' ? "Impara" : "Learn"}
+                  {currentLanguage === 'bs' ? "Uči" : currentLanguage === 'sq' ? "Mëso" : currentLanguage === 'de' ? "Lernen" : currentLanguage === 'it' ? "Impara" : "Learn"}
                 </motion.button>
               </div>
               
-              {/* Decorative Arabic letters */}
+              {/* Decorative elements */}
               <motion.div 
-                className="absolute top-10 right-6 text-white/30 text-2xl font-bold"
+                className="absolute top-16 right-6 text-yellow-200 text-xl"
+                animate={{ scale: [1, 1.2, 1], rotate: 180 }}
+                transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}
+              >
+                ✦
+              </motion.div>
+              <motion.div 
+                className="absolute bottom-16 left-6 text-purple-200 text-xl"
+                animate={{ scale: [1, 1.2, 1], rotate: 180 }}
+                transition={{ repeat: Infinity, duration: 2, delay: 0.7 }}
+              >
+                ✦
+              </motion.div>
+            </motion.div>
+
+            {/* Mini Games Card with Quiz-style Blue gradient */}
+            <motion.div 
+              className="islamic-card quiz-card hover-lift gpu-accelerated group"
+              variants={cardVariants}
+              whileHover="hover"
+              onClick={() => {
+                audioService.playBismillah();
+                navigateWithAd('/mini-games');
+              }}
+              onHoverStart={() => setHoveredCard('mini-games')}
+              onHoverEnd={() => setHoveredCard(null)}
+            >
+              {/* Decorative elements */}
+              <div className="absolute -left-10 -top-10 w-40 h-40 bg-blue-400/20 rounded-full blur-2xl"></div>
+              <div className="absolute right-4 bottom-4 w-16 h-16 bg-indigo-300/30 rounded-full blur-md"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center mb-3">
+                  <motion.div 
+                    className="mr-3"
+                    animate={{ rotate: hoveredCard === 'mini-games' ? [0, 10, 0, -10, 0] : 0 }}
+                    transition={{ repeat: hoveredCard === 'mini-games' ? Infinity : 0, duration: 1 }}
+                  >
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                      <Icon name="games" className="text-white text-2xl" />
+                    </div>
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-white" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.5px rgba(0,0,0,0.3)' }}>
+                    {t('games', 'title')}
+                  </h3>
+                </div>
+                
+                <p className="text-white/90 text-base mb-4">
+                  {t('games', 'description')}
+                </p>
+                
+                <motion.button 
+                  className="bg-white text-indigo-600 py-2 px-6 rounded-full font-medium shadow-lg flex items-center"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {t('games', 'play')}
+                </motion.button>
+              </div>
+              
+              {/* Decorative elements */}
+              <motion.div 
+                className="absolute top-10 right-6 text-yellow-200 text-xl"
                 animate={{ scale: [1, 1.2, 1], rotate: 180 }}
                 transition={{ repeat: Infinity, duration: 2, delay: 0.1 }}
               >
-                ب
+                ⭐
               </motion.div>
               <motion.div 
-                className="absolute bottom-10 left-6 text-white/30 text-2xl font-bold"
+                className="absolute bottom-10 left-6 text-pink-200 text-xl"
                 animate={{ scale: [1, 1.2, 1], rotate: 180 }}
                 transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
               >
-                ت
+                🎮
               </motion.div>
             </motion.div>
           </div>
@@ -699,6 +689,7 @@ export default function HomeKids() {
         </div>
       </main>
 
+
       {showConfetti && (
         <Confetti
           width={width}
@@ -709,27 +700,6 @@ export default function HomeKids() {
         />
       )}
       
-      {/* Interstitial Ad for Cartoons */}
-      {showInterstitialAd && (
-        <InterstitialAd
-          isOpen={showInterstitialAd}
-          onClose={() => {
-            setShowInterstitialAd(false);
-            setLocation('/cartoons');
-          }}
-        />
-      )}
-      
-      {/* Interstitial Ad for Arabic Alphabet */}
-      {showArabicAlphabetAd && (
-        <InterstitialAd
-          isOpen={showArabicAlphabetAd}
-          onClose={() => {
-            setShowArabicAlphabetAd(false);
-            setLocation('/arabic-alphabet');
-          }}
-        />
-      )}
       
       <Navbar />
     </div>
