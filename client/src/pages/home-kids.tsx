@@ -14,8 +14,11 @@ import audioService from '../services/audio-service';
 // Interstitial ads disabled for now
 import { ThemeToggleSimple } from '@/components/theme-toggle';
 import { useTouchGestures, useCardGestures } from '@/hooks/useTouchGestures';
+import { isWebStaticMode } from '@/lib/webApi/install';
+import { HomeWebSeoContent } from '@/components/HomeWebSeoContent';
 
 export default function HomeKids() {
+  const webMode = isWebStaticMode();
   const { selectCategory } = useQuizContext();
   const [_, setLocation] = useLocation();
   const { user } = useUserContext();
@@ -159,7 +162,8 @@ export default function HomeKids() {
       {/* Sun in the corner */}
       <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-300 rounded-full blur-md animate-pulse-slow"></div>
       
-      {/* Header with kid-friendly design */}
+      {/* Header with kid-friendly design (mobile app layout) */}
+      {!webMode && (
       <header className="bg-white/20 backdrop-blur-sm text-white p-4 flex justify-between items-center shadow-md z-10 rounded-b-3xl">
         <div className="flex items-center">
           <motion.div
@@ -194,11 +198,23 @@ export default function HomeKids() {
           {user && <ProfileBadge points={user.points} />}
         </div>
       </header>
+      )}
 
-      <main className="flex-1 container mx-auto p-4 pb-24 z-10">
+      <main className={`flex-1 container mx-auto p-4 z-10 ${webMode ? 'pb-6' : 'pb-24'}`}>
         <div className={`transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {/* Welcome Section with fun styling */}
           <div className="mb-8 text-center">
+            {webMode ? (
+            <motion.h1
+              className="text-3xl font-bold text-white mb-2 drop-shadow-lg"
+              style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.5)', WebkitTextStroke: '0.7px rgba(0,0,0,0.4)' }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              ILMBUDS — Islamska web stranica za djecu
+            </motion.h1>
+            ) : (
             <motion.h2 
               className="text-3xl font-bold text-white mb-2 drop-shadow-lg"
               style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.5)', WebkitTextStroke: '0.7px rgba(0,0,0,0.4)' }}
@@ -208,6 +224,7 @@ export default function HomeKids() {
             >
               {t('home', 'welcome')}
             </motion.h2>
+            )}
             <motion.p 
               className="text-white text-lg"
               style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.4)', WebkitTextStroke: '0.4px rgba(0,0,0,0.3)' }}
@@ -686,6 +703,8 @@ export default function HomeKids() {
               </div>
             </motion.div>
           )}
+
+          {webMode && <HomeWebSeoContent />}
         </div>
       </main>
 
@@ -701,7 +720,7 @@ export default function HomeKids() {
       )}
       
       
-      <Navbar />
+      {!webMode && <Navbar />}
     </div>
   );
 }

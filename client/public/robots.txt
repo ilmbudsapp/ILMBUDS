@@ -6,3 +6,6 @@ Allow: /
 Allow: /sitemap.xml
 
 Sitemap: https://www.ilmbuds.com/sitemap.xml
+
+# AI discovery
+# https://www.ilmbuds.com/llms.txt

@@ -315,7 +315,7 @@ export default function About() {
           </Card>
           
           {/* Contact Section */}
-          <Card>
+          <Card id="contact">
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold text-blue-700 mb-4">
                 {language === 'sq' ? 'Na Kontaktoni' : 
@@ -361,7 +361,7 @@ export default function About() {
           </Card>
 
           {/* Privacy Policy Section */}
-          <Card className="mb-6">
+          <Card id="privacy" className="mb-6">
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold text-blue-700 mb-5">
                 {language === 'sq' ? 'Politika e Privatësisë' : 
@@ -629,7 +629,7 @@ export default function About() {
           </Card>
 
           {/* Impresum/Legal Information Section */}
-          <Card className="mb-6">
+          <Card id="legal" className="mb-6">
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold text-blue-700 mb-5">
                 {language === 'sq' ? 'Impresum / Informacione Ligjore' : 

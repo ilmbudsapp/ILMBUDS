@@ -1,0 +1,36 @@
+# ILMBUDS — llms.txt
+
+> Islamska obrazovna web stranica za djecu (www.ilmbuds.com)
+
+## Organization
+
+- **Name:** ILMBUDS
+- **Publisher:** AGRMULTIMEDIA (https://agrmultimedia.eu)
+- **Author:** Agron Osmani
+- **Contact:** agron6922@gmail.com
+- **Languages:** Bosnian, German, English, Albanian, Italian (UI)
+
+## What we offer
+
+Free Islamic learning for children: stories, Quran, catechism (ilmihal), quizzes, cartoons, Arabic alphabet, and mini games. Web version at https://www.ilmbuds.com/ — Android app also on Google Play.
+
+## Key URLs
+
+- Home: /
+- Stories: /stories
+- Quran: /quran
+- Catechism: /catechism
+- Quizzes: /quiz-categories
+- Mini games: /mini-games
+- Cartoons: /cartoons
+- Arabic alphabet: /arabic-alphabet
+- About & privacy: /about
+- Partners: /partners
+- Donate: /donate
+- Sitemap: /sitemap.xml
+- Atom feed: /feed.atom.xml
+
+## Policies
+
+- Privacy and legal information are on /about (sections Privacy Policy and Imprint).
+- Content is child-directed; ads use Google AdSense with consent (CMP) where required.
