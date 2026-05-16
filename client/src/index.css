@@ -2,6 +2,7 @@
 @import './styles/base.css';
 @import './styles/animations.css';
 @import './styles/components.css';
+@import './styles/web-magic.css';
 
 @tailwind base;
 @tailwind components;

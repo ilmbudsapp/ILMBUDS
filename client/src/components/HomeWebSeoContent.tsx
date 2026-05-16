@@ -6,51 +6,51 @@ export function HomeWebSeoContent() {
 
   return (
     <article
-      className="mt-10 rounded-3xl border border-white/30 bg-white/15 p-6 text-white shadow-lg backdrop-blur-sm"
+      className="web-glass-card mt-10"
       aria-labelledby="seo-intro-heading"
     >
-      <p className="text-sm text-white/80">
+      <p className="text-sm text-slate-300/90">
         {t("homeSeo", "authorLabel")}: <strong>Agron Osmani</strong> · {t("homeSeo", "updatedLabel")}{" "}
         <time dateTime="2026-05-16">{t("homeSeo", "updatedDate")}</time>
       </p>
 
-      <h2 id="seo-intro-heading" className="mt-2 text-2xl font-bold">
+      <h2 id="seo-intro-heading" className="mt-2 text-2xl font-bold text-amber-50">
         {t("homeSeo", "whyChooseHeading")}
       </h2>
-      <p className="seo-lead mt-3 text-base leading-relaxed text-white/95">
+      <p className="seo-lead web-text-muted mt-3 text-base leading-relaxed">
         {t("homeSeo", "leadParagraph")}
       </p>
 
       <nav className="mt-6" aria-label={t("homeSeo", "exploreNavAria")}>
-        <h3 className="text-lg font-semibold">{t("homeSeo", "exploreHeading")}</h3>
+        <h3 className="text-lg font-semibold text-amber-100/95">{t("homeSeo", "exploreHeading")}</h3>
         <ul className="mt-2 grid gap-2 sm:grid-cols-2">
           <li>
-            <Link href="/stories" className="underline hover:text-sky-100">
+            <Link href="/stories" className="text-emerald-300 underline hover:text-emerald-200">
               {t("ui", "stories")}
             </Link>
           </li>
           <li>
-            <Link href="/quran" className="underline hover:text-sky-100">
+            <Link href="/quran" className="text-emerald-300 underline hover:text-emerald-200">
               {t("ui", "quran")}
             </Link>
           </li>
           <li>
-            <Link href="/catechism" className="underline hover:text-sky-100">
+            <Link href="/catechism" className="text-emerald-300 underline hover:text-emerald-200">
               {t("ui", "catechism")}
             </Link>
           </li>
           <li>
-            <Link href="/quiz-categories" className="underline hover:text-sky-100">
+            <Link href="/quiz-categories" className="text-emerald-300 underline hover:text-emerald-200">
               {t("ui", "quiz")}
             </Link>
           </li>
           <li>
-            <Link href="/mini-games" className="underline hover:text-sky-100">
+            <Link href="/mini-games" className="text-emerald-300 underline hover:text-emerald-200">
               {t("games", "title")}
             </Link>
           </li>
           <li>
-            <Link href="/cartoons" className="underline hover:text-sky-100">
+            <Link href="/cartoons" className="text-emerald-300 underline hover:text-emerald-200">
               {t("home", "cartoons")}
             </Link>
           </li>

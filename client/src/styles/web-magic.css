@@ -1,0 +1,154 @@
+/* ILMBUDS Web — Magično noćno nebo (samo .ilmbuds-web) */
+
+.ilmbuds-web {
+  --web-gold: 234 179 8;
+  --web-emerald: 52 211 153;
+  --web-night-from: #020617;
+  --web-night-via: #0f172a;
+  --web-night-to: #1e1b4b;
+  color: #f1f5f9;
+}
+
+.ilmbuds-web body {
+  padding-bottom: 0;
+  background: var(--web-night-from);
+}
+
+/* Glass panels */
+.ilmbuds-web .web-glass {
+  @apply border border-white/10 bg-slate-900/40 backdrop-blur-md;
+}
+
+.ilmbuds-web .web-glass-header {
+  @apply border-b border-white/10 bg-slate-950/70 backdrop-blur-lg;
+}
+
+.ilmbuds-web .web-glass-card {
+  @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300;
+}
+
+.ilmbuds-web .web-glass-card:hover {
+  @apply -translate-y-1 border-amber-400/30 shadow-[0_0_24px_rgba(234,179,8,0.22)];
+}
+
+.ilmbuds-web .web-glass-card:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-emerald-400/60;
+}
+
+.ilmbuds-web .web-cta {
+  @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-6 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-500/25 transition hover:from-amber-300 hover:to-amber-500 hover:shadow-amber-400/40;
+}
+
+.ilmbuds-web .web-cta-emerald {
+  @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 px-6 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:from-emerald-300 hover:to-teal-400;
+}
+
+.ilmbuds-web .web-hero-title {
+  @apply font-display text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl;
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 45%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ilmbuds-web .web-text-gold {
+  @apply text-amber-200/90;
+}
+
+.ilmbuds-web .web-text-muted {
+  @apply text-slate-300/85;
+}
+
+/* Inner pages — glass over light mobile layouts */
+.ilmbuds-web main > div.min-h-screen {
+  background: transparent !important;
+}
+
+.ilmbuds-web main header[class*="bg-gradient"],
+.ilmbuds-web main [class*="from-blue-50"],
+.ilmbuds-web main [class*="from-indigo-50"] {
+  background: transparent !important;
+}
+
+.ilmbuds-web main header {
+  @apply rounded-2xl border border-white/10 text-white shadow-none;
+  border-bottom-width: 1px;
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(2 6 23 / 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.ilmbuds-web main header h1,
+.ilmbuds-web main header .text-blue-800,
+.ilmbuds-web main header .text-olive-500 {
+  @apply text-amber-100;
+}
+
+.ilmbuds-web main .text-blue-700,
+.ilmbuds-web main .text-blue-800,
+.ilmbuds-web main .text-blue-600 {
+  @apply text-emerald-300;
+}
+
+.ilmbuds-web main .text-gray-700,
+.ilmbuds-web main .text-gray-800 {
+  @apply text-slate-200;
+}
+
+.ilmbuds-web main [class*="Card"] {
+  @apply border border-white/10 bg-slate-900/50 text-slate-100 backdrop-blur-md shadow-none;
+}
+
+.ilmbuds-web main [class*="Card"] .text-gray-500 {
+  @apply text-slate-400;
+}
+
+/* Stars */
+@keyframes web-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes web-lantern-swing {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes web-lantern-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.75));
+  }
+}
+
+.web-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fef9c3;
+  animation: web-twinkle ease-in-out infinite;
+  pointer-events: none;
+}
+
+.web-lantern {
+  animation: web-lantern-swing 5s ease-in-out infinite, web-lantern-glow 3s ease-in-out infinite;
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.web-lantern-delay {
+  animation-delay: 1.2s, 0.6s;
+}

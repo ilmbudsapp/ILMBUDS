@@ -17,6 +17,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["Fredoka", "Nunito", "Quicksand", "system-ui", "sans-serif"],
+        arabic: ["Scheherazade New", "Amiri", "serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

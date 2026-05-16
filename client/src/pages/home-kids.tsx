@@ -15,7 +15,7 @@ import audioService from '../services/audio-service';
 import { ThemeToggleSimple } from '@/components/theme-toggle';
 import { useTouchGestures, useCardGestures } from '@/hooks/useTouchGestures';
 import { isWebStaticMode } from '@/lib/webApi/install';
-import { HomeWebSeoContent } from '@/components/HomeWebSeoContent';
+import { WebHomePage } from '@/components/web/WebHomePage';
 
 export default function HomeKids() {
   const webMode = isWebStaticMode();
@@ -114,6 +114,10 @@ export default function HomeKids() {
       transition: { duration: 0.3 }
     }
   };
+
+  if (webMode) {
+    return <WebHomePage />;
+  }
   
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-sky-400 to-blue-500 relative overflow-hidden">
@@ -704,7 +708,6 @@ export default function HomeKids() {
             </motion.div>
           )}
 
-          {webMode && <HomeWebSeoContent />}
         </div>
       </main>
 

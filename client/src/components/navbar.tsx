@@ -216,10 +216,10 @@ export function Navbar({ variant = 'mobile' }: NavbarProps) {
             <Link
               key={item.path}
               href={item.path}
-              className={`whitespace-nowrap rounded-lg px-2.5 py-2 text-xs font-medium transition-colors no-underline xl:px-3 xl:text-sm ${
+              className={`whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-medium transition-all no-underline xl:px-3 xl:text-sm ${
                 isNavActive(location, item.path)
-                  ? 'bg-white/20 text-white'
-                  : 'text-white/85 hover:bg-white/10 hover:text-white'
+                  ? 'bg-amber-500/25 text-amber-100 shadow-[0_0_12px_rgba(251,191,36,0.25)]'
+                  : 'text-slate-200/90 hover:bg-white/10 hover:text-amber-50'
               }`}
             >
               {item.label}
@@ -231,7 +231,7 @@ export function Navbar({ variant = 'mobile' }: NavbarProps) {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-sm font-medium text-white"
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-amber-400/30 bg-slate-900/50 px-3 py-2 text-sm font-medium text-amber-100 backdrop-blur-sm"
             aria-expanded={menuOpen}
             aria-controls="web-nav-menu"
           >
@@ -249,17 +249,17 @@ export function Navbar({ variant = 'mobile' }: NavbarProps) {
           {menuOpen && (
             <div
               id="web-nav-menu"
-              className="mt-2 grid max-h-[70vh] grid-cols-2 gap-1 overflow-y-auto rounded-lg border border-white/20 bg-sky-700/95 p-2 shadow-lg sm:grid-cols-3"
+              className="mt-2 grid max-h-[70vh] grid-cols-2 gap-1 overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-xl backdrop-blur-lg sm:grid-cols-3"
             >
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   href={item.path}
                   onClick={() => setMenuOpen(false)}
-                  className={`rounded-md px-3 py-2 text-center text-sm font-medium no-underline ${
+                  className={`rounded-xl px-3 py-2 text-center text-sm font-medium no-underline ${
                     isNavActive(location, item.path)
-                      ? 'bg-white/20 text-white'
-                      : 'text-white/90 hover:bg-white/10'
+                      ? 'bg-amber-500/25 text-amber-100'
+                      : 'text-slate-200 hover:bg-white/10 hover:text-amber-50'
                   }`}
                 >
                   {item.label}
