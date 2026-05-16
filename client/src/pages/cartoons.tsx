@@ -253,6 +253,13 @@ export default function Cartoons() {
     return t('cartoons', cartoon.descriptionKey);
   };
 
+  const thumbFor = (cartoon: CartoonItem) => {
+    const url = getVideoUrl(cartoon);
+    const match = url.match(/embed\/([^?&]+)/);
+    if (cartoon.thumbnailUrl) return cartoon.thumbnailUrl;
+    return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : '';
+  };
+
   // Show loading screen with countdown if content is not ready
   if (!showContent) {
     return (
@@ -302,7 +309,7 @@ export default function Cartoons() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         <BackButton onClick={handleBackClick} />
         
@@ -361,38 +368,48 @@ export default function Cartoons() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: cartoon.id * 0.1 }}
-              className="bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 border border-emerald-200/50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="web-cartoon-card overflow-hidden rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl"
             >
-              <div className="aspect-video bg-black relative">
-                <iframe
-                  src={getVideoUrl(cartoon)}
-                  title={getTitle(cartoon)}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
+              <button
+                type="button"
+                onClick={() => toggleFullscreen(cartoon)}
+                className="web-cartoon-thumb group relative block aspect-video w-full cursor-pointer"
+                aria-label={getTitle(cartoon)}
+              >
+                <img
+                  src={thumbFor(cartoon)}
+                  alt={getTitle(cartoon)}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
                 />
-                <div className="absolute top-2 right-2">
-                  <button
-                    onClick={() => toggleFullscreen(cartoon)}
-                    className="p-2 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full transition-colors text-white"
-                    title={t('cartoons', 'fullscreen')}
-                  >
-                    <Icon name="maximize" size={16} />
-                  </button>
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/45">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg ring-4 ring-white/40">
+                    <Icon name="play_arrow" size={32} />
+                  </span>
                 </div>
-              </div>
+                <div className="absolute right-2 top-2">
+                  <span className="rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white">
+                    ▶ {cartoon.duration}
+                  </span>
+                </div>
+              </button>
               
               <div className="p-4">
-                <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">
+                <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900">
                   {getTitle(cartoon)}
                 </h3>
-                <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+                <p className="mb-3 line-clamp-3 text-sm text-gray-800">
                   {getDescription(cartoon)}
                 </p>
-                <div className="flex items-center justify-between text-xs text-gray-500">
+                <div className="flex items-center justify-between text-xs text-gray-700">
                   <span>{cartoon.ageGroup} {t('cartoons', 'years')}</span>
-                  <span>{cartoon.duration}</span>
+                  <button
+                    type="button"
+                    onClick={() => toggleFullscreen(cartoon)}
+                    className="font-medium text-blue-700 underline hover:text-blue-900"
+                  >
+                    {t('cartoons', 'fullscreen')}
+                  </button>
                 </div>
               </div>
             </motion.div>

@@ -4,8 +4,8 @@
   --web-gold: 234 179 8;
   --web-emerald: 52 211 153;
   --web-night-from: #020617;
-  --web-night-via: #0f172a;
-  --web-night-to: #1e1b4b;
+  --web-text-on-panel: #0a0a0a;
+  --web-panel-bg: #ffffff;
   color: #f1f5f9;
 }
 
@@ -14,7 +14,7 @@
   background: var(--web-night-from);
 }
 
-/* Glass panels */
+/* Glass panels (homepage, shell) */
 .ilmbuds-web .web-glass {
   @apply border border-white/10 bg-slate-900/40 backdrop-blur-md;
 }
@@ -58,48 +58,165 @@
   @apply text-slate-300/85;
 }
 
-/* Inner pages — glass over light mobile layouts */
-.ilmbuds-web main > div.min-h-screen {
-  background: transparent !important;
+/* Exclude homepage SEO block from panel text rules */
+.ilmbuds-web .web-glass-card,
+.ilmbuds-web .web-glass-card * {
+  color: unset;
 }
 
-.ilmbuds-web main header[class*="bg-gradient"],
-.ilmbuds-web main [class*="from-blue-50"],
-.ilmbuds-web main [class*="from-indigo-50"] {
-  background: transparent !important;
+.ilmbuds-web .web-glass-card .web-text-muted {
+  @apply text-slate-300/85;
 }
 
+.ilmbuds-web .web-glass-card h2,
+.ilmbuds-web .web-glass-card h3 {
+  @apply text-amber-50;
+}
+
+/* ========== INNER PAGES: readable black text on white panels ========== */
+
+.ilmbuds-web main > div.min-h-screen,
+.ilmbuds-web main > div.min-h-screen > main {
+  background: transparent !important;
+  color: #0f172a;
+}
+
+/* Default readable body copy on inner pages (inherits into cards) */
+.ilmbuds-web main > div.min-h-screen main,
+.ilmbuds-web main > div.min-h-screen > .container {
+  color: #0f172a;
+}
+
+/* Section titles on night sky (outside white boxes) */
+.ilmbuds-web main h1[class*="text-4xl"][class*="text-white"],
+.ilmbuds-web main [class*="text-3xl"][class*="font-bold"][class*="text-white"],
+.ilmbuds-web main > div > .text-center > h2[class*="text-white"] {
+  color: #fcd34d !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+}
+
+.ilmbuds-web main > div > .text-center > p[class*="text-white"],
+.ilmbuds-web main p[class*="text-white/90"] {
+  color: #e2e8f0 !important;
+}
+
+/* In-page headers → white bar, black text */
 .ilmbuds-web main header {
-  @apply rounded-2xl border border-white/10 text-white shadow-none;
-  border-bottom-width: 1px;
-  border-color: rgb(255 255 255 / 0.1);
-  background: rgb(2 6 23 / 0.7);
-  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.98) !important;
+  color: #000 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 1rem !important;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
+.ilmbuds-web main header,
 .ilmbuds-web main header h1,
-.ilmbuds-web main header .text-blue-800,
-.ilmbuds-web main header .text-olive-500 {
-  @apply text-amber-100;
+.ilmbuds-web main header h2,
+.ilmbuds-web main header button,
+.ilmbuds-web main header [class*="text-white"],
+.ilmbuds-web main header span,
+.ilmbuds-web main header .material-icons {
+  color: #000 !important;
 }
 
-.ilmbuds-web main .text-blue-700,
-.ilmbuds-web main .text-blue-800,
-.ilmbuds-web main .text-blue-600 {
-  @apply text-emerald-300;
+.ilmbuds-web main header button:hover {
+  background: #f1f5f9 !important;
 }
 
-.ilmbuds-web main .text-gray-700,
-.ilmbuds-web main .text-gray-800 {
-  @apply text-slate-200;
+/* White content panels */
+.ilmbuds-web main [class*="Card"],
+.ilmbuds-web main .bg-white,
+.ilmbuds-web main .bg-white\/95,
+.ilmbuds-web main [class*="from-white"],
+.ilmbuds-web main [class*="from-emerald-50"],
+.ilmbuds-web main [class*="from-indigo-50"],
+.ilmbuds-web main [class*="from-blue-50"],
+.ilmbuds-web main [class*="from-purple-50"],
+.ilmbuds-web main [class*="from-amber-50"],
+.ilmbuds-web main [class*="from-orange-50"],
+.ilmbuds-web main [class*="from-cyan-50"],
+.ilmbuds-web main .glass-container,
+.ilmbuds-web main .web-cartoon-card {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
 }
 
-.ilmbuds-web main [class*="Card"] {
-  @apply border border-white/10 bg-slate-900/50 text-slate-100 backdrop-blur-md shadow-none;
+/* Black text inside content panels */
+.ilmbuds-web main [class*="Card"] h1,
+.ilmbuds-web main [class*="Card"] h2,
+.ilmbuds-web main [class*="Card"] h3,
+.ilmbuds-web main [class*="Card"] h4,
+.ilmbuds-web main [class*="Card"] p,
+.ilmbuds-web main [class*="Card"] span,
+.ilmbuds-web main [class*="Card"] li,
+.ilmbuds-web main [class*="Card"] label,
+.ilmbuds-web main [class*="text-gray-900"],
+.ilmbuds-web main [class*="text-gray-800"],
+.ilmbuds-web main [class*="text-gray-700"],
+.ilmbuds-web main [class*="text-gray-600"],
+.ilmbuds-web main [class*="text-gray-500"],
+.ilmbuds-web main [class*="from-emerald-50"] h1,
+.ilmbuds-web main [class*="from-emerald-50"] h2,
+.ilmbuds-web main [class*="from-emerald-50"] h3,
+.ilmbuds-web main [class*="from-emerald-50"] p,
+.ilmbuds-web main [class*="from-emerald-50"] span,
+.ilmbuds-web main .glass-container h2,
+.ilmbuds-web main .glass-container h3,
+.ilmbuds-web main .glass-container p,
+.ilmbuds-web main .web-cartoon-card h3,
+.ilmbuds-web main .web-cartoon-card p,
+.ilmbuds-web main .web-cartoon-card span {
+  color: #000000 !important;
 }
 
-.ilmbuds-web main [class*="Card"] .text-gray-500 {
-  @apply text-slate-400;
+/* History of Islam amber accents → darker for contrast on white */
+.ilmbuds-web main [class*="text-amber-800"],
+.ilmbuds-web main [class*="text-amber-700"] {
+  color: #92400e !important;
+}
+
+.ilmbuds-web main a[class*="text-blue-600"],
+.ilmbuds-web main [class*="Card"] a[href^="mailto"],
+.ilmbuds-web main [class*="Card"] a[class*="text-blue-600"] {
+  color: #1d4ed8 !important;
+}
+
+/* Quiz container (already white) */
+.ilmbuds-web main .bg-white[class*="rounded-2xl"],
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] h3,
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] p,
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] span {
+  color: #000 !important;
+}
+
+/* Back button on inner pages */
+.ilmbuds-web main .web-back-btn {
+  color: #000 !important;
+}
+
+.ilmbuds-web main .web-back-btn:hover {
+  background: #f1f5f9 !important;
+}
+
+/* Cartoon poster area — keep video thumbnail visible */
+.ilmbuds-web main .web-cartoon-card .web-cartoon-thumb {
+  background: #000 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.ilmbuds-web main .web-cartoon-thumb img {
+  display: block;
+}
+
+/* Hide duplicate mobile bottom nav padding on web */
+.ilmbuds-web main[class*="pb-16"],
+.ilmbuds-web main[class*="pb-20"],
+.ilmbuds-web main[class*="pb-24"] {
+  padding-bottom: 1.5rem !important;
 }
 
 /* Stars */
