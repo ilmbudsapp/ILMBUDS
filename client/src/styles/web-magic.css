@@ -73,58 +73,72 @@
   @apply text-amber-50;
 }
 
-/* ========== INNER PAGES: readable black text on white panels ========== */
+/* ========== CONTRAST: dark bg = light text, light bg = dark text ========== */
 
+/* Night sky / main area — default light text */
+.ilmbuds-web main {
+  color: #f8fafc;
+}
+
+/* Page roots: transparent so stars show; pale pages keep readable dark copy */
 .ilmbuds-web main > div.min-h-screen,
 .ilmbuds-web main > div.min-h-screen > main {
   background: transparent !important;
+}
+
+.ilmbuds-web main > div.min-h-screen[class*="-50"],
+.ilmbuds-web main > div.min-h-screen[class*="text-gray-800"],
+.ilmbuds-web main > div.min-h-screen[class*="text-gray-900"] {
   color: #0f172a;
 }
 
-/* Default readable body copy on inner pages (inherits into cards) */
-.ilmbuds-web main > div.min-h-screen main,
-.ilmbuds-web main > div.min-h-screen > .container {
-  color: #0f172a;
+.ilmbuds-web main > div.min-h-screen[class*="-50"] [class*="text-gray-"],
+.ilmbuds-web main > div.min-h-screen[class*="text-gray-800"] [class*="text-gray-"] {
+  color: #334155 !important;
 }
 
-/* Section titles on night sky (outside white boxes) */
-.ilmbuds-web main h1[class*="text-4xl"][class*="text-white"],
-.ilmbuds-web main [class*="text-3xl"][class*="font-bold"][class*="text-white"],
-.ilmbuds-web main > div > .text-center > h2[class*="text-white"] {
-  color: #fcd34d !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+/* Text on dark background (outside light panels) */
+.ilmbuds-web main [class*="text-white"],
+.ilmbuds-web main [class*="text-white/"] {
+  color: #ffffff !important;
 }
 
-.ilmbuds-web main > div > .text-center > p[class*="text-white"],
-.ilmbuds-web main p[class*="text-white/90"] {
+.ilmbuds-web main > div > .text-center > h1,
+.ilmbuds-web main > div > .text-center > h2,
+.ilmbuds-web main > div > .container > .text-center h1 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.ilmbuds-web main > div > .text-center > p {
   color: #e2e8f0 !important;
 }
 
-/* In-page headers → white bar, black text */
-.ilmbuds-web main header {
-  background: rgba(255, 255, 255, 0.98) !important;
-  color: #000 !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 1rem !important;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+/* Gray utility classes on dark areas → light gray (overridden inside panels below) */
+.ilmbuds-web main [class*="text-gray-900"],
+.ilmbuds-web main [class*="text-gray-800"],
+.ilmbuds-web main [class*="text-gray-700"],
+.ilmbuds-web main [class*="text-gray-600"],
+.ilmbuds-web main [class*="text-gray-500"] {
+  color: #cbd5e1 !important;
 }
 
-.ilmbuds-web main header,
-.ilmbuds-web main header h1,
-.ilmbuds-web main header h2,
-.ilmbuds-web main header button,
-.ilmbuds-web main header [class*="text-white"],
-.ilmbuds-web main header span,
-.ilmbuds-web main header .material-icons {
-  color: #000 !important;
+/* In-page headers with dark/colored bg → keep bg, white text */
+.ilmbuds-web main > div > header,
+.ilmbuds-web main > div.min-h-screen > header {
+  color: #ffffff !important;
 }
 
-.ilmbuds-web main header button:hover {
-  background: #f1f5f9 !important;
+.ilmbuds-web main > div > header h1,
+.ilmbuds-web main > div > header h2,
+.ilmbuds-web main > div > header button,
+.ilmbuds-web main > div > header span,
+.ilmbuds-web main > div > header [class*="text-white"],
+.ilmbuds-web main > div > header .material-icons {
+  color: #ffffff !important;
 }
 
-/* White content panels */
+/* —— Light surfaces: white panel, black text —— */
 .ilmbuds-web main [class*="Card"],
 .ilmbuds-web main .bg-white,
 .ilmbuds-web main .bg-white\/95,
@@ -136,65 +150,63 @@
 .ilmbuds-web main [class*="from-amber-50"],
 .ilmbuds-web main [class*="from-orange-50"],
 .ilmbuds-web main [class*="from-cyan-50"],
+.ilmbuds-web main [class*="via-emerald-50"],
+.ilmbuds-web main [class*="via-cyan-50"],
+.ilmbuds-web main [class*="to-blue-50"],
 .ilmbuds-web main .glass-container,
-.ilmbuds-web main .web-cartoon-card {
+.ilmbuds-web main .web-cartoon-card,
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] {
   background: #ffffff !important;
   background-image: none !important;
-  color: #000000 !important;
+  color: #0a0a0a !important;
   border: 1px solid #e5e7eb !important;
 }
 
-/* Black text inside content panels */
-.ilmbuds-web main [class*="Card"] h1,
-.ilmbuds-web main [class*="Card"] h2,
-.ilmbuds-web main [class*="Card"] h3,
-.ilmbuds-web main [class*="Card"] h4,
-.ilmbuds-web main [class*="Card"] p,
-.ilmbuds-web main [class*="Card"] span,
-.ilmbuds-web main [class*="Card"] li,
-.ilmbuds-web main [class*="Card"] label,
-.ilmbuds-web main [class*="text-gray-900"],
-.ilmbuds-web main [class*="text-gray-800"],
-.ilmbuds-web main [class*="text-gray-700"],
-.ilmbuds-web main [class*="text-gray-600"],
-.ilmbuds-web main [class*="text-gray-500"],
-.ilmbuds-web main [class*="from-emerald-50"] h1,
-.ilmbuds-web main [class*="from-emerald-50"] h2,
-.ilmbuds-web main [class*="from-emerald-50"] h3,
-.ilmbuds-web main [class*="from-emerald-50"] p,
-.ilmbuds-web main [class*="from-emerald-50"] span,
-.ilmbuds-web main .glass-container h2,
-.ilmbuds-web main .glass-container h3,
-.ilmbuds-web main .glass-container p,
-.ilmbuds-web main .web-cartoon-card h3,
-.ilmbuds-web main .web-cartoon-card p,
-.ilmbuds-web main .web-cartoon-card span {
-  color: #000000 !important;
+.ilmbuds-web main [class*="Card"] :is(h1, h2, h3, h4, h5, h6, p, span, li, label, td, th, div, button),
+.ilmbuds-web main .glass-container :is(h1, h2, h3, h4, h5, h6, p, span, li, label),
+.ilmbuds-web main .web-cartoon-card .p-4 :is(h3, p, span, button),
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] :is(h3, p, span, label, button),
+.ilmbuds-web main [class*="from-white"] :is(h1, h2, h3, p, span),
+.ilmbuds-web main [class*="from-emerald-50"]:not(.web-cartoon-thumb) :is(h1, h2, h3, p, span) {
+  color: #0a0a0a !important;
 }
 
-/* History of Islam amber accents → darker for contrast on white */
-.ilmbuds-web main [class*="text-amber-800"],
-.ilmbuds-web main [class*="text-amber-700"] {
+/* Gray text inside light panels */
+.ilmbuds-web main [class*="Card"] [class*="text-gray-"],
+.ilmbuds-web main .glass-container [class*="text-gray-"],
+.ilmbuds-web main .web-cartoon-card [class*="text-gray-"],
+.ilmbuds-web main .bg-white[class*="rounded-2xl"] [class*="text-gray-"] {
+  color: #334155 !important;
+}
+
+.ilmbuds-web main [class*="Card"] [class*="text-amber-800"],
+.ilmbuds-web main [class*="Card"] [class*="text-amber-700"] {
   color: #92400e !important;
 }
 
-.ilmbuds-web main a[class*="text-blue-600"],
+.ilmbuds-web main [class*="Card"] a[class*="text-blue-"],
 .ilmbuds-web main [class*="Card"] a[href^="mailto"],
-.ilmbuds-web main [class*="Card"] a[class*="text-blue-600"] {
+.ilmbuds-web main .bg-white a[class*="text-blue-"] {
   color: #1d4ed8 !important;
 }
 
-/* Quiz container (already white) */
-.ilmbuds-web main .bg-white[class*="rounded-2xl"],
-.ilmbuds-web main .bg-white[class*="rounded-2xl"] h3,
-.ilmbuds-web main .bg-white[class*="rounded-2xl"] p,
-.ilmbuds-web main .bg-white[class*="rounded-2xl"] span {
-  color: #000 !important;
+/* Icons / badges on colored circles inside light panels stay white */
+.ilmbuds-web main [class*="Card"] [class*="rounded-full"] [class*="text-white"],
+.ilmbuds-web main .glass-container [class*="rounded-full"] [class*="text-white"],
+.ilmbuds-web main [class*="bg-gradient-to-r"] [class*="text-white"],
+.ilmbuds-web main [class*="bg-gradient-to-br"] [class*="text-white"],
+.ilmbuds-web main [class*="bg-primary"] [class*="text-white"],
+.ilmbuds-web main button[class*="text-white"],
+.ilmbuds-web main .web-cartoon-thumb,
+.ilmbuds-web main .web-cartoon-thumb * {
+  color: #ffffff !important;
 }
 
-/* Back button on inner pages */
+/* Back button = light surface */
 .ilmbuds-web main .web-back-btn {
-  color: #000 !important;
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+  border-color: #e2e8f0 !important;
 }
 
 .ilmbuds-web main .web-back-btn:hover {
