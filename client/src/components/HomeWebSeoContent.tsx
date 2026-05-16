@@ -1,107 +1,103 @@
 import { Link } from "wouter";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function HomeWebSeoContent() {
+  const { t } = useTranslation();
+
   return (
     <article
       className="mt-10 rounded-3xl border border-white/30 bg-white/15 p-6 text-white shadow-lg backdrop-blur-sm"
       aria-labelledby="seo-intro-heading"
     >
       <p className="text-sm text-white/80">
-        Autor: <strong>Agron Osmani</strong> · Ažurirano{" "}
-        <time dateTime="2026-05-16">16. maj 2026.</time>
+        {t("homeSeo", "authorLabel")}: <strong>Agron Osmani</strong> · {t("homeSeo", "updatedLabel")}{" "}
+        <time dateTime="2026-05-16">{t("homeSeo", "updatedDate")}</time>
       </p>
 
       <h2 id="seo-intro-heading" className="mt-2 text-2xl font-bold">
-        Zašto odabrati ILMBUDS?
+        {t("homeSeo", "whyChooseHeading")}
       </h2>
       <p className="seo-lead mt-3 text-base leading-relaxed text-white/95">
-        ILMBUDS je islamska web stranica za djecu na kojoj možete učiti kroz priče, Kuran, ilmihal,
-        kvizove i igre. Više od 300+ aktivnosti pomaže djeci da pamti pouke na zabavan način. Mi u
-        AGRMULTIMEDIA vjerujemo da obrazovanje treba biti sigurno, besplatno i dostupno svakom
-        roditelju u dijaspori.
+        {t("homeSeo", "leadParagraph")}
       </p>
 
-      <nav className="mt-6" aria-label="Sekcije sajta">
-        <h3 className="text-lg font-semibold">Istražite sadržaj</h3>
+      <nav className="mt-6" aria-label={t("homeSeo", "exploreNavAria")}>
+        <h3 className="text-lg font-semibold">{t("homeSeo", "exploreHeading")}</h3>
         <ul className="mt-2 grid gap-2 sm:grid-cols-2">
           <li>
             <Link href="/stories" className="underline hover:text-sky-100">
-              Islamske priče
+              {t("ui", "stories")}
             </Link>
           </li>
           <li>
             <Link href="/quran" className="underline hover:text-sky-100">
-              Kuran
+              {t("ui", "quran")}
             </Link>
           </li>
           <li>
             <Link href="/catechism" className="underline hover:text-sky-100">
-              Ilmihal
+              {t("ui", "catechism")}
             </Link>
           </li>
           <li>
             <Link href="/quiz-categories" className="underline hover:text-sky-100">
-              Kvizovi
+              {t("ui", "quiz")}
             </Link>
           </li>
           <li>
             <Link href="/mini-games" className="underline hover:text-sky-100">
-              Mini igre
+              {t("games", "title")}
             </Link>
           </li>
           <li>
             <Link href="/cartoons" className="underline hover:text-sky-100">
-              Crtani
+              {t("home", "cartoons")}
             </Link>
           </li>
         </ul>
       </nav>
 
       <section className="mt-6">
-        <h3 className="text-lg font-semibold">Često postavljana pitanja</h3>
+        <h3 className="text-lg font-semibold">{t("homeSeo", "faqHeading")}</h3>
         <dl className="mt-2 space-y-3">
           <div>
-            <dt className="font-semibold">Šta je ILMBUDS?</dt>
-            <dd className="text-white/90">
-              Besplatna islamska obrazovna platforma za djecu sa pričama, Kuranom i kvizovima.
-            </dd>
+            <dt className="font-semibold">{t("homeSeo", "faq1Question")}</dt>
+            <dd className="text-white/90">{t("homeSeo", "faq1Answer")}</dd>
           </div>
           <div>
-            <dt className="font-semibold">Kako vas kontaktirati?</dt>
+            <dt className="font-semibold">{t("homeSeo", "faq2Question")}</dt>
             <dd className="text-white/90">
-              Posjetite{" "}
+              {t("homeSeo", "faq2AnswerBefore")}
               <Link href="/about#contact" className="underline">
-                Kontakt
-              </Link>{" "}
-              ili pišite na agron6922@gmail.com.
+                {t("homeSeo", "faq2ContactLink")}
+              </Link>
+              {t("homeSeo", "faq2AnswerAfter")}
             </dd>
           </div>
         </dl>
         <details className="mt-4 rounded-xl bg-white/10 p-3">
-          <summary className="cursor-pointer font-medium">Da li postoji aplikacija?</summary>
-          <p className="mt-2 text-sm text-white/90">
-            Da — ILMBUDS je dostupan i na Androidu (Google Play) uz isti sadržaj kao na webu.
-          </p>
+          <summary className="cursor-pointer font-medium">{t("homeSeo", "appQuestion")}</summary>
+          <p className="mt-2 text-sm text-white/90">{t("homeSeo", "appAnswer")}</p>
         </details>
       </section>
 
       <section className="mt-6">
-        <h3 className="text-lg font-semibold">Ključne prednosti</h3>
+        <h3 className="text-lg font-semibold">{t("homeSeo", "benefitsHeading")}</h3>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-white/90">
-          <li>Besplatan edukativni sadržaj za djecu</li>
-          <li>Podrška za 5 jezika u interfejsu</li>
-          <li>Sigurno okruženje za učenje uz roditelje</li>
+          <li>{t("homeSeo", "benefit1")}</li>
+          <li>{t("homeSeo", "benefit2")}</li>
+          <li>{t("homeSeo", "benefit3")}</li>
         </ul>
       </section>
 
       <p className="mt-6 text-sm text-white/80">
-        Više o projektu:{" "}
+        {t("homeSeo", "moreAboutPrefix")}{" "}
         <Link href="/about" className="underline">
-          O nama
+          {t("ui", "about")}
         </Link>
         {" · "}
         <Link href="/about#privacy" className="underline">
-          Privatnost
+          {t("homeSeo", "linkPrivacy")}
         </Link>
         {" · "}
         <a

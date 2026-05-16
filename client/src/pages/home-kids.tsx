@@ -212,7 +212,7 @@ export default function HomeKids() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              ILMBUDS — Islamska web stranica za djecu
+              {t('homeSeo', 'pageTitle')}
             </motion.h1>
             ) : (
             <motion.h2 

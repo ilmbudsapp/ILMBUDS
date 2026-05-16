@@ -7,6 +7,7 @@ export type TranslationKeys =
   | 'general'  // General translations used throughout the app
   | 'auth'     // Authentication related translations
   | 'home'     // Home page translations
+  | 'homeSeo'  // Homepage SEO block (web)
   | 'quiz'     // Quiz related translations
   | 'profile'  // Profile related translations
   | 'parent'   // Parent dashboard translations
@@ -1093,6 +1094,169 @@ export const translations: Translations = {
       sq: 'Kategoria e Veçantë',
       bs: 'Izdvojena kategorija',
       de: 'Ausgewählte Kategorie'
+    }
+  },
+  homeSeo: {
+    pageTitle: {
+      en: 'ILMBUDS — Islamic website for children',
+      sq: 'ILMBUDS — Faqja web islamike për fëmijë',
+      bs: 'ILMBUDS — Islamska web stranica za djecu',
+      de: 'ILMBUDS — Islamische Website für Kinder',
+      it: 'ILMBUDS — Sito web islamico per bambini'
+    },
+    authorLabel: {
+      en: 'Author',
+      sq: 'Autori',
+      bs: 'Autor',
+      de: 'Autor',
+      it: 'Autore'
+    },
+    updatedLabel: {
+      en: 'Updated',
+      sq: 'Përditësuar',
+      bs: 'Ažurirano',
+      de: 'Aktualisiert',
+      it: 'Aggiornato'
+    },
+    updatedDate: {
+      en: 'May 16, 2026',
+      sq: '16 maj 2026',
+      bs: '16. maj 2026.',
+      de: '16. Mai 2026',
+      it: '16 maggio 2026'
+    },
+    whyChooseHeading: {
+      en: 'Why choose ILMBUDS?',
+      sq: 'Pse të zgjidhni ILMBUDS?',
+      bs: 'Zašto odabrati ILMBUDS?',
+      de: 'Warum ILMBUDS wählen?',
+      it: 'Perché scegliere ILMBUDS?'
+    },
+    leadParagraph: {
+      en: 'ILMBUDS is an Islamic website for children where you can learn through stories, the Quran, catechism, quizzes and games. More than 300+ activities help children remember lessons in a fun way. At AGRMULTIMEDIA we believe education should be safe, free and available to every parent in the diaspora.',
+      sq: 'ILMBUDS është një faqe web islamike për fëmijë ku mund të mësoni përmes tregimeve, Kuranit, ilmihalit, kuizeve dhe lojërave. Më shumë se 300+ aktivitete ndihmojnë fëmijët të mbajnë mend mësimet në mënyrë argëtuese. Ne në AGRMULTIMEDIA besojmë se arsimi duhet të jetë i sigurt, falas dhe i arritshëm për çdo prind në diasporë.',
+      bs: 'ILMBUDS je islamska web stranica za djecu na kojoj možete učiti kroz priče, Kuran, ilmihal, kvizove i igre. Više od 300+ aktivnosti pomaže djeci da pamti pouke na zabavan način. Mi u AGRMULTIMEDIA vjerujemo da obrazovanje treba biti sigurno, besplatno i dostupno svakom roditelju u dijaspori.',
+      de: 'ILMBUDS ist eine islamische Website für Kinder, auf der Sie durch Geschichten, den Koran, Katechismus, Quizze und Spiele lernen können. Mehr als 300+ Aktivitäten helfen Kindern, Lektionen auf spielerische Weise zu behalten. Bei AGRMULTIMEDIA glauben wir, dass Bildung sicher, kostenlos und für jeden Elternteil in der Diaspora zugänglich sein sollte.',
+      it: 'ILMBUDS è un sito web islamico per bambini dove puoi imparare attraverso storie, Corano, catechismo, quiz e giochi. Oltre 300+ attività aiutano i bambini a ricordare le lezioni in modo divertente. In AGRMULTIMEDIA crediamo che l\'educazione debba essere sicura, gratuita e accessibile a ogni genitore nella diaspora.'
+    },
+    exploreNavAria: {
+      en: 'Site sections',
+      sq: 'Seksionet e faqes',
+      bs: 'Sekcije sajta',
+      de: 'Website-Bereiche',
+      it: 'Sezioni del sito'
+    },
+    exploreHeading: {
+      en: 'Explore content',
+      sq: 'Eksploroni përmbajtjen',
+      bs: 'Istražite sadržaj',
+      de: 'Inhalte entdecken',
+      it: 'Esplora i contenuti'
+    },
+    faqHeading: {
+      en: 'Frequently asked questions',
+      sq: 'Pyetjet më të shpeshta',
+      bs: 'Često postavljana pitanja',
+      de: 'Häufig gestellte Fragen',
+      it: 'Domande frequenti'
+    },
+    faq1Question: {
+      en: 'What is ILMBUDS?',
+      sq: 'Çfarë është ILMBUDS?',
+      bs: 'Šta je ILMBUDS?',
+      de: 'Was ist ILMBUDS?',
+      it: 'Cos\'è ILMBUDS?'
+    },
+    faq1Answer: {
+      en: 'A free Islamic educational platform for children with stories, the Quran and quizzes.',
+      sq: 'Një platformë falas edukative islamike për fëmijë me tregime, Kuran dhe kuize.',
+      bs: 'Besplatna islamska obrazovna platforma za djecu sa pričama, Kuranom i kvizovima.',
+      de: 'Eine kostenlose islamische Lernplattform für Kinder mit Geschichten, Koran und Quizzen.',
+      it: 'Una piattaforma educativa islamica gratuita per bambini con storie, Corano e quiz.'
+    },
+    faq2Question: {
+      en: 'How can I contact you?',
+      sq: 'Si mund t\'ju kontaktoj?',
+      bs: 'Kako vas kontaktirati?',
+      de: 'Wie können Sie uns kontaktieren?',
+      it: 'Come posso contattarvi?'
+    },
+    faq2AnswerBefore: {
+      en: 'Visit ',
+      sq: 'Vizitoni ',
+      bs: 'Posjetite ',
+      de: 'Besuchen Sie ',
+      it: 'Visitate '
+    },
+    faq2ContactLink: {
+      en: 'Contact',
+      sq: 'Kontakt',
+      bs: 'Kontakt',
+      de: 'Kontakt',
+      it: 'Contatti'
+    },
+    faq2AnswerAfter: {
+      en: ' or write to agron6922@gmail.com.',
+      sq: ' ose shkruani në agron6922@gmail.com.',
+      bs: ' ili pišite na agron6922@gmail.com.',
+      de: ' oder schreiben Sie an agron6922@gmail.com.',
+      it: ' o scrivete a agron6922@gmail.com.'
+    },
+    appQuestion: {
+      en: 'Is there a mobile app?',
+      sq: 'A ka aplikacion mobil?',
+      bs: 'Da li postoji aplikacija?',
+      de: 'Gibt es eine App?',
+      it: 'Esiste un\'app?'
+    },
+    appAnswer: {
+      en: 'Yes — ILMBUDS is also available on Android (Google Play) with the same content as the website.',
+      sq: 'Po — ILMBUDS është i disponueshëm edhe në Android (Google Play) me të njëjtin përmbajtje si në web.',
+      bs: 'Da — ILMBUDS je dostupan i na Androidu (Google Play) uz isti sadržaj kao na webu.',
+      de: 'Ja — ILMBUDS ist auch auf Android (Google Play) mit denselben Inhalten wie auf der Website verfügbar.',
+      it: 'Sì — ILMBUDS è disponibile anche su Android (Google Play) con gli stessi contenuti del sito web.'
+    },
+    benefitsHeading: {
+      en: 'Key benefits',
+      sq: 'Përfitimet kryesore',
+      bs: 'Ključne prednosti',
+      de: 'Hauptvorteile',
+      it: 'Vantaggi principali'
+    },
+    benefit1: {
+      en: 'Free educational content for children',
+      sq: 'Përmbajtje edukative falas për fëmijë',
+      bs: 'Besplatan edukativni sadržaj za djecu',
+      de: 'Kostenlose Lerninhalte für Kinder',
+      it: 'Contenuti educativi gratuiti per bambini'
+    },
+    benefit2: {
+      en: 'Support for 5 languages in the interface',
+      sq: 'Mbështetje për 5 gjuhë në ndërfaqe',
+      bs: 'Podrška za 5 jezika u interfejsu',
+      de: 'Unterstützung für 5 Sprachen in der Oberfläche',
+      it: 'Supporto per 5 lingue nell\'interfaccia'
+    },
+    benefit3: {
+      en: 'Safe learning environment with parents',
+      sq: 'Mjedis i sigurt mësimor me prindërit',
+      bs: 'Sigurno okruženje za učenje uz roditelje',
+      de: 'Sichere Lernumgebung mit den Eltern',
+      it: 'Ambiente di apprendimento sicuro con i genitori'
+    },
+    moreAboutPrefix: {
+      en: 'More about the project:',
+      sq: 'Më shumë rreth projektit:',
+      bs: 'Više o projektu:',
+      de: 'Mehr über das Projekt:',
+      it: 'Maggiori informazioni sul progetto:'
+    },
+    linkPrivacy: {
+      en: 'Privacy',
+      sq: 'Privatësia',
+      bs: 'Privatnost',
+      de: 'Datenschutz',
+      it: 'Privacy'
     }
   },
   quiz: {
