@@ -78,6 +78,29 @@
   color: inherit;
 }
 
+/* AEO: concise answers + code blocks in SEO article */
+.ilmbuds-web #seo-article .seo-answer,
+.ilmbuds-web .web-glass-card .seo-answer {
+  color: #fde68a !important;
+}
+
+.ilmbuds-web #seo-article pre,
+.ilmbuds-web .web-glass-card pre {
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.85);
+  padding: 1rem;
+}
+
+.ilmbuds-web #seo-article code,
+.ilmbuds-web .web-glass-card code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #6ee7b7;
+}
+
 /* ========== INNER PAGES ONLY — homepage (web-glass-card) untouched ========== */
 
 .ilmbuds-web main > div.min-h-screen,

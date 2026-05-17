@@ -6,13 +6,20 @@
 
 - **Name:** ILMBUDS
 - **Publisher:** AGRMULTIMEDIA (https://agrmultimedia.eu)
-- **Author:** Agron Osmani
-- **Contact:** agron6922@gmail.com
-- **Languages:** Bosnian, German, English, Albanian, Italian (UI)
+- **Author:** Agron Osmani (agron6922@gmail.com)
+- **Languages:** Bosnian, German, English, Albanian, Italian
+- **sameAs:** https://www.ilmbuds.com/ | https://agrmultimedia.eu | https://play.google.com/store/apps/details?id=com.ilmbuds.app | https://en.wikipedia.org/wiki/Islamic_education | https://www.wikidata.org/wiki/Q432
 
-## What we offer
+## What ILMBUDS is
 
-Free Islamic learning for children: stories, Quran, catechism (ilmihal), quizzes, cartoons, Arabic alphabet, and mini games. Web version at https://www.ilmbuds.com/ — Android app also on Google Play.
+ILMBUDS is a free Islamic educational web platform for children aged 4–12 and their parents. It combines Islamic stories, Quran reading/listening, catechism (ilmihal), quizzes (300+ activities in 2026 review), mini games, and Islamic cartoons.
+
+## Key takeaways
+
+- Free on web (2026); Android app on Google Play
+- 5 interface languages for diaspora families
+- Learn with a parent — complements mosque and books
+- Structured content, not random videos
 
 ## Key URLs
 
@@ -26,11 +33,11 @@ Free Islamic learning for children: stories, Quran, catechism (ilmihal), quizzes
 - Arabic alphabet: /arabic-alphabet
 - About & privacy: /about
 - Partners: /partners
-- Donate: /donate
 - Sitemap: /sitemap.xml
 - Atom feed: /feed.atom.xml
 
 ## Policies
 
-- Privacy and legal information are on /about (sections Privacy Policy and Imprint).
-- Content is child-directed; ads use Google AdSense with consent (CMP) where required.
+- Privacy and legal: /about#privacy and /about#legal
+- Child-directed educational content
+- HTTPS; Schema.org JSON-LD on homepage

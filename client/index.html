@@ -53,13 +53,27 @@
             "url": "https://www.ilmbuds.com/",
             "logo": "https://www.ilmbuds.com/images/ilmbuds_logo.png",
             "description": "Islamska obrazovna web stranica za djecu.",
-            "founder": { "@type": "Person", "name": "Agron Osmani" },
+            "founder": {
+              "@type": "Person",
+              "@id": "https://www.ilmbuds.com/#author",
+              "name": "Agron Osmani",
+              "jobTitle": "Autor islamskog edukativnog sadržaja",
+              "email": "agron6922@gmail.com",
+              "url": "https://www.ilmbuds.com/about",
+              "sameAs": ["https://agrmultimedia.eu", "https://www.ilmbuds.com/about"]
+            },
             "parentOrganization": {
               "@type": "Organization",
               "name": "AGRMULTIMEDIA",
               "url": "https://agrmultimedia.eu"
             },
-            "sameAs": ["https://agrmultimedia.eu"]
+            "sameAs": [
+              "https://www.ilmbuds.com/",
+              "https://agrmultimedia.eu",
+              "https://play.google.com/store/apps/details?id=com.ilmbuds.app",
+              "https://en.wikipedia.org/wiki/Islamic_education",
+              "https://www.wikidata.org/wiki/Q432"
+            ]
           },
           {
             "@type": "WebSite",
@@ -87,7 +101,7 @@
             "inLanguage": "bs",
             "speakable": {
               "@type": "SpeakableSpecification",
-              "cssSelector": ["#static-seo-fallback h1", "#static-seo-fallback .seo-lead"]
+              "cssSelector": ["#static-seo-fallback h1", "#static-seo-fallback .seo-lead", "#static-seo-fallback .seo-answer"]
             }
           },
           {
@@ -116,8 +130,24 @@
                   "@type": "Answer",
                   "text": "Podržani su bosanski, njemački, engleski, albanski i italijanski jezik."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "Zašto koristiti ILMBUDS umjesto samo YouTubea?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ILMBUDS nudi strukturirane lekcije, kvizove i višejezični interfejs — YouTube nije kurikulum."
+                }
               }
             ]
+          },
+          {
+            "@type": "VideoObject",
+            "name": "ILMBUDS — Islamski crtani sadržaj",
+            "description": "Edukativni islamski crtani za djecu u sekciji Crtani.",
+            "thumbnailUrl": "https://img.youtube.com/vi/AwW8s_r4g4w/hqdefault.jpg",
+            "embedUrl": "https://www.youtube.com/embed/AwW8s_r4g4w",
+            "uploadDate": "2026-01-01"
           },
           {
             "@type": "BreadcrumbList",
@@ -208,9 +238,23 @@
           možete učiti kroz interaktivne priče, slušati i čitati Kuran, proučavati ilmihal, rješavati kvizove, gledati
           crtane filmove i vježbati arapski alfabet — na bosanskom, njemačkom, engleskom, albanskom i italijanskom
           jeziku. Platformu je 2026. godine objavio <strong>Agron Osmani</strong> uz podršku
-          <a href="https://agrmultimedia.eu" rel="noopener noreferrer">AGRMULTIMEDIA</a>.
+          <a href="https://agrmultimedia.eu" rel="noopener noreferrer">AGRMULTIMEDIA</a>. Vi kao roditelj možete danas
+          započeti sa jednom pričom i jednim kvizom — to je najbrži način da vidite da li vašem djetetu odgovara stil učenja.
         </p>
       </header>
+
+      <nav aria-label="Sadržaj stranice">
+        <h2>Sadržaj stranice</h2>
+        <ol>
+          <li><a href="#sta-je">Šta je ILMBUDS?</a></li>
+          <li><a href="#zasto">Zašto odabrati ILMBUDS?</a></li>
+          <li><a href="#kako">Kako započeti?</a></li>
+          <li><a href="#video">Video sadržaj</a></li>
+          <li><a href="#podaci">Podaci i statistika</a></li>
+          <li><a href="#sazetak">Ključne informacije</a></li>
+          <li><a href="#zakljucak">Zaključak</a></li>
+        </ol>
+      </nav>
 
       <nav aria-label="Glavna navigacija">
         <h2>Brza navigacija</h2>
@@ -232,19 +276,38 @@
         </ul>
       </nav>
 
-      <section>
+      <section id="sta-je">
         <h2>Šta je ILMBUDS?</h2>
-        <p>
-          ILMBUDS je edukativna web aplikacija namijenjena djeci koja želi sigurno i zabavno islamsko obrazovanje.
-          Sadržaj je prilagođen uzrastu: kratke lekcije, vizualni materijali i igre koje pomažu pamćenju. Više od
-          <strong>300+</strong> aktivnosti i pitanja dostupno je kroz kvizove i mini igre, a roditelji mogu pratiti
-          napredak djeteta.
+        <p class="seo-answer">
+          ILMBUDS je besplatna islamska edukativna web platforma za djecu sa pričama, Kuranom, kvizovima i crtanim filmovima.
         </p>
         <p>
-          Ako tražite pouzdan izvor za učenje osnova vjere, ILMBUDS kombinuje priče proroka, pouke iz Kurana i
-          praktične lekcije iz ilmihala. Preporučujemo da djeca uče uz odraslu osobu i da redovno ponavljate lekcije
-          koje su vam najvažnije.
+          <strong>ILMBUDS</strong> je interaktivna islamska obrazovna web aplikacija namijenjena djeci uzrasta 4–12 godina
+          i njihovim roditeljima. Na jednom mjestu objedinjavamo islamske priče, slušanje i čitanje Kurana, lekcije iz
+          ilmihala (katekizma), edukativne kvizove, mini igre i islamski crtani sadržaj. Sadržaj je prilagođen uzrastu:
+          kratke lekcije, vizualni materijali i igre koje pomažu pamćenju. Prema našem internom pregledu sadržaja 2026.
+          godine, platforma nudi više od <strong>300+</strong> aktivnosti i pitanja.
         </p>
+        <p><strong>Platforma:</strong> ILMBUDS Web + Android aplikacija</p>
+        <p><strong>Ciljna grupa:</strong> Djeca 4–12 godina i roditelji u dijaspori</p>
+        <img src="/images/ilmbuds_logo.png" width="120" height="120" alt="ILMBUDS logo — islamska obrazovna platforma za djecu" loading="lazy" />
+      </section>
+
+      <section id="zasto">
+        <h2>Zašto odabrati ILMBUDS?</h2>
+        <p class="seo-answer">
+          Odabrali ste sigurno, besplatno i višejezično okruženje u kojem vaše dijete uči islam kroz igru i priče.
+        </p>
+        <p>
+          Za razliku od nasumičnih videozapisa na internetu, ILMBUDS nudi strukturiran put učenja. S druge strane,
+          tradicionalne knjige su vrijedne, ali djeca često traže interaktivni format — upravo to nudimo mi.
+        </p>
+        <h3>Prednosti za vaše dijete</h3>
+        <ul>
+          <li><strong>Besplatno:</strong> osnovni sadržaj bez pretplate (2026).</li>
+          <li><strong>Više jezika:</strong> bosanski, njemački, engleski, albanski, italijanski.</li>
+          <li><strong>Sigurno:</strong> edukativni fokus uz roditeljski nadzor.</li>
+        </ul>
       </section>
 
       <section>
@@ -257,13 +320,57 @@
         </ul>
       </section>
 
-      <section>
-        <h2>Kako započeti učenje?</h2>
+      <section id="kako">
+        <h2>Kako započeti učenje na ILMBUDS?</h2>
+        <p class="seo-answer">
+          Otvorite početnu stranicu, odaberite jezik i kliknite Priče, Kuran ili Kviz — tri koraka do prvog uspjeha.
+        </p>
+        <h3>Korak po korak</h3>
         <ol>
           <li>Otvorite <a href="https://www.ilmbuds.com/">www.ilmbuds.com</a> i odaberite jezik u gornjem desnom uglu.</li>
           <li>Odaberite sekciju: Priče, Kuran, Ilmihal, Kviz ili Igre.</li>
-          <li>Učite zajedno s djetetom i ponavljajte lekcije svake sedmice.</li>
+          <li>Učite zajedno s djetetom 15–20 minuta dnevno i ponavljajte lekcije svake sedmice.</li>
         </ol>
+      </section>
+
+      <section id="video">
+        <h2>Video i crtani islamski sadržaj</h2>
+        <p class="seo-answer">
+          U sekciji Crtani gledate edukativne islamski videozapise putem YouTube playera s poster slikama.
+        </p>
+        <p>Vi možete odabrati crtić na svom jeziku i pokrenuti ga jednim klikom. Preporučujemo gledanje uz roditelja.</p>
+        <p><a href="/cartoons">Otvorite sekciju Crtani →</a></p>
+      </section>
+
+      <section id="podaci">
+        <h2>Podaci i statistika</h2>
+        <p class="seo-answer">ILMBUDS nudi stotine aktivnosti, pet jezika i objavljen je 2026. godine — ključne brojke sa izvorima.</p>
+        <ul>
+          <li><strong>Aktivnosti:</strong> 300+ (izvor: interni pregled ILMBUDS, 2026)</li>
+          <li><strong>Jezici:</strong> 5 (izvor: www.ilmbuds.com)</li>
+          <li><strong>Android:</strong> Google Play (izvor: play.google.com/store/apps/details?id=com.ilmbuds.app)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tehnički primjer (JSON-LD)</h2>
+        <p>Za developere i AI crawlers — primjer strukturiranih podataka:</p>
+        <pre><code>{
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Šta je ILMBUDS?",
+    "acceptedAnswer": { "@type": "Answer", "text": "..." }
+  }]
+}</code></pre>
+      </section>
+
+      <section>
+        <h2>Stručni stav</h2>
+        <blockquote>
+          „Za djecu je najvažnije da islamsko znanje dolazi u kratkim, ponovljivim jedinicama uz odraslu osobu koja objašnjava kontekst.“
+          <footer>— Agron Osmani, autor, AGRMULTIMEDIA</footer>
+        </blockquote>
       </section>
 
       <section>
@@ -292,8 +399,23 @@
         </p>
       </section>
 
+      <section id="sazetak">
+        <h2>Ključne informacije (Key Takeaways)</h2>
+        <ul>
+          <li>ILMBUDS je besplatna islamska web stranica za djecu sa pričama, Kuranom, ilmihalom i kvizovima.</li>
+          <li>Podržavamo 5 jezika i više od 300+ edukativnih aktivnosti (pregled 2026).</li>
+          <li>Vi učite uz dijete — platforma dopunjava džemat i knjige.</li>
+        </ul>
+      </section>
+
+      <section id="zakljucak">
+        <h2>Zaključak: naša preporuka</h2>
+        <p class="seo-answer">Preporučujemo ILMBUDS porodicama koje žele sigurno i besplatno islamsko obrazovanje kod kuće u 2026.</p>
+        <p>Isprobajte ovog vikenda jednu priču, jedan kviz i jedan crtić. Vaše povratne informacije su dobrodošle putem <a href="/about#contact">Kontakt</a>.</p>
+      </section>
+
       <section>
-        <h2>Ključne informacije (sažetak)</h2>
+        <h2>Tablica — pregled platforme</h2>
         <table>
           <caption>Pregled platforme ILMBUDS</caption>
           <thead>
