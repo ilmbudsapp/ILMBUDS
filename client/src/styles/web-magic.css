@@ -23,6 +23,16 @@
   @apply border-b border-white/10 bg-slate-950/70 backdrop-blur-lg;
 }
 
+/* Language switcher — high contrast on dark header */
+.ilmbuds-web .ilmbuds-lang-menu {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.ilmbuds-web .ilmbuds-lang-menu [role="menuitem"] {
+  color: #0f172a !important;
+}
+
 .ilmbuds-web .web-glass-card {
   @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300;
 }
