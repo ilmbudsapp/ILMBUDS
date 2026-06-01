@@ -2119,6 +2119,36 @@ export const translations: Translations = {
       it: 'Sito web islamico per bambini'
     }
   },
+  cookieConsent: {
+    title: {
+      en: 'Cookies & privacy',
+      sq: 'Cookies & privatësia',
+      bs: 'Kolačići i privatnost',
+      de: 'Cookies & Datenschutz',
+      it: 'Cookie e privacy'
+    },
+    body: {
+      en: 'We store your choice locally. Google AdSense and YouTube cartoons load only if you accept all. Essential learning works without ads. Details in our privacy policy.',
+      sq: 'Ruajmë zgjedhjen lokalisht. Google AdSense dhe YouTube ngarkohen vetëm nëse pranoni të gjitha.',
+      bs: 'Pohranjujemo vaš izbor lokalno. Google AdSense i YouTube crtani učitavaju se samo ako prihvatite sve. Učenje radi i uz „Samo nužno“.',
+      de: 'Wir speichern Ihre Wahl lokal. Google AdSense und YouTube-Cartoons laden nur nach „Alle akzeptieren“. Details in der Datenschutzerklärung.',
+      it: 'Salviamo la scelta localmente. AdSense e YouTube si caricano solo se accetti tutto.'
+    },
+    essentialOnly: {
+      en: 'Essential only',
+      sq: 'Vetëm të nevojshme',
+      bs: 'Samo nužno',
+      de: 'Nur notwendige',
+      it: 'Solo necessari'
+    },
+    acceptAll: {
+      en: 'Accept all',
+      sq: 'Prano të gjitha',
+      bs: 'Prihvati sve',
+      de: 'Alle akzeptieren',
+      it: 'Accetta tutto'
+    }
+  },
   cartoons: {
     title: {
       en: 'Islamic Cartoons for Kids',

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { SeoEnhancements } from "@/components/SeoEnhancements";
 import { useTranslation } from "@/hooks/use-translation";
 import { WebMagicBackground } from "@/components/web/WebMagicBackground";
+import CookieConsent from "@/components/CookieConsent";
 
 type Props = {
   children: ReactNode;
@@ -108,6 +109,8 @@ export default function WebSiteShell({ children }: Props) {
           </a>
         </p>
       </footer>
+
+      <CookieConsent />
     </div>
   );
 }

@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@/components/ui/icons';
 import { useTranslation } from '@/hooks/use-translation';
 import { CapacitorAdMobService } from '@/services/capacitor-admob';
+import { ConsentGate } from '@/components/CookieConsent';
+import { hasExternalMediaConsent } from '@/lib/consent';
+import { isWebStaticMode } from '@/lib/webApi/install';
 
 // Globalna deklaracija za YouTube Player API
 declare global {
@@ -184,8 +187,9 @@ export default function Cartoons() {
   const [playerReady, setPlayerReady] = useState(false);
   const playerRef = useRef<any>(null);
 
-  // Load YouTube API
+  // Load YouTube API only after consent (web DSGVO)
   useEffect(() => {
+    if (!hasExternalMediaConsent()) return;
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
@@ -200,8 +204,17 @@ export default function Cartoons() {
     }
   }, []);
 
-  // Show interstitial ad when component loads
   useEffect(() => {
+    const sync = () => {
+      if (hasExternalMediaConsent() && window.YT) setPlayerReady(true);
+    };
+    window.addEventListener('ilmbuds-consent-change', sync);
+    return () => window.removeEventListener('ilmbuds-consent-change', sync);
+  }, []);
+
+  // Show interstitial ad when component loads (native app only)
+  useEffect(() => {
+    if (isWebStaticMode()) return;
     const showInterstitialAd = async () => {
       try {
         console.log('Showing interstitial ad for CARTOONS section');
@@ -344,14 +357,27 @@ export default function Cartoons() {
             </div>
             
             <div className="flex-1">
-              <iframe
-                src={getVideoUrl(fullscreenCartoon)}
-                title={getTitle(fullscreenCartoon)}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
+              <ConsentGate
+                fallback={
+                  <div className="flex h-full flex-col items-center justify-center gap-4 px-6 text-center text-white">
+                    <p className="text-sm text-white/80">
+                      {t('cookieConsent', 'body')}
+                    </p>
+                    <p className="text-xs text-white/60">
+                      {t('cookieConsent', 'acceptAll')}
+                    </p>
+                  </div>
+                }
+              >
+                <iframe
+                  src={getVideoUrl(fullscreenCartoon)}
+                  title={getTitle(fullscreenCartoon)}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="h-full w-full"
+                />
+              </ConsentGate>
             </div>
           </motion.div>
         )}
@@ -370,29 +396,37 @@ export default function Cartoons() {
               transition={{ delay: cartoon.id * 0.1 }}
               className="web-cartoon-card overflow-hidden rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl"
             >
-              <button
-                type="button"
-                onClick={() => toggleFullscreen(cartoon)}
-                className="web-cartoon-thumb group relative block aspect-video w-full cursor-pointer"
-                aria-label={getTitle(cartoon)}
+              <ConsentGate
+                fallback={
+                  <div className="web-cartoon-thumb relative flex aspect-video w-full flex-col items-center justify-center bg-slate-800 px-4 text-center">
+                    <p className="text-xs text-slate-200">{t('cookieConsent', 'body')}</p>
+                  </div>
+                }
               >
-                <img
-                  src={thumbFor(cartoon)}
-                  alt={getTitle(cartoon)}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/45">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg ring-4 ring-white/40">
-                    <Icon name="play_arrow" size={32} />
-                  </span>
-                </div>
-                <div className="absolute right-2 top-2">
-                  <span className="rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white">
-                    ▶ {cartoon.duration}
-                  </span>
-                </div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => toggleFullscreen(cartoon)}
+                  className="web-cartoon-thumb group relative block aspect-video w-full cursor-pointer"
+                  aria-label={getTitle(cartoon)}
+                >
+                  <img
+                    src={thumbFor(cartoon)}
+                    alt={getTitle(cartoon)}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/45">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg ring-4 ring-white/40">
+                      <Icon name="play_arrow" size={32} />
+                    </span>
+                  </div>
+                  <div className="absolute right-2 top-2">
+                    <span className="rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white">
+                      ▶ {cartoon.duration}
+                    </span>
+                  </div>
+                </button>
+              </ConsentGate>
               
               <div className="p-4">
                 <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900">
