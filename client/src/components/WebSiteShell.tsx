@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { GlobeLanguageSwitcher } from "@/components/globe-language-switcher";
 import { Navbar } from "@/components/navbar";
 import { SeoEnhancements } from "@/components/SeoEnhancements";
@@ -13,14 +13,18 @@ type Props = {
 
 export default function WebSiteShell({ children }: Props) {
   const { t } = useTranslation();
+  const [location] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
-    document.documentElement.classList.add("ilmbuds-web");
-    return () => document.documentElement.classList.remove("ilmbuds-web");
+    document.documentElement.classList.add("ilmbuds-web", "ilmbuds-web-light");
+    return () => {
+      document.documentElement.classList.remove("ilmbuds-web", "ilmbuds-web-light");
+    };
   }, []);
 
   return (
-    <div className="ilmbuds-web relative flex min-h-screen flex-col font-display text-slate-100">
+    <div className="ilmbuds-web ilmbuds-web-light relative flex min-h-screen flex-col font-display text-slate-900">
       <WebMagicBackground />
       <SeoEnhancements />
       <a
@@ -32,26 +36,34 @@ export default function WebSiteShell({ children }: Props) {
 
       <header
         role="banner"
-        className="web-glass-header sticky top-0 z-50 shadow-lg shadow-black/20"
+        className="web-glass-header sticky top-0 z-50"
       >
         <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between gap-4">
-            <Link href="/" className="flex shrink-0 items-center gap-3 text-white no-underline">
+            <Link href="/" className="flex shrink-0 items-center gap-3 no-underline">
               <img
                 src="/images/ilmbuds_logo.png"
                 alt="ILMBUDS"
-                className="h-10 w-10 rounded-xl border border-amber-400/30 shadow-[0_0_12px_rgba(251,191,36,0.35)]"
+                className="h-10 w-10 rounded-xl border border-emerald-200/80 shadow-md"
               />
               <div>
-                <span className="text-lg font-bold tracking-tight text-amber-50 sm:text-xl">
+                <span className="text-lg font-bold tracking-tight text-emerald-900 sm:text-xl">
                   ILMBUDS
                 </span>
-                <span className="mt-0.5 block text-xs font-medium text-slate-300/90">
+                <span className="mt-0.5 block text-xs font-medium text-slate-600">
                   {t("ui", "webTagline")}
                 </span>
               </div>
             </Link>
-            <GlobeLanguageSwitcher />
+            <div className="flex items-center gap-3">
+              <Link
+                href="/stories"
+                className="hidden rounded-full bg-emerald-700 px-5 py-2 text-sm font-bold text-white shadow-lg transition hover:bg-emerald-800 sm:inline-flex"
+              >
+                {t("homeLanding", "ctaStart")}
+              </Link>
+              <GlobeLanguageSwitcher />
+            </div>
           </div>
           <nav
             className="web-glass mt-3 rounded-2xl px-2 py-2"
@@ -65,7 +77,7 @@ export default function WebSiteShell({ children }: Props) {
       <main
         id="main-content"
         role="main"
-        className="relative z-10 mx-auto w-full max-w-7xl flex-1 px-3 py-6 sm:px-6 sm:py-8"
+        className={`relative z-10 flex-1 ${isHome ? "premium-main w-full" : "mx-auto w-full max-w-7xl px-3 py-6 sm:px-6 sm:py-8"}`}
       >
         {children}
       </main>

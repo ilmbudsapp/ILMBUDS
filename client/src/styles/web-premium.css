@@ -1,0 +1,134 @@
+/* ILMBUDS Web — premium light theme (emerald, teal, gold, warm white) */
+
+.ilmbuds-web.ilmbuds-web-light {
+  --web-gold: 234 179 8;
+  --web-emerald: 5 150 105;
+  --web-warm-bg: #f8f5ec;
+  --web-navy: #0f172a;
+  color: #0f172a;
+  font-family: "Nunito", ui-sans-serif, system-ui, sans-serif;
+}
+
+.ilmbuds-web.ilmbuds-web-light body {
+  background: var(--web-warm-bg);
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-glass-header {
+  border-bottom: 1px solid rgba(209, 250, 229, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(16px);
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-glass {
+  border: 1px solid rgba(209, 250, 229, 0.6);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-glass-card {
+  border: 1px solid rgba(209, 250, 229, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e293b;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-glass-card:hover {
+  border-color: #a7f3d0;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-glass-card h2,
+.ilmbuds-web.ilmbuds-web-light .web-glass-card h3 {
+  color: #022c22;
+}
+
+.ilmbuds-web.ilmbuds-web-light .web-text-muted {
+  color: #475569;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article .seo-answer {
+  color: #047857 !important;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article h2 {
+  color: #022c22;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article .web-seo-toc {
+  border: 1px solid #d1fae5;
+  background: rgba(236, 253, 245, 0.5);
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article .web-seo-toc a {
+  color: #047857;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article .web-seo-toc a:hover {
+  color: #064e3b;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article pre {
+  border: 1px solid #d1fae5;
+  background: #0f172a;
+  color: #d1fae5;
+}
+
+.ilmbuds-web.ilmbuds-web-light #seo-article p {
+  color: #334155;
+}
+
+/* Web navbar — light */
+.ilmbuds-web.ilmbuds-web-light nav[aria-label="Main navigation"] a {
+  color: #334155;
+}
+
+.ilmbuds-web.ilmbuds-web-light nav[aria-label="Main navigation"] a:hover {
+  background: #ecfdf5;
+  color: #064e3b;
+}
+
+.ilmbuds-web.ilmbuds-web-light nav[aria-label="Main navigation"] a.bg-amber-500\/25 {
+  background: #d1fae5;
+  color: #064e3b;
+  box-shadow: none;
+}
+
+/* Footer */
+.ilmbuds-web.ilmbuds-web-light footer[role="contentinfo"] {
+  border-top: 1px solid #1e293b;
+  background: #020617;
+  color: #cbd5e1;
+}
+
+.ilmbuds-web.ilmbuds-web-light footer[role="contentinfo"] a {
+  color: #6ee7b7;
+}
+
+.ilmbuds-web.ilmbuds-web-light footer[role="contentinfo"] a:hover {
+  color: #a7f3d0;
+}
+
+/* Premium home full bleed */
+.ilmbuds-web.ilmbuds-web-light main.premium-main {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ilmbuds-web.ilmbuds-web-light .premium-home {
+  background: var(--web-warm-bg);
+}
+
+/* Inner pages on light shell */
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen {
+  color: #0f172a;
+}
+
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen .text-center > h1,
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen .text-center > h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}

@@ -8,6 +8,7 @@ export type TranslationKeys =
   | 'auth'     // Authentication related translations
   | 'home'     // Home page translations
   | 'homeSeo'  // Homepage SEO block (web)
+  | 'homeLanding' // Premium web homepage (marketing)
   | 'quiz'     // Quiz related translations
   | 'profile'  // Profile related translations
   | 'parent'   // Parent dashboard translations
@@ -1098,11 +1099,11 @@ export const translations: Translations = {
   },
   homeSeo: {
     pageTitle: {
-      en: 'ILMBUDS — Islamic website for children',
-      sq: 'ILMBUDS — Faqja web islamike për fëmijë',
-      bs: 'ILMBUDS — Islamska web stranica za djecu',
-      de: 'ILMBUDS — Islamische Website für Kinder',
-      it: 'ILMBUDS — Sito web islamico per bambini'
+      en: 'ILMBUDS — Islamic learning for children',
+      sq: 'ILMBUDS — Mësim islam për fëmijë',
+      bs: 'ILMBUDS — Islamsko učenje za djecu',
+      de: 'ILMBUDS — Islamisches Lernen für Kinder',
+      it: 'ILMBUDS — Apprendimento islamico per bambini'
     },
     authorLabel: {
       en: 'Author',
@@ -1257,6 +1258,232 @@ export const translations: Translations = {
       bs: 'Privatnost',
       de: 'Datenschutz',
       it: 'Privacy'
+    }
+  },
+  homeLanding: {
+    heroBadge: {
+      en: '🌙 Free Islamic platform for children',
+      sq: '🌙 Platformë falas islamike për fëmijë',
+      bs: '🌙 Besplatna islamska platforma za djecu',
+      de: '🌙 Kostenlose islamische Plattform für Kinder',
+      it: '🌙 Piattaforma islamica gratuita per bambini'
+    },
+    heroTitle: {
+      en: 'Islamic learning for children — through stories, play and the Quran',
+      sq: 'Mësim islam për fëmijë — përmes tregimeve, lojës dhe Kuranit',
+      bs: 'Islamsko učenje za djecu — kroz priče, igru i Kuran',
+      de: 'Islamisches Lernen für Kinder — durch Geschichten, Spiel und den Koran',
+      it: 'Apprendimento islamico per bambini — attraverso storie, gioco e Corano'
+    },
+    heroSubtitle: {
+      en: 'ILMBUDS helps children learn Islam in Bosnian, German, English, Albanian and Italian — safe, fun and free.',
+      sq: 'ILMBUDS ndihmon fëmijët të mësojnë Islamin në bosnianisht, gjermanisht, anglisht, shqip dhe italisht — në mënyrë të sigurt, argëtuese dhe falas.',
+      bs: 'ILMBUDS pomaže djeci da uče islam na bosanskom, njemačkom, engleskom, albanskom i italijanskom jeziku — sigurno, zabavno i besplatno.',
+      de: 'ILMBUDS hilft Kindern, Islam auf Bosnisch, Deutsch, Englisch, Albanisch und Italienisch zu lernen — sicher, spielerisch und kostenlos.',
+      it: 'ILMBUDS aiuta i bambini a imparare l\'Islam in bosniaco, tedesco, inglese, albanese e italiano — in modo sicuro, divertente e gratuito.'
+    },
+    ctaStart: {
+      en: 'Start learning',
+      sq: 'Fillo mësimin',
+      bs: 'Započni učenje',
+      de: 'Lernen starten',
+      it: 'Inizia ad imparare'
+    },
+    ctaExplore: {
+      en: 'Browse content',
+      sq: 'Shiko përmbajtjen',
+      bs: 'Pogledaj sadržaj',
+      de: 'Inhalte ansehen',
+      it: 'Sfoglia i contenuti'
+    },
+    heroCardTitle: {
+      en: 'Learning children love',
+      sq: 'Mësim që fëmijët e duan',
+      bs: 'Učenje koje djeca vole',
+      de: 'Lernen, das Kinder lieben',
+      it: 'Apprendimento che i bambini amano'
+    },
+    heroCardSubtitle: {
+      en: 'Stories, quizzes, games and the Quran — all in one place.',
+      sq: 'Tregime, kuize, lojëra dhe Kurani — gjithçka në një vend.',
+      bs: 'Priče, kvizovi, igre i Kuran — sve na jednom mjestu.',
+      de: 'Geschichten, Quizze, Spiele und der Koran — alles an einem Ort.',
+      it: 'Storie, quiz, giochi e Corano — tutto in un unico posto.'
+    },
+    statActivities: {
+      en: 'activities',
+      sq: 'aktivitete',
+      bs: 'aktivnosti',
+      de: 'Aktivitäten',
+      it: 'attività'
+    },
+    statLanguages: {
+      en: 'languages',
+      sq: 'gjuhë',
+      bs: 'jezika',
+      de: 'Sprachen',
+      it: 'lingue'
+    },
+    statAges: {
+      en: 'years',
+      sq: 'vjet',
+      bs: 'godina',
+      de: 'Jahre',
+      it: 'anni'
+    },
+    statFree: {
+      en: 'free to use',
+      sq: 'falas',
+      bs: 'besplatno',
+      de: 'kostenlos',
+      it: 'gratuito'
+    },
+    featuresLabel: {
+      en: 'Platform content',
+      sq: 'Përmbajtja e platformës',
+      bs: 'Sadržaj platforme',
+      de: 'Plattform-Inhalte',
+      it: 'Contenuti della piattaforma'
+    },
+    featuresTitle: {
+      en: 'Everything your child needs for first Islamic steps',
+      sq: 'Gjithçka që i duhet fëmijës për hapat e parë islamikë',
+      bs: 'Sve što djetetu treba za prve islamske korake',
+      de: 'Alles, was Ihr Kind für die ersten islamischen Schritte braucht',
+      it: 'Tutto ciò che serve al bambino per i primi passi islamici'
+    },
+    featuresSubtitle: {
+      en: 'Short, clear, interactive — designed for families in the diaspora.',
+      sq: 'Shkurt, qartë, interaktiv — për familjet në diasporë.',
+      bs: 'Kratko, jasno, interaktivno i prilagođeno porodicama u dijaspori.',
+      de: 'Kurz, klar, interaktiv — für Familien in der Diaspora.',
+      it: 'Breve, chiaro, interattivo — pensato per le famiglie in diaspora.'
+    },
+    pathLabel: {
+      en: 'How it works',
+      sq: 'Si funksionon',
+      bs: 'Kako funkcioniše',
+      de: 'So funktioniert es',
+      it: 'Come funziona'
+    },
+    pathTitle: {
+      en: '15 minutes a day is enough for a beautiful habit',
+      sq: '15 minuta në ditë mjaftojnë për një zakon të bukur',
+      bs: '15 minuta dnevno je dovoljno za lijepu naviku',
+      de: '15 Minuten täglich reichen für eine schöne Gewohnheit',
+      it: '15 minuti al giorno bastano per una bella abitudine'
+    },
+    pathBody: {
+      en: 'Parents choose the language, children pick a story, quiz or lesson — ILMBUDS guides them through simple steps.',
+      sq: 'Prindërit zgjedhin gjuhën, fëmija zgjedh tregim, kuiz ose mësim — ILMBUDS i udhëzon në hapa të thjeshtë.',
+      bs: 'Roditelj odabere jezik, dijete izabere priču, kviz ili lekciju, a ILMBUDS vodi kroz jednostavne korake.',
+      de: 'Eltern wählen die Sprache, das Kind wählt Geschichte, Koran oder Quiz — ILMBUDS führt durch einfache Schritte.',
+      it: 'I genitori scelgono la lingua, il bambino sceglie storia, quiz o lezione — ILMBUDS guida passo dopo passo.'
+    },
+    step1: {
+      en: 'Choose a language',
+      sq: 'Zgjidh gjuhën',
+      bs: 'Odaberi jezik',
+      de: 'Sprache wählen',
+      it: 'Scegli la lingua'
+    },
+    step2: {
+      en: 'Start a story, the Quran or a quiz',
+      sq: 'Fillo tregim, Kuran ose kuiz',
+      bs: 'Pokreni priču, Kuran ili kviz',
+      de: 'Geschichte, Koran oder Quiz starten',
+      it: 'Avvia storia, Corano o quiz'
+    },
+    step3: {
+      en: 'Reinforce knowledge through play',
+      sq: 'Përsërit znanin përmes lojës',
+      bs: 'Ponavljaj znanje kroz igru',
+      de: 'Wissen spielerisch festigen',
+      it: 'Rafforza con il gioco'
+    },
+    contentLabel: {
+      en: 'Explore',
+      sq: 'Eksploro',
+      bs: 'Istraži',
+      de: 'Entdecken',
+      it: 'Esplora'
+    },
+    contentTitle: {
+      en: 'Popular sections',
+      sq: 'Seksionet popullore',
+      bs: 'Popularne sekcije',
+      de: 'Beliebte Bereiche',
+      it: 'Sezioni popolari'
+    },
+    languagesLabel: {
+      en: 'Multilingual',
+      sq: 'Shumëgjuhësh',
+      bs: 'Višejezično',
+      de: 'Mehrsprachig',
+      it: 'Multilingue'
+    },
+    languagesTitle: {
+      en: 'For families across Europe',
+      sq: 'Për familjet në të gjithë Evropën',
+      bs: 'Za porodice širom Evrope',
+      de: 'Für Familien in ganz Europa',
+      it: 'Per famiglie in tutta Europa'
+    },
+    languagesSubtitle: {
+      en: 'Interface and content adapted for diaspora communities.',
+      sq: 'Ndërfaqe dhe përmbajtje të përshtatura për diasporën.',
+      bs: 'Interfejs i sadržaj prilagođeni dijasporskim zajednicama.',
+      de: 'Oberfläche und Inhalte für Diaspora-Gemeinden.',
+      it: 'Interfaccia e contenuti per le comunità in diaspora.'
+    },
+    statsAria: {
+      en: 'Platform statistics',
+      sq: 'Statistikat e platformës',
+      bs: 'Statistika platforme',
+      de: 'Plattform-Statistik',
+      it: 'Statistiche della piattaforma'
+    },
+    faq1Q: {
+      en: 'Is ILMBUDS free?',
+      sq: 'A është ILMBUDS falas?',
+      bs: 'Da li je ILMBUDS besplatan?',
+      de: 'Ist ILMBUDS kostenlos?',
+      it: 'ILMBUDS è gratuito?'
+    },
+    faq1A: {
+      en: 'Yes — core educational content is free.',
+      sq: 'Po — përmbajtja edukative bazë është falas.',
+      bs: 'Da, osnovni edukativni sadržaj je besplatan.',
+      de: 'Ja — die grundlegenden Lerninhalte sind kostenlos.',
+      it: 'Sì — i contenuti educativi principali sono gratuiti.'
+    },
+    faq2Q: {
+      en: 'What age is the platform for?',
+      sq: 'Për çfarë moshe është platforma?',
+      bs: 'Za koji uzrast je platforma?',
+      de: 'Für welches Alter ist die Plattform?',
+      it: 'Per quale età è la piattaforma?'
+    },
+    faq2A: {
+      en: 'Mainly for children aged 4–12, with parental support.',
+      sq: 'Kryesisht për fëmijë 4–12 vjeç, me mbështetje të prindërve.',
+      bs: 'Najviše za djecu od 4 do 12 godina, uz podršku roditelja.',
+      de: 'Vor allem für Kinder von 4 bis 12 Jahren, mit elterlicher Begleitung.',
+      it: 'Principalmente per bambini dai 4 ai 12 anni, con i genitori.'
+    },
+    faq3Q: {
+      en: 'Is there an app?',
+      sq: 'A ka aplikacion?',
+      bs: 'Da li postoji aplikacija?',
+      de: 'Gibt es eine App?',
+      it: 'Esiste un\'app?'
+    },
+    faq3A: {
+      en: 'Yes — ILMBUDS is also available as an Android app.',
+      sq: 'Po — ILMBUDS është i disponueshëm edhe si aplikacion Android.',
+      bs: 'Da, ILMBUDS je dostupan i kao Android aplikacija.',
+      de: 'Ja — ILMBUDS ist auch als Android-App verfügbar.',
+      it: 'Sì — ILMBUDS è disponibile anche come app Android.'
     }
   },
   quiz: {
