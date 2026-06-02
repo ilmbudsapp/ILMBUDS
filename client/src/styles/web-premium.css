@@ -132,3 +132,21 @@
   color: #ffffff !important;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
+
+/* Contrast repair for web inner pages:
+   when legacy pages use bg-white/* cards, force readable dark text */
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen [class*="bg-white"] {
+  color: #0f172a !important;
+}
+
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen [class*="bg-white"] [class*="text-white"],
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen [class*="bg-white"] [class*="text-white/"] {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+/* Keep intentional white text on colorful gradient tiles */
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen [class*="bg-gradient-to-"] [class*="text-white"],
+.ilmbuds-web.ilmbuds-web-light main > div.min-h-screen [class*="from-"][class*="to-"] [class*="text-white"] {
+  color: #ffffff !important;
+}
