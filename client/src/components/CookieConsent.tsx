@@ -77,7 +77,7 @@ export default function CookieConsent() {
           </button>
         </div>
         <p className="mt-4 text-xs text-slate-500">
-          <Link href="/about#privacy" className="text-amber-200/90 underline-offset-2 hover:underline">
+          <Link href="/privacy-policy" className="text-amber-200/90 underline-offset-2 hover:underline">
             {t("ui", "privacy")}
           </Link>
         </p>

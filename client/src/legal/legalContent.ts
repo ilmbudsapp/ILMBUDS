@@ -49,7 +49,7 @@ const privacyBs: LegalSection[] = [
     id: "contact",
     title: "5. Kontakt i e-mail",
     paragraphs: [
-      `Ako nas kontaktirate putem ${CONTACT_EMAIL} ili stranice /about#contact, obrađujemo vaše podatke radi odgovora na upit.`,
+      `Ako nas kontaktirate putem ${CONTACT_EMAIL} ili stranice /contact, obrađujemo vaše podatke radi odgovora na upit.`,
       "Pravna osnova: čl. 6 st. 1 lit. b ili f DSGVO.",
     ],
   },
@@ -73,7 +73,8 @@ const privacyBs: LegalSection[] = [
     id: "analytics",
     title: "8. Analitika / praćenje",
     paragraphs: [
-      "Na web verziji ne koristimo Google Analytics. Google AdSense (oglašavanje) učitava se samo nakon izričite suglasnosti u cookie banneru.",
+      "Na web verziji trenutno ne koristimo Google Analytics. Ne šaljemo podatke o ponašanju posjetitelja Google Analyticsu.",
+      "Google AdSense (priprema za oglašavanje): skripta se učitava isključivo nakon vaše izričite suglasnosti u cookie banneru („Prihvati sve”). AdSense može postavljati kolačiće radi prikaza i mjerenja oglasa prema Google Advertising Policies (policies.google.com/technologies/ads). Personalizirani oglasi mogu se isključiti u Google Ad Settings (adssettings.google.com).",
       "Android aplikacija može koristiti Google AdMob — to se regulira odvojenim pravilima trgovine aplikacija.",
     ],
   },
@@ -121,9 +122,19 @@ const privacyBs: LegalSection[] = [
     ],
   },
   {
+    id: "children",
+    title: "15. Privatnost djece",
+    paragraphs: [
+      "ILMBUDS je namijenjen djeci uzrasta 4–12 godina uz nadzor roditelja ili staratelja. Ne tražimo registraciju djece niti svjesno prikupljamo osobne podatke djece (puno ime, adresa, fotografija, školski podaci) kroz javnu web stranicu.",
+      "Lokalni profil u pregledniku (bodovi, bedževi) pohranjuje se samo na vašem uređaju — ne šaljemo ga na naše servere. Roditelji trebaju nadgledati korištenje stranice i cookie izbor.",
+      "Ako smatrate da je dijete dostavilo osobne podatke putem kontakt forme, pišite na " + CONTACT_EMAIL + " — podatke ćemo obrisati u razumnom roku (obično 30 dana).",
+      "Cookie banner mora potvrditi odrasla osoba prije učitavanja AdSense i YouTube sadržaja u skladu sa COPPA/GDPR principima zaštite djece.",
+    ],
+  },
+  {
     id: "updates",
-    title: "15. Aktualnost",
-    paragraphs: ["Zadnje ažuriranje: maj 2026."],
+    title: "16. Aktualnost",
+    paragraphs: ["Zadnje ažuriranje: 4. jun 2026. Aktualna verzija: https://www.ilmbuds.com/privacy-policy"],
   },
 ];
 
@@ -164,7 +175,7 @@ const privacyDe: LegalSection[] = [
     id: "contact",
     title: "5. Kontakt & E-Mail",
     paragraphs: [
-      `Kontakt über ${CONTACT_EMAIL} oder /about#contact.`,
+      `Kontakt über ${CONTACT_EMAIL} oder /contact.`,
       "Rechtsgrundlage: Art. 6 Abs. 1 lit. b bzw. f DSGVO.",
     ],
   },
@@ -188,7 +199,8 @@ const privacyDe: LegalSection[] = [
     id: "analytics",
     title: "8. Webanalyse / Werbung",
     paragraphs: [
-      "Kein Google Analytics auf der Webseite. Google AdSense nur nach Einwilligung.",
+      "Kein Google Analytics auf der Webseite.",
+      "Google AdSense (Vorbereitung): Skript wird nur nach Cookie-Einwilligung geladen. AdSense kann Cookies für Anzeigen setzen (Google Advertising Policies). Personalisierte Anzeigen können in den Google Anzeigeneinstellungen deaktiviert werden.",
       "Die Android-App kann AdMob nutzen (separate Store-Richtlinien).",
     ],
   },
@@ -232,9 +244,19 @@ const privacyDe: LegalSection[] = [
     paragraphs: [`Widerspruch: ${CONTACT_EMAIL}`],
   },
   {
+    id: "children",
+    title: "15. Datenschutz für Kinder",
+    paragraphs: [
+      "ILMBUDS richtet sich an Kinder (4–12 Jahre) unter Aufsicht der Eltern. Wir erheben wissentlich keine personenbezogenen Daten von Kindern (Name, Adresse, Fotos) über die öffentliche Website.",
+      "Lokale Profile (Punkte, Abzeichen) werden nur im Browser gespeichert — nicht auf unseren Servern.",
+      "Kontakt bei Löschwunsch: " + CONTACT_EMAIL + " (in der Regel innerhalb von 30 Tagen).",
+      "Cookie-Banner erfordert Entscheidung einer erwachsenen Person vor AdSense/YouTube.",
+    ],
+  },
+  {
     id: "updates",
-    title: "15. Aktualität",
-    paragraphs: ["Stand: Mai 2026"],
+    title: "16. Aktualität",
+    paragraphs: ["Stand: 4. Juni 2026. https://www.ilmbuds.com/privacy-policy"],
   },
 ];
 
@@ -260,7 +282,8 @@ const privacyEnFixed: LegalSection[] = [
       .replace("Speicherdauer", "Retention")
       .replace("Betroffenenrechte", "Your rights")
       .replace("Widerspruchsrecht", "Right to object")
-      .replace("Aktualität", "Updates"),
+      .replace("Datenschutz für Kinder", "Children's privacy")
+      .replace("16. Aktualität", "16. Updates"),
   })),
 ];
 

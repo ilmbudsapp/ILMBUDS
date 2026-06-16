@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'wouter';
 import { Icon } from '@/components/ui/icons';
 import { useUserContext } from '@/context/user-context';
 import { ProfileBadge } from '@/components/profile-badge';
@@ -372,6 +373,15 @@ export default function About() {
                  language === 'it' ? 'Politica sulla Privacy' :
                  'Privacy Policy'}
               </h3>
+              <p className="mb-4 text-sm text-slate-600">
+                <Link href="/privacy-policy" className="text-emerald-700 underline-offset-2 hover:underline">
+                  {language === "de"
+                    ? "Vollständige Datenschutzerklärung"
+                    : language === "en" || language === "sq" || language === "it"
+                      ? "Full privacy policy page"
+                      : "Potpuna politika privatnosti"}
+                </Link>
+              </p>
               
               <LegalPrivacySections />
             </CardContent>

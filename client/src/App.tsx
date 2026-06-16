@@ -33,6 +33,7 @@ const Terms = lazy(() => import("@/pages/trust/terms"));
 const Disclaimer = lazy(() => import("@/pages/trust/disclaimer"));
 const EditorialPolicy = lazy(() => import("@/pages/trust/editorial-policy"));
 const Sources = lazy(() => import("@/pages/trust/sources"));
+const PrivacyPolicy = lazy(() => import("@/pages/trust/privacy-policy"));
 
 // Main content sections
 const Quran = lazy(() => import("@/pages/quran"));
@@ -84,6 +85,7 @@ function Router() {
         <Route path="/disclaimer" component={Disclaimer} />
         <Route path="/editorial-policy" component={EditorialPolicy} />
         <Route path="/sources" component={Sources} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
         
         {/* Main content sections */}
         <Route path="/quran" component={Quran} />

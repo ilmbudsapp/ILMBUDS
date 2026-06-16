@@ -138,7 +138,7 @@ const bs: HomeSeoAeo = {
     "Vaše dijete uči u edukativnom okruženju uz jasnu politiku privatnosti i kontakt autora.",
   trustItems: [
     "Autor: Agron Osmani (AGRMULTIMEDIA) — javni kontakt na stranici O nama",
-    "Politika privatnosti i pravne informacije dostupne na /about#privacy",
+    "Politika privatnosti i pravne informacije dostupne na /privacy-policy",
     "Sadržaj usmjeren na djecu — bez neprimjerenog materijala",
     "HTTPS enkripcija na www.ilmbuds.com",
     "Schema.org strukturirani podaci za transparentnost prema pretraživačima",
@@ -282,7 +282,7 @@ const en: HomeSeoAeo = {
     "Your child learns in an educational setting with a clear privacy policy and author contact.",
   trustItems: [
     "Author: Agron Osmani (AGRMULTIMEDIA) — public contact on About page",
-    "Privacy policy and legal info at /about#privacy",
+    "Privacy policy and legal info at /privacy-policy",
     "Child-directed content without inappropriate material",
     "HTTPS on www.ilmbuds.com",
     "Schema.org structured data for search transparency",

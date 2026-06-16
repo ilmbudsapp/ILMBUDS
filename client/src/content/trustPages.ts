@@ -132,7 +132,7 @@ const termsEn: LegalSection[] = [
     title: "5. Advertising",
     paragraphs: [
       "The website may show Google AdSense ads after you consent in the cookie banner. Advertising helps keep content free.",
-      "Google may use cookies under its own policies. See our Privacy Policy for details.",
+      "Google may use cookies under its own policies. See our Privacy Policy at /privacy-policy for details.",
     ],
   },
   {

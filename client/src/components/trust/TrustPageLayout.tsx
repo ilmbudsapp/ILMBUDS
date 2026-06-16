@@ -46,7 +46,7 @@ export default function TrustPageLayout({
         <ul className="flex flex-wrap gap-x-4 gap-y-2">
           <li><Link href="/about" className="text-emerald-800 underline-offset-2 hover:underline">{t("ui", "about")}</Link></li>
           <li><Link href="/contact" className="text-emerald-800 underline-offset-2 hover:underline">{t("ui", "contact")}</Link></li>
-          <li><Link href="/about#privacy" className="text-emerald-800 underline-offset-2 hover:underline">{t("ui", "privacy")}</Link></li>
+          <li><Link href="/privacy-policy" className="text-emerald-800 underline-offset-2 hover:underline">{t("ui", "privacy")}</Link></li>
           <li><Link href="/terms" className="text-emerald-800 underline-offset-2 hover:underline">{t("trust", "terms")}</Link></li>
           <li><Link href="/disclaimer" className="text-emerald-800 underline-offset-2 hover:underline">{t("trust", "disclaimer")}</Link></li>
           <li><Link href="/editorial-policy" className="text-emerald-800 underline-offset-2 hover:underline">{t("trust", "editorial")}</Link></li>

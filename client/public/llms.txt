@@ -38,6 +38,6 @@ ILMBUDS is a free Islamic educational web platform for children aged 4–12 and 
 
 ## Policies
 
-- Privacy and legal: /about#privacy and /about#legal
+- Privacy and legal: /privacy-policy and /about#legal
 - Child-directed educational content
 - HTTPS; Schema.org JSON-LD on homepage

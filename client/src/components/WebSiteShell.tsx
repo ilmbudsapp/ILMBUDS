@@ -108,7 +108,7 @@ export default function WebSiteShell({ children }: Props) {
           <Link href="/author" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("trust", "author")}
           </Link>
-          <Link href="/about#privacy" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+          <Link href="/privacy-policy" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "privacy")}
           </Link>
           <Link href="/terms" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">

@@ -312,7 +312,7 @@ export function HomeWebSeoContent() {
           {t("ui", "about")}
         </Link>
         {" · "}
-        <Link href="/about#privacy" className="underline">
+        <Link href="/privacy-policy" className="underline">
           {t("homeSeo", "linkPrivacy")}
         </Link>
       </p>

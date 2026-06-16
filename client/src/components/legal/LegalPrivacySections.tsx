@@ -12,7 +12,7 @@ export default function LegalPrivacySections() {
     <div className="space-y-6 text-sm text-gray-700">
       {sections.map((section) => (
         <section key={section.id}>
-          <h4 className="mb-2 font-bold text-blue-600">{section.title}</h4>
+          <h4 className="mb-2 text-base font-bold text-emerald-900">{section.title}</h4>
           {section.paragraphs.map((p, i) => (
             <p key={i} className="mb-2 whitespace-pre-line leading-relaxed">
               {p}

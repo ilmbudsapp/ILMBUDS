@@ -11,7 +11,7 @@ const hadithPath = path.join(repoRoot, "client/src/content/education/hadithColle
 const blogPath = path.join(repoRoot, "client/src/content/education/blogArticles.ts");
 const outPath = path.join(repoRoot, "sitemap.xml");
 
-const LASTMOD = "2026-06-03";
+const LASTMOD = "2026-06-04";
 const BASE = "https://www.ilmbuds.com";
 
 function extractSlugs(file, patterns) {
@@ -48,6 +48,7 @@ const staticPages = [
   { loc: "/arabic-alphabet", priority: "0.8", changefreq: "monthly" },
   { loc: "/about", priority: "0.75", changefreq: "monthly" },
   { loc: "/contact", priority: "0.75", changefreq: "monthly" },
+  { loc: "/privacy-policy", priority: "0.7", changefreq: "yearly" },
   { loc: "/author", priority: "0.75", changefreq: "monthly" },
   { loc: "/terms", priority: "0.6", changefreq: "yearly" },
   { loc: "/disclaimer", priority: "0.6", changefreq: "yearly" },

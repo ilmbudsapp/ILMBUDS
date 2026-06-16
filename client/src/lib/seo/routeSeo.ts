@@ -182,6 +182,38 @@ export const ROUTE_SEO: Record<string, RouteSeo> = {
       it: "Missione e informazioni su ILMBUDS.",
     },
   },
+  "/privacy-policy": {
+    title: {
+      bs: "Politika privatnosti — ILMBUDS",
+      de: "Datenschutzerklärung — ILMBUDS",
+      en: "Privacy Policy — ILMBUDS",
+      sq: "Politika e privatësisë — ILMBUDS",
+      it: "Politica sulla privacy — ILMBUDS",
+    },
+    description: {
+      bs: "Politika privatnosti ILMBUDS: kolačići, AdSense, GDPR, privatnost djece i kontakt.",
+      de: "Datenschutz: Cookies, AdSense, DSGVO-Rechte und Kinder — ILMBUDS.",
+      en: "ILMBUDS privacy policy: cookies, AdSense, GDPR, children's privacy and contact.",
+      sq: "Politika e privatësisë ILMBUDS.",
+      it: "Politica sulla privacy ILMBUDS.",
+    },
+  },
+  "/contact": {
+    title: {
+      bs: "Kontakt — ILMBUDS",
+      de: "Kontakt — ILMBUDS",
+      en: "Contact — ILMBUDS",
+      sq: "Kontakt — ILMBUDS",
+      it: "Contatto — ILMBUDS",
+    },
+    description: {
+      bs: "Kontaktirajte ILMBUDS — pitanja, povratne informacije i partnerstva.",
+      de: "Kontaktieren Sie ILMBUDS — Fragen, Feedback und Partnerschaften.",
+      en: "Contact ILMBUDS — questions, feedback and partnerships.",
+      sq: "Kontaktoni ILMBUDS.",
+      it: "Contatta ILMBUDS.",
+    },
+  },
   "/hadisi-za-djecu": {
     title: {
       bs: "Hadisi za djecu",
