@@ -9,6 +9,14 @@ export type ContentSection = {
   workshopSteps?: { step: number; title?: string; duration?: string; instructions: string[] }[];
   activities?: { title: string; age: string; materials?: string[]; steps: string[] }[];
   pullQuote?: string;
+  dialogue?: { speaker: string; line: string }[];
+  interview?: { speaker: string; question: string; answer: string }[];
+  problemSolutions?: { problem: string; solution: string }[];
+  caseStudy?: { title: string; context: string; outcome: string; lesson: string };
+  dailyRoutine?: { time: string; activity: string; note?: string }[];
+  challenges?: { day: number; mission: string; hint?: string }[];
+  questionJourney?: { step: number; question: string; reflection: string }[];
+  callToAction?: { label: string; text: string; href?: string };
 };
 
 export type BlogArticleFormat =
@@ -19,7 +27,14 @@ export type BlogArticleFormat =
   | "workshop"
   | "activity"
   | "timeline"
-  | "myth-fact";
+  | "myth-fact"
+  | "interview"
+  | "conversation"
+  | "problem-solution"
+  | "case-study"
+  | "daily-routine"
+  | "challenge"
+  | "question-journey";
 
 export type FaqItem = { q: string; a: string };
 
@@ -58,6 +73,7 @@ export type BlogArticle = {
   faqTitle?: string;
   faqStyle?: "accordion" | "visible" | "numbered";
   skipGenericSupplement?: boolean;
+  callToAction?: { label: string; text: string; href?: string };
   sections: ContentSection[];
   faq: FaqItem[];
   references: string[];

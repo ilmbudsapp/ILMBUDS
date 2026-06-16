@@ -29,6 +29,13 @@ const FORMAT_LABELS: Record<string, string> = {
   activity: "Aktivnosti za djecu",
   timeline: "Vremenska linija",
   "myth-fact": "Mit vs činjenica",
+  interview: "Intervju",
+  conversation: "Razgovor roditelj–dijete",
+  "problem-solution": "Problem → rješenje",
+  "case-study": "Studija slučaja",
+  "daily-routine": "Dnevna rutina",
+  challenge: "Misije i izazovi",
+  "question-journey": "Put pitanja",
 };
 
 export default function BlogArticlePage() {
@@ -105,6 +112,21 @@ export default function BlogArticlePage() {
           <ArticleSectionRenderer key={i} section={section} index={i} />
         ))}
       </div>
+
+      {article.callToAction ? (
+        <div className="mb-8 rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-600 p-6 text-white">
+          <p className="font-bold">{article.callToAction.label}</p>
+          <p className="mt-2 text-emerald-50">{article.callToAction.text}</p>
+          {article.callToAction.href ? (
+            <Link
+              href={article.callToAction.href}
+              className="mt-4 inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-800"
+            >
+              Kreni →
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
 
       {showSupplement ? <HumanizationSections supplement={supplement} /> : null}
 

@@ -2,7 +2,15 @@ import type { BlogArticle, ContentSection } from "./types";
 
 export type DiversifiedPatch = Pick<
   BlogArticle,
-  "sections" | "faq" | "articleFormat" | "faqTitle" | "faqStyle" | "skipGenericSupplement" | "readingTimeMin" | "updatedAt"
+  | "sections"
+  | "faq"
+  | "articleFormat"
+  | "faqTitle"
+  | "faqStyle"
+  | "skipGenericSupplement"
+  | "readingTimeMin"
+  | "updatedAt"
+  | "callToAction"
 >;
 
 export const BLOG_DIVERSIFIED: Record<string, DiversifiedPatch> = {
@@ -744,6 +752,400 @@ export const BLOG_DIVERSIFIED: Record<string, DiversifiedPatch> = {
     ],
     faqTitle: "Izvori",
     faqStyle: "numbered",
+  },
+
+  "isa-mir-i-milost": {
+    articleFormat: "interview",
+    skipGenericSupplement: true,
+    readingTimeMin: 8,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Intervju: učiteljica vikend škole o Proroku Isi (a.s.)",
+        paragraphs: [
+          "U Baselu smo razgovarali sa učiteljicom Amelom (12 godina iskustva). Format je namijenjen roditeljima i starijoj djeci — bez polemike, sa fokusom na mir i poštovanje.",
+        ],
+        interview: [
+          {
+            speaker: "Amela, učiteljica",
+            question: "Zašto djeca u Austriji brkaju Isu (a.s.) sa Božićnim ukrasima?",
+            answer: "Jer vide sliku u trgovini, ne u džamiji. Naš posao je dati islamski okvir: Isa je prorok, ne Božićni lik. Kratko, mirno, bez svađe sa vršnjacima.",
+          },
+          {
+            speaker: "Amela, učiteljica",
+            question: "Kako objasniti milost?",
+            answer: "Kroz primjere: Isa (a.s.) liječi, tješi, govori istinu. Djeca razumiju „ljubaznost” bolje nego apstraktnu teologiju.",
+          },
+          {
+            speaker: "Amela, učiteljica",
+            question: "Šta roditelj ne bi trebao raditi?",
+            answer: "Ne vrijeđati druge vjere. Naše dijete treba znati ko je Isa (a.s.), ne naučiti mržnju prema komšiji.",
+          },
+        ],
+      },
+      {
+        heading: "Jedna rečenica za školu",
+        paragraphs: ["„Isa je u islamu prorok milosti — poštujemo ga kao muslimani.” Vježbajte kod kuće."],
+      },
+    ],
+    faq: [{ q: "Da li učiti o Injilu?", a: "Po uzrastu, uz učitelja — ILMBUDS daje osnovu." }],
+    faqTitle: "Dodatno za roditelje",
+    faqStyle: "visible",
+    callToAction: { label: "Nastavi učenje", text: "Pročitaj priče o prorocima na ILMBUDS.", href: "/stories" },
+  },
+
+  "nuh-i-brod-spasenja": {
+    articleFormat: "story",
+    skipGenericSupplement: true,
+    readingTimeMin: 7,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Priča + lekcija: Nuh (a.s.) i brod",
+        paragraphs: [
+          "U Hannoveru sedamgodišnji Kenan rekao je: „To je kao kad svi u razredu varaju, a ti ne.” Učitelj vikend škole klimnu — to je ulaz u Nuhovu priču.",
+          "Nuh je pozivao ljude godinama. Malo ko je slušao. Allah mu je rekao da napravi brod. Došla je kiša. Spaseni su oni koji su vjerovali.",
+        ],
+      },
+      {
+        heading: "Lekcija za danas",
+        listItems: [
+          "Istina nije popularna — ali je ispravna.",
+          "Strpljenje može trajati godinama.",
+          "Allah čuva one koji su uz Njega.",
+        ],
+      },
+      {
+        pullQuote: "Brod nije bio bijeg od svijeta — bio je odgovor na Allahov nalog.",
+        paragraphs: ["Pitajte dijete: „Šta je tvoj ‘brod’ kad svi oko tebe rade pogrešno?”"],
+      },
+    ],
+    faq: [],
+    callToAction: { label: "Sljedeći korak", text: "Riješi kviz o prorocima i spoji priču sa Nuhom.", href: "/quiz-categories" },
+  },
+
+  "rijeci-iz-namaza": {
+    articleFormat: "conversation",
+    skipGenericSupplement: true,
+    readingTimeMin: 8,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Razgovor za kuhinjski stol: riječi iz namaza",
+        paragraphs: ["Format za večeru — roditelj i dijete (8–11). Kratke replike, bez predavanja."],
+        dialogue: [
+          { speaker: "Dijete", line: "Znam pokrete, ali ne znam šta kažem kad klanjam." },
+          { speaker: "Roditelj", line: "Počnimo sa jednom riječju: Subhana Rabbiyal Azeem — Slavna si, Gospodaru moj, Veliki." },
+          { speaker: "Dijete", line: "Zašto baš u ruku?" },
+          { speaker: "Roditelj", line: "Jer smo ponižni pred Allahom. Kao kad ti kažem hvala — ali Allahu." },
+          { speaker: "Dijete", line: "Mogu li sutra naučiti samo jednu?" },
+          { speaker: "Roditelj", line: "Naravno. Jedna sedmica, jedna fraza. ILMBUDS ima audio ako zatreba." },
+        ],
+      },
+      {
+        heading: "Tri fraze za prvi mjesec",
+        listItems: [
+          "Allahu Ekber — Allah je najveći.",
+          "Subhana Rabbiyal Azeem — u ruku.",
+          "Sam'i Allahu liman hamidah — Allah čuje one koji Ga hvale.",
+        ],
+      },
+    ],
+    faq: [{ q: "Kad dodati značenje?", a: "Odmah uz zvuk — djeca povezuju jezik i smisao." }],
+    faqTitle: "Brzi savjet",
+    faqStyle: "accordion",
+    callToAction: { label: "Audio pomoć", text: "Otvori ILMBUDS namaz sekciju i slušajte zajedno.", href: "/quran" },
+  },
+
+  "brojevi-u-arapskom": {
+    articleFormat: "challenge",
+    skipGenericSupplement: true,
+    readingTimeMin: 6,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Sedmodnevni izazov: brojevi 1–7",
+        paragraphs: ["Svaki dan jedan broj. Bez novih lekcija dok ne savladaš sedmicu."],
+        challenges: [
+          { day: 1, mission: "Nauči „wahid” (1) — nađi jedan predmet u sobi i reci broj.", hint: "Koristi ILMBUDS kviz." },
+          { day: 2, mission: "„Ithnayn” (2) — par cipela, par ruku.", hint: "Nacrtaj dva kruga." },
+          { day: 3, mission: "„Thalatha” (3) — tri sura koje znaš?", hint: "Ikhlas, Falaq, Nas." },
+          { day: 4, mission: "Brojevi 4–5 u kuhinji — četiri stolice, pet kašika.", hint: "Broji naglas." },
+          { day: 5, mission: "Broj 6 — šest dana škole, šest puta Bismillah.", hint: "" },
+          { day: 6, mission: "Broj 7 — sedam dana sedmice na arapskom.", hint: "Poveži sa kalendarom." },
+          { day: 7, mission: "Mini-test roditelju — bez stresa.", hint: "Nagrada: izlet u park." },
+        ],
+      },
+    ],
+    faq: [],
+    callToAction: { label: "Nastavi brojeve", text: "Pređi na arapsku abecedu kad si spreman.", href: "/blog/arapska-abeceda-prvi-koraci" },
+  },
+
+  "dua-za-putovanje": {
+    articleFormat: "daily-routine",
+    skipGenericSupplement: true,
+    readingTimeMin: 5,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Jutarnja rutina: od kuće do škole",
+        paragraphs: ["Ahmed (9) iz Köln-a — stvarni raspored, ne idealni dan."],
+        dailyRoutine: [
+          { time: "07:05", activity: "Bismillah prije doručka", note: "Mama podsjeti jednom, ne deset puta." },
+          { time: "07:35", activity: "Obućen, torba spremna — sjedne u auto", note: "Trenutak prije kretanja." },
+          { time: "07:36", activity: "Dua za put: Subhanalladhi sakhkhara lana haza...", note: "Audio u autu prve sedmice." },
+          { time: "07:50", activity: "Izlazak iz auta — salam učiteljici", note: "Dua ne mora biti glasna." },
+          { time: "15:10", activity: "Povratak — kratka zahvalnost Alhamdulillah", note: "Povezuje putovanje i sigurnost." },
+        ],
+      },
+      {
+        heading: "Za autobus",
+        paragraphs: ["Ista dua vrijedi. Dijete može držati karticu u rancu — vikend škola u Frankfurtu ih štampa besplatno."],
+      },
+    ],
+    faq: [{ q: "Zaboravio dua?", a: "Reci čim se sjetiš — nije propalo, uči naviku." }],
+    faqTitle: "Praksa",
+    faqStyle: "numbered",
+  },
+
+  "dua-prije-jela": {
+    articleFormat: "problem-solution",
+    skipGenericSupplement: true,
+    readingTimeMin: 6,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Bismillah u stvarnom životu",
+        paragraphs: ["Porodice u dijaspori nailaze na iste situacije — evo parova problem/rješenje."],
+        problemSolutions: [
+          {
+            problem: "Dijete jede brzo bez Bismillah.",
+            solution: "Jedan roditelj kaže Bismillah naglas — dijete prati. Ne kritika, već model.",
+          },
+          {
+            problem: "Školski menzi — niko ne kaže Bismillah.",
+            solution: "Tiho u sebi prije zalogaja. Objasnite: Allah vidi namjeru.",
+          },
+          {
+            problem: "Gost ne zna za našu duu.",
+            solution: "Kažite Bismillah pristojno — gost uči kroz poštovanje, ne prisilu.",
+          },
+          {
+            problem: "Dijete se smije „Bismillah” u igri.",
+            solution: "Objasnite da su riječi Allaha ozbiljne — smijeh prestaje kad shvate smisao.",
+          },
+        ],
+      },
+    ],
+    faq: [{ q: "Zaboravio poslije jela?", a: "Hadis o zaboravljenom Bismillah — naučite zajedno." }],
+    faqTitle: "Jedno pitanje",
+    faqStyle: "visible",
+    callToAction: { label: "Više dua", text: "Pogledaj hub dua za djecu.", href: "/dua-for-children" },
+  },
+
+  "iftar-i-zajednistvo": {
+    articleFormat: "case-study",
+    skipGenericSupplement: true,
+    readingTimeMin: 8,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Studija slučaja: porodica Hadžić, Dortmund",
+        caseStudy: {
+          title: "Iftar bez savršene trpeze",
+          context:
+            "Oboje roditelja rade do 18h. Deda iz Tuzle dolazi samo tokom Ramazana. Djeca (7 i 10) navikli na brzu hranu.",
+          outcome:
+            "Uveli „minimalni iftar”: datula, voda, supa, jedno jelo. Svi sjede 12 minuta bez telefona. Deda vodi kratku dovu.",
+          lesson: "Zajedništvo ne ovisi o broju jela — ovisi o prisutnosti i namjeri.",
+        },
+      },
+      {
+        heading: "Šta možete kopirati",
+        listItems: [
+          "Dijete pomaže samo jednu stvar (salvete, voda).",
+          "Isti signal za početak — lampica na balkonu.",
+          "Jedna priča ili hadis, ne sat predavanja.",
+        ],
+      },
+    ],
+    faq: [],
+    callToAction: { label: "Ramazan paket", text: "Pročitaj uvod u Ramazan za djecu.", href: "/blog/ramazan-za-djecu-uvod" },
+  },
+
+  "sadaka-u-ramazanu": {
+    articleFormat: "challenge",
+    skipGenericSupplement: true,
+    readingTimeMin: 7,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Ramazanske misije dobročinstva",
+        paragraphs: ["Pet misija — djeca biraju redoslijed."],
+        challenges: [
+          { day: 1, mission: "Stavi jednu kovanicu u kutiju sadaqa.", hint: "Imenuj kutiju." },
+          { day: 2, mission: "Pomozi mami bez traženja nagrade.", hint: "Npr. pospremi stol." },
+          { day: 3, mission: "Daj starijem susjedu pozdrav i osmijeh.", hint: "Sadaka je i lice." },
+          { day: 4, mission: "Odaberi jednu igračku za donaciju (uz roditelja).", hint: "Humanitarna akcija džamije." },
+          { day: 5, mission: "Napiši poruku zahvalnosti učiteljici vikend škole.", hint: "Riјec je sadaka." },
+        ],
+      },
+    ],
+    faq: [{ q: "Malo novca?", a: "Sadaka nije samo novac — vrijeme i dobra riječ također." }],
+    faqTitle: "Napomena",
+    faqStyle: "accordion",
+  },
+
+  "dzuma-za-djecu": {
+    articleFormat: "question-journey",
+    skipGenericSupplement: true,
+    readingTimeMin: 9,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Put pitanja: prvi put u džamiji na džumu",
+        paragraphs: ["Za djecu 7–11 i roditelje. Svaki korak — jedno pitanje i kratka refleksija."],
+        questionJourney: [
+          { step: 1, question: "Šta je džuma?", reflection: "Petak popodne — zajednička molitva muslimana, važnija od običnog dana." },
+          { step: 2, question: "Šta obući?", reflection: "Čista odjeća, kao za gosta kod Allaha. Nije modna revija — poštovanje." },
+          { step: 3, question: "Šta raditi tokom hutbe?", reflection: "Slušati i sjediti mirno. Dosadno? Normalno — trpljenje je dio učenja." },
+          { step: 4, question: "Smijem li donijeti knjigu?", reflection: "Bolje kratka tišina. Roditelj može šapnuti objašnjenje poslije." },
+          { step: 5, question: "Šta poslije namaza?", reflection: "Pozdrav starijima, kratki razgovor, domaća zadaća: jedna rečenica šta si zapamtio." },
+        ],
+      },
+    ],
+    faq: [{ q: "Koliko traje?", a: "Zavisi od džamije — pripremite dijete da ostane 30–60 min." }],
+    faqTitle: "Organizacija",
+    faqStyle: "numbered",
+    callToAction: { label: "Priprema", text: "Pročitaj pet namaza — vremenska linija.", href: "/blog/pet-dnevnih-namaza" },
+  },
+
+  "kratke-sure-za-djecu": {
+    articleFormat: "problem-solution",
+    skipGenericSupplement: true,
+    readingTimeMin: 7,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Pamćenje sura — problemi i rješenja",
+        problemSolutions: [
+          {
+            problem: "Roditelj žuri — dijete se frustrira.",
+            solution: "Jedna ajet dnevno. Alhamdulillah je dovoljno.",
+          },
+          {
+            problem: "Pomešani redoslijed ajeta.",
+            solution: "Slušajte isti audio 3 dana zaredom — uho pamti prije usta.",
+          },
+          {
+            problem: "Stid pred bratom/sestrom.",
+            solution: "Učite odvojeno 10 minuta, zatim zajednički kviz.",
+          },
+          {
+            problem: "Zaboravi nakon sedmice.",
+            solution: "Ponavljanje u namazu — i u ILMBUDS kvizu petkom.",
+          },
+        ],
+      },
+      {
+        heading: "Preporučeni redoslijed",
+        listItems: ["Al-Ikhlas", "Al-Falaq", "An-Nas", "Al-Asr", "Al-Kevser"],
+      },
+    ],
+    faq: [],
+    callToAction: { label: "Kreni sa Ikhlas", text: "Otvori Kuran sekciju na ILMBUDS.", href: "/quran" },
+  },
+
+  "porodica-u-islamu": {
+    articleFormat: "interview",
+    skipGenericSupplement: true,
+    readingTimeMin: 10,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Intervju: imam i pedagog o porodici",
+        paragraphs: ["Kratki razgovor snimljen u Mannheimu — objedinjen za roditelje."],
+        interview: [
+          {
+            speaker: "Imam Afrim",
+            question: "Šta je porodica u islamu — samo roditelji i djeca?",
+            answer: "Ne. Uključuje širu mrežu: bake, strice, susjede, vikend školu. U dijaspori ta mreža je često rastegnuta — zato je džamija važna.",
+          },
+          {
+            speaker: "Pedagog Selma",
+            question: "Prava djece u praksi?",
+            answer: "Pravo na obrazovanje, hranu, sigurnost, ljubav. Dužnost je roditeljska — dijete ne bira gdje rođeno.",
+          },
+          {
+            speaker: "Imam Afrim",
+            question: "Dužnosti djece?",
+            answer: "Poštovanje roditelja, istina, učenje — proporcionalno uzrastu. Ne teret odraslih na ramenima sedamgodišnjaka.",
+          },
+        ],
+      },
+    ],
+    faq: [{ q: "Sukob generacija?", a: "Razgovor, ne krik. Imam može posredovati." }],
+    faqTitle: "Kad zatreba pomoć",
+    faqStyle: "visible",
+    callToAction: { label: "Prava i dužnosti", text: "Pročitaj članak o pravima djece i roditelja.", href: "/blog/roditelji-i-djeca-prava" },
+  },
+
+  "roditelji-i-djeca-prava": {
+    articleFormat: "conversation",
+    skipGenericSupplement: true,
+    readingTimeMin: 8,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Razgovor u dvoje: prava i dužnosti",
+        dialogue: [
+          { speaker: "Mama", line: "Imam pravo da me poštuješ — ali i ti imaš pravo da te slušam kad si tužan." },
+          { speaker: "Dijete (10)", line: "Šta ako ne razumijem zadaću i vrijeđaš me?" },
+          { speaker: "Mama", line: "Ne smijem vrijeđati. Imam dužnost pomoći, ne vrijeđati." },
+          { speaker: "Dijete", line: "A moje dužnosti?" },
+          { speaker: "Mama", line: "Istina, učenje koliko možeš, ljubaznost — kao i moje dužnosti prema tebi." },
+          { speaker: "Tata", line: "Ako nešto nije fer, kažete mi. Porodica popravlja, ne krije." },
+        ],
+      },
+      {
+        heading: "Zapis za frižider",
+        listItems: [
+          "Prava djece: sigurnost, učenje, poštovanje, igra.",
+          "Dužnosti djece: istina, pomoć, ljubaznost roditeljima.",
+          "Roditelji: model, ne savršenstvo.",
+        ],
+      },
+    ],
+    faq: [],
+    callToAction: { label: "Porodica u islamu", text: "Intervju sa imamom o širem značenju porodice.", href: "/blog/porodica-u-islamu" },
+  },
+
+  "lijepi-maniri-za-djecu": {
+    articleFormat: "daily-routine",
+    skipGenericSupplement: true,
+    readingTimeMin: 6,
+    updatedAt: "2026-06-04",
+    sections: [
+      {
+        heading: "Dnevni plan lijepih manira — školski dan",
+        paragraphs: ["Jedan gest po dijelu dana. Wuppertal, razred 3."],
+        dailyRoutine: [
+          { time: "Ujutro", activity: "Salam roditeljima + Bismillah", note: "Ton glasa miran." },
+          { time: "Ulazak u školu", activity: "Pozdrav učiteljici", note: "Pogled u oči." },
+          { time: "Pauza", activity: "Ne ismijavati novog učenika", note: "Uključi ga u igru." },
+          { time: "Poslije škole", activity: "Hvala vozaču autobusa", note: "Mali gest, veliki ahlak." },
+          { time: "Večer", activity: "Tri stvari za koje si zahvalan", note: "Porodični krug 2 minute." },
+        ],
+      },
+      {
+        heading: "Sedmična misija",
+        paragraphs: ["Jedan manir sedmice — npr. „ne prekidam dok drugi priča”. Označite zvjezdicom na kalendaru."],
+      },
+    ],
+    faq: [{ q: "Greška?", a: "Ispravi se javno — djeca uče iz ispravke." }],
+    faqTitle: "Odgoj",
+    faqStyle: "accordion",
+    callToAction: { label: "Ahlak u praksi", text: "Pogledaj hadis o lijepom ponašanju.", href: "/hadisi-za-djecu/lijepo-ponasanje" },
   },
 };
 

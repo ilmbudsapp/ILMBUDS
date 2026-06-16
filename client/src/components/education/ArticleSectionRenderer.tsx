@@ -7,6 +7,163 @@ export default function ArticleSectionRenderer({ section, index }: Props) {
     <h2 className="text-xl font-bold text-emerald-900">{section.heading}</h2>
   ) : null;
 
+  if (section.dialogue?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="mt-4 space-y-3">
+          {section.dialogue.map((d, j) => (
+            <div
+              key={j}
+              className={`rounded-xl px-4 py-3 ${
+                d.speaker.toLowerCase().includes("dijete") || d.speaker.toLowerCase().includes("ucenik")
+                  ? "ml-4 border border-sky-100 bg-sky-50/60"
+                  : "mr-4 border border-emerald-100 bg-emerald-50/60"
+              }`}
+            >
+              <p className="text-xs font-bold uppercase text-emerald-800">{d.speaker}</p>
+              <p className="mt-1 text-slate-700">{d.line}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (section.interview?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="mt-4 space-y-5">
+          {section.interview.map((item) => (
+            <div key={item.question} className="rounded-xl border border-slate-200 bg-white p-4">
+              <p className="text-xs font-bold text-emerald-700">{item.speaker}</p>
+              <p className="mt-1 font-medium text-slate-900">{item.question}</p>
+              <p className="mt-2 text-slate-700">{item.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (section.problemSolutions?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="mt-4 space-y-4">
+          {section.problemSolutions.map((ps) => (
+            <div key={ps.problem} className="grid gap-2 sm:grid-cols-2">
+              <div className="rounded-lg bg-orange-50 px-4 py-3 text-sm text-orange-900">
+                <span className="font-bold">Problem: </span>
+                {ps.problem}
+              </div>
+              <div className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+                <span className="font-bold">Rješenje: </span>
+                {ps.solution}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (section.caseStudy) {
+    const cs = section.caseStudy;
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="mt-4 rounded-2xl border border-violet-100 bg-violet-50/30 p-5">
+          <p className="font-bold text-violet-900">{cs.title}</p>
+          <p className="mt-3 text-slate-700">
+            <span className="font-semibold">Kontekst: </span>
+            {cs.context}
+          </p>
+          <p className="mt-2 text-slate-700">
+            <span className="font-semibold">Ishod: </span>
+            {cs.outcome}
+          </p>
+          <p className="mt-2 text-emerald-800">
+            <span className="font-semibold">Lekcija: </span>
+            {cs.lesson}
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  if (section.dailyRoutine?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <ul className="mt-4 space-y-3">
+          {section.dailyRoutine.map((r) => (
+            <li key={r.time + r.activity} className="flex gap-4 rounded-lg border border-slate-200 p-3">
+              <span className="shrink-0 font-mono text-sm font-bold text-emerald-700">{r.time}</span>
+              <div>
+                <p className="text-slate-900">{r.activity}</p>
+                {r.note ? <p className="mt-1 text-sm text-slate-500">{r.note}</p> : null}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
+  if (section.challenges?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {section.challenges.map((c) => (
+            <div key={c.day} className="rounded-xl border-2 border-dashed border-emerald-200 bg-white p-4">
+              <p className="text-sm font-bold text-emerald-800">Misija {c.day}</p>
+              <p className="mt-2 text-slate-800">{c.mission}</p>
+              {c.hint ? <p className="mt-2 text-xs text-slate-500">Savjet: {c.hint}</p> : null}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (section.questionJourney?.length) {
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <ol className="mt-4 space-y-4">
+          {section.questionJourney.map((q) => (
+            <li key={q.step} className="rounded-xl bg-slate-50 p-4">
+              <p className="text-sm font-bold text-emerald-700">Korak {q.step}</p>
+              <p className="mt-1 font-medium text-slate-900">{q.question}</p>
+              <p className="mt-2 text-sm text-slate-600">{q.reflection}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    );
+  }
+
+  if (section.callToAction) {
+    const cta = section.callToAction;
+    return (
+      <section key={index} className="mb-8">
+        {h2}
+        <div className="rounded-2xl bg-gradient-to-r from-emerald-700 to-emerald-600 p-6 text-white">
+          <p className="font-bold">{cta.label}</p>
+          <p className="mt-2 text-emerald-50">{cta.text}</p>
+          {cta.href ? (
+            <a href={cta.href} className="mt-4 inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-800">
+              Kreni →
+            </a>
+          ) : null}
+        </div>
+      </section>
+    );
+  }
+
   if (section.pullQuote) {
     return (
       <section key={index} className="mb-8">
