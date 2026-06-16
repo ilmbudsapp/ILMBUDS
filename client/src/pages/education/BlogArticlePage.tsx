@@ -4,6 +4,11 @@ import Breadcrumbs from "@/components/education/Breadcrumbs";
 import ArticleJsonLd from "@/components/education/ArticleJsonLd";
 import ContentAttribution from "@/components/ContentAttribution";
 import ContentRecommendations from "@/components/education/ContentRecommendations";
+import EducationalIllustration, {
+  illustrationForBlogTopic,
+} from "@/components/education/EducationalIllustration";
+import HumanizationSections from "@/components/education/HumanizationSections";
+import { getBlogSupplement } from "@/content/education/contentSupplements";
 import { getBlogBySlug, getPopularArticles } from "@/content/education/blogArticles";
 import NotFound from "@/pages/not-found";
 
@@ -21,6 +26,9 @@ export default function BlogArticlePage() {
   const article = getBlogBySlug(slug);
 
   if (!article) return <NotFound />;
+
+  const supplement = getBlogSupplement(article.slug, article.title);
+  const illustration = illustrationForBlogTopic(article.topic);
 
   const path = `/blog/${article.slug}`;
   const breadcrumbs = [
@@ -73,6 +81,8 @@ export default function BlogArticlePage() {
         </p>
       </header>
 
+      <EducationalIllustration illustration={illustration} caption={article.title} />
+
       <div className="prose prose-slate max-w-none prose-headings:text-emerald-900">
         {article.sections.map((section, i) => (
           <section key={i} className="mb-8">
@@ -87,6 +97,8 @@ export default function BlogArticlePage() {
           </section>
         ))}
       </div>
+
+      <HumanizationSections supplement={supplement} />
 
       {article.faq.length > 0 ? (
         <section className="mb-8 mt-10">

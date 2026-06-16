@@ -21,5 +21,14 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("blogArticles")) return "blog-content";
+          if (id.includes("hadithCollection")) return "hadith-content";
+          if (id.includes("contentSupplements")) return "education-supplements";
+        },
+      },
+    },
   },
 });

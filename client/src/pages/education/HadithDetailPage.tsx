@@ -4,6 +4,11 @@ import Breadcrumbs from "@/components/education/Breadcrumbs";
 import ArticleJsonLd from "@/components/education/ArticleJsonLd";
 import ContentAttribution from "@/components/ContentAttribution";
 import ContentRecommendations from "@/components/education/ContentRecommendations";
+import EducationalIllustration, {
+  illustrationForHadithCategory,
+} from "@/components/education/EducationalIllustration";
+import HumanizationSections from "@/components/education/HumanizationSections";
+import { getHadithSupplement } from "@/content/education/contentSupplements";
 import { getHadithBySlug, HADITH_COLLECTION } from "@/content/education/hadithCollection";
 import NotFound from "@/pages/not-found";
 
@@ -13,6 +18,9 @@ export default function HadithDetailPage() {
   const hadith = getHadithBySlug(slug);
 
   if (!hadith) return <NotFound />;
+
+  const supplement = getHadithSupplement(hadith.slug, hadith.title);
+  const illustration = illustrationForHadithCategory(hadith.category);
 
   const path = `/hadisi-za-djecu/${hadith.slug}`;
   const breadcrumbs = [
@@ -72,6 +80,11 @@ export default function HadithDetailPage() {
         „{hadith.hadithText}"
       </blockquote>
 
+      <EducationalIllustration
+        illustration={illustration}
+        caption={`Ilustracija uz temu: ${hadith.category}`}
+      />
+
       <section className="mb-8">
         <h2 className="text-xl font-bold text-emerald-900">Objašnjenje za djecu</h2>
         {hadith.childExplanation.split("\n\n").map((p, i) => (
@@ -107,6 +120,8 @@ export default function HadithDetailPage() {
           ))}
         </ol>
       </section>
+
+      <HumanizationSections supplement={supplement} />
 
       <section className="mb-8 rounded-2xl border border-emerald-100 bg-white p-5">
         <h2 className="text-lg font-bold text-emerald-900">Nastavi učenje</h2>
