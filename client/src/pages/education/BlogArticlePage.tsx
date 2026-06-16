@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/education/Breadcrumbs";
 import ArticleJsonLd from "@/components/education/ArticleJsonLd";
 import ContentAttribution from "@/components/ContentAttribution";
 import ContentRecommendations from "@/components/education/ContentRecommendations";
+import ArticleSectionRenderer from "@/components/education/ArticleSectionRenderer";
 import EducationalIllustration, {
   illustrationForBlogTopic,
 } from "@/components/education/EducationalIllustration";
@@ -20,6 +21,16 @@ const HUB_LABELS: Record<string, string> = {
   "/arabic-learning": "Učenje arapskog",
 };
 
+const FORMAT_LABELS: Record<string, string> = {
+  story: "Priča i refleksija",
+  "parent-guide": "Vodič za roditelje",
+  qa: "Pitanja i odgovori",
+  workshop: "Radionica",
+  activity: "Aktivnosti za djecu",
+  timeline: "Vremenska linija",
+  "myth-fact": "Mit vs činjenica",
+};
+
 export default function BlogArticlePage() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug ?? "";
@@ -29,6 +40,9 @@ export default function BlogArticlePage() {
 
   const supplement = getBlogSupplement(article.slug, article.title);
   const illustration = illustrationForBlogTopic(article.topic);
+  const showSupplement = !article.skipGenericSupplement;
+  const faqTitle = article.faqTitle ?? "Česta pitanja";
+  const faqStyle = article.faqStyle ?? "accordion";
 
   const path = `/blog/${article.slug}`;
   const breadcrumbs = [
@@ -72,6 +86,9 @@ export default function BlogArticlePage() {
       <header className="mb-8">
         <p className="text-sm font-semibold uppercase text-emerald-700">
           {HUB_LABELS[article.hubPath] ?? article.topic}
+          {article.articleFormat && article.articleFormat !== "standard"
+            ? ` · ${FORMAT_LABELS[article.articleFormat] ?? article.articleFormat}`
+            : ""}
         </p>
         <h1 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">{article.title}</h1>
         <p className="mt-4 text-lg text-slate-600">{article.metaDescription}</p>
@@ -85,32 +102,43 @@ export default function BlogArticlePage() {
 
       <div className="prose prose-slate max-w-none prose-headings:text-emerald-900">
         {article.sections.map((section, i) => (
-          <section key={i} className="mb-8">
-            {section.heading ? (
-              <h2 className="text-xl font-bold text-emerald-900">{section.heading}</h2>
-            ) : null}
-            {section.paragraphs.map((p, j) => (
-              <p key={j} className="mt-3 leading-relaxed text-slate-700">
-                {p}
-              </p>
-            ))}
-          </section>
+          <ArticleSectionRenderer key={i} section={section} index={i} />
         ))}
       </div>
 
-      <HumanizationSections supplement={supplement} />
+      {showSupplement ? <HumanizationSections supplement={supplement} /> : null}
 
-      {article.faq.length > 0 ? (
+      {article.faq.length > 0 && faqTitle ? (
         <section className="mb-8 mt-10">
-          <h2 className="text-xl font-bold text-emerald-900">Česta pitanja</h2>
-          <div className="mt-4 space-y-3">
-            {article.faq.map((f) => (
-              <details key={f.q} className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-                <summary className="cursor-pointer font-medium text-slate-900">{f.q}</summary>
-                <p className="mt-2 text-slate-700">{f.a}</p>
-              </details>
-            ))}
-          </div>
+          <h2 className="text-xl font-bold text-emerald-900">{faqTitle}</h2>
+          {faqStyle === "visible" ? (
+            <div className="mt-4 space-y-4">
+              {article.faq.map((f, i) => (
+                <div key={f.q} className="rounded-xl border border-emerald-100 bg-white p-4">
+                  <p className="font-medium text-slate-900">{f.q}</p>
+                  <p className="mt-2 text-slate-700">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          ) : faqStyle === "numbered" ? (
+            <ol className="mt-4 list-decimal space-y-4 pl-5">
+              {article.faq.map((f) => (
+                <li key={f.q} className="text-slate-700">
+                  <span className="font-medium text-slate-900">{f.q}</span>
+                  <p className="mt-1">{f.a}</p>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {article.faq.map((f) => (
+                <details key={f.q} className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
+                  <summary className="cursor-pointer font-medium text-slate-900">{f.q}</summary>
+                  <p className="mt-2 text-slate-700">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          )}
         </section>
       ) : null}
 

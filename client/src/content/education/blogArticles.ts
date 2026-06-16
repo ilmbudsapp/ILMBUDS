@@ -1,6 +1,7 @@
 import type { BlogArticle } from "./types";
+import { applyBlogDiversification } from "./blogArticlesDiversified";
 
-export const BLOG_ARTICLES: BlogArticle[] = [
+const BLOG_ARTICLES_BASE: BlogArticle[] = [
   {
     "publishedAt": "2026-06-03",
     "updatedAt": "2026-06-03",
@@ -4265,6 +4266,8 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     ]
   }
 ];
+
+export const BLOG_ARTICLES: BlogArticle[] = applyBlogDiversification(BLOG_ARTICLES_BASE);
 
 export function getBlogBySlug(slug: string): BlogArticle | undefined {
   return BLOG_ARTICLES.find((a) => a.slug === slug);

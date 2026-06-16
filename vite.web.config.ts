@@ -24,6 +24,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes("blogArticlesDiversified")) return "blog-diversified";
           if (id.includes("blogArticles")) return "blog-content";
           if (id.includes("hadithCollection")) return "hadith-content";
           if (id.includes("contentSupplements")) return "education-supplements";

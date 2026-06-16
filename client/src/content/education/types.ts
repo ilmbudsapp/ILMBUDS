@@ -1,7 +1,25 @@
 export type ContentSection = {
   heading?: string;
-  paragraphs: string[];
+  paragraphs?: string[];
+  listItems?: string[];
+  checklist?: { item: string }[];
+  qaPairs?: { q: string; a: string }[];
+  timeline?: { when: string; title: string; body: string }[];
+  mythFacts?: { myth: string; fact: string }[];
+  workshopSteps?: { step: number; title?: string; duration?: string; instructions: string[] }[];
+  activities?: { title: string; age: string; materials?: string[]; steps: string[] }[];
+  pullQuote?: string;
 };
+
+export type BlogArticleFormat =
+  | "standard"
+  | "story"
+  | "parent-guide"
+  | "qa"
+  | "workshop"
+  | "activity"
+  | "timeline"
+  | "myth-fact";
 
 export type FaqItem = { q: string; a: string };
 
@@ -36,6 +54,10 @@ export type BlogArticle = {
   publishedAt: string;
   updatedAt: string;
   readingTimeMin: number;
+  articleFormat?: BlogArticleFormat;
+  faqTitle?: string;
+  faqStyle?: "accordion" | "visible" | "numbered";
+  skipGenericSupplement?: boolean;
   sections: ContentSection[];
   faq: FaqItem[];
   references: string[];
