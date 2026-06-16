@@ -7,7 +7,7 @@
     "dev": "tsx server/index.ts",
     "dev:web": "vite --config vite.web.config.ts",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
-    "build:client": "node scripts/sync-web-public.mjs && node scripts/sync-sitemap.mjs && vite build --config vite.web.config.ts && node scripts/verify-dist-output.mjs",
+    "build:client": "node scripts/generate-sitemap.mjs && node scripts/sync-web-public.mjs && node scripts/sync-sitemap.mjs && vite build --config vite.web.config.ts && node scripts/verify-dist-output.mjs",
     "preview:web": "vite preview --config vite.web.config.ts --host",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",

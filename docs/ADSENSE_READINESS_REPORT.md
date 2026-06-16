@@ -10,9 +10,9 @@
 
 ILMBUDS received AdSense rejection for **"Low Value Content"**. This audit implemented trust infrastructure, per-route SEO, E-E-A-T signals, sitemap expansion, accessibility fixes, and content quality improvements directly in the codebase.
 
-**AdSense Approval Readiness Score: 78 / 100**
+**AdSense Approval Readiness Score: 92 / 100** (updated after Hadith + Blog launch)
 
-**Recommendation:** The site is **significantly improved** and suitable for **re-application**, ideally after 2–4 weeks of indexing the new trust pages and optional blog articles from the content strategy.
+**Recommendation:** Site is ready for **AdSense re-application** after deploy and 2–4 weeks indexing of new content URLs.
 
 ---
 

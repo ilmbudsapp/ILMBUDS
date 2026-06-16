@@ -19,6 +19,8 @@ export default function WebSiteShell({ children }: Props) {
   const [location] = useLocation();
   const isHome = location === "/";
   const routeSeo = getRouteSeo(location, language);
+  const noindexPaths = ["/settings", "/profile", "/parent-dashboard", "/badges"];
+  const shouldNoindex = noindexPaths.some((p) => location === p || location.startsWith(`${p}/`));
   useEffect(() => {
     document.documentElement.classList.add("ilmbuds-web", "ilmbuds-web-light");
     return () => {
@@ -30,7 +32,9 @@ export default function WebSiteShell({ children }: Props) {
     <div className="ilmbuds-web ilmbuds-web-light relative flex min-h-screen flex-col font-display text-slate-900">
       <WebMagicBackground />
       <SeoEnhancements />
-      {routeSeo ? (
+      {shouldNoindex ? (
+        <PageMeta title="ILMBUDS" description="Settings" path={location} noindex />
+      ) : routeSeo ? (
         <PageMeta title={routeSeo.title} description={routeSeo.description} path={location} />
       ) : null}      <a
         href="#main-content"

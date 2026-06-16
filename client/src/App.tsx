@@ -46,6 +46,11 @@ const PillarDetail = lazy(() => import("@/pages/pillar-detail"));
 const BeliefDetail = lazy(() => import("@/pages/belief-detail"));
 const MiniGames = lazy(() => import("@/pages/mini-games"));
 const ArabicAlphabet = lazy(() => import("@/pages/arabic-alphabet"));
+const HadithLanding = lazy(() => import("@/pages/education/HadithLandingPage"));
+const HadithDetail = lazy(() => import("@/pages/education/HadithDetailPage"));
+const BlogIndex = lazy(() => import("@/pages/education/BlogIndexPage"));
+const BlogArticle = lazy(() => import("@/pages/education/BlogArticlePage"));
+const TopicHub = lazy(() => import("@/pages/education/TopicHubPage"));
 
 // Simple loading spinner without translation dependency
 const LoadingSpinner = () => (
@@ -93,6 +98,17 @@ function Router() {
             <Route path="/belief/:id" component={BeliefDetail} />
             <Route path="/mini-games" component={MiniGames} />
             <Route path="/arabic-alphabet" component={ArabicAlphabet} />
+
+            {/* Education: hadith, blog, topic hubs */}
+            <Route path="/hadisi-za-djecu/:slug" component={HadithDetail} />
+            <Route path="/hadisi-za-djecu" component={HadithLanding} />
+            <Route path="/blog/:slug" component={BlogArticle} />
+            <Route path="/blog" component={BlogIndex} />
+            <Route path="/prophets" component={TopicHub} />
+            <Route path="/hadith" component={TopicHub} />
+            <Route path="/islamic-values" component={TopicHub} />
+            <Route path="/dua-for-children" component={TopicHub} />
+            <Route path="/arabic-learning" component={TopicHub} />
 
             <Route component={NotFound} />
       </Switch>

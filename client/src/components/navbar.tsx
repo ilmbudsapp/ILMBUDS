@@ -22,6 +22,28 @@ function pickLabel(lang: string, labels: Record<LangKey, string>): string {
 function getContentNavItems(lang: string): NavItem[] {
   return [
     {
+      path: '/hadisi-za-djecu',
+      label: pickLabel(lang, {
+        en: 'Hadith',
+        bs: 'Hadisi',
+        sq: 'Hadithe',
+        de: 'Hadithe',
+        it: 'Hadith',
+      }),
+      icon: 'menu_book',
+    },
+    {
+      path: '/blog',
+      label: pickLabel(lang, {
+        en: 'Knowledge',
+        bs: 'Znanje',
+        sq: 'Dituri',
+        de: 'Wissen',
+        it: 'Sapere',
+      }),
+      icon: 'article',
+    },
+    {
       path: '/stories',
       label: pickLabel(lang, {
         en: 'Stories',
@@ -181,6 +203,12 @@ function isNavActive(location: string, path: string): boolean {
   if (path === '/') return location === '/';
   if (path === '/quiz-categories') {
     return location.startsWith('/quiz');
+  }
+  if (path === '/hadisi-za-djecu') {
+    return location.startsWith('/hadisi-za-djecu');
+  }
+  if (path === '/blog') {
+    return location.startsWith('/blog');
   }
   if (path === '/catechism') {
     return (

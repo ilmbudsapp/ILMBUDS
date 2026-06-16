@@ -182,6 +182,38 @@ export const ROUTE_SEO: Record<string, RouteSeo> = {
       it: "Missione e informazioni su ILMBUDS.",
     },
   },
+  "/hadisi-za-djecu": {
+    title: {
+      bs: "Hadisi za djecu",
+      de: "Hadithe für Kinder",
+      en: "Hadith for Children",
+      sq: "Hadithe për fëmijë",
+      it: "Hadith per bambini",
+    },
+    description: {
+      bs: "Autentični hadisi s objašnjenjima za djecu 5–12 godina — ahlak, namaz, istina i ljubav.",
+      de: "Authentische Hadithe kindgerecht erklärt.",
+      en: "Authentic hadith explained for children ages 5–12.",
+      sq: "Hadithe autentike për fëmijë.",
+      it: "Hadith autentici per bambini.",
+    },
+  },
+  "/blog": {
+    title: {
+      bs: "Centar znanja — islamska edukacija",
+      de: "Wissenszentrum — islamische Bildung",
+      en: "Knowledge Center — Islamic Education",
+      sq: "Qendra e diturisë",
+      it: "Centro conoscenza islamica",
+    },
+    description: {
+      bs: "Preko 30 edukativnih članaka: proroci, vrijednosti, arapski, duae, ramadan i porodica.",
+      de: "Über 30 Bildungsartikel für muslimische Kinder.",
+      en: "30+ educational articles for Muslim children in the diaspora.",
+      sq: "Artikuj edukativë islame.",
+      it: "Articoli educativi islamici.",
+    },
+  },
 };
 
 export function getRouteSeo(path: string, lang: Language): { title: string; description: string } | null {

@@ -21,6 +21,7 @@ export type TranslationKeys =
   | 'cartoons' // Cartoons section translations
   | 'games'    // Mini games section translations
   | 'trust'    // Trust / legal / E-E-A-T pages
+  | 'education' // Hadith, blog, knowledge center
 
 // Using a more flexible structure to support backward compatibility
 export type TranslationEntry = {
@@ -2452,6 +2453,36 @@ export const translations: Translations = {
       bs: 'Ova stranica ne postoji. Vratite se na početnu ili istražite priče i lekcije.',
       de: 'Diese Seite existiert nicht. Zur Startseite oder zu Geschichten und Lektionen.',
       it: 'Questa pagina non esiste.'
+    }
+  },
+  education: {
+    hadith: {
+      en: 'Hadith for Kids',
+      sq: 'Hadithe për fëmijë',
+      bs: 'Hadisi za djecu',
+      de: 'Hadithe für Kinder',
+      it: 'Hadith per bambini'
+    },
+    hadithDesc: {
+      en: 'Authentic hadith with child-friendly explanations',
+      sq: 'Hadithe autentike me shpjegime',
+      bs: 'Autentični hadisi s objašnjenjima za djecu',
+      de: 'Authentische Hadithe kindgerecht erklärt',
+      it: 'Hadith autentici spiegati ai bambini'
+    },
+    blog: {
+      en: 'Knowledge Center',
+      sq: 'Qendra e diturisë',
+      bs: 'Centar znanja',
+      de: 'Wissenszentrum',
+      it: 'Centro conoscenza'
+    },
+    blogDesc: {
+      en: 'Articles on prophets, values, Arabic and family education',
+      sq: 'Artikuj edukativë',
+      bs: 'Članci o prorocima, vrijednostima i porodici',
+      de: 'Artikel über Propheten, Werte und Familie',
+      it: 'Articoli su profeti, valori e famiglia'
     }
   },
   cookieConsent: {

@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/use-translation";
 import { HomeWebSeoContent } from "@/components/HomeWebSeoContent";
+import { HomeLatestContent } from "@/components/education/HomeLatestContent";
 import type { TranslationKeys } from "@shared/translations";
 
 type FeatureCard = {
@@ -14,6 +15,22 @@ type FeatureCard = {
 };
 
 const FEATURES: FeatureCard[] = [
+  {
+    href: "/hadisi-za-djecu",
+    icon: "📜",
+    titleSection: "education",
+    titleKey: "hadith",
+    descSection: "education",
+    descKey: "hadithDesc",
+  },
+  {
+    href: "/blog",
+    icon: "📚",
+    titleSection: "education",
+    titleKey: "blog",
+    descSection: "education",
+    descKey: "blogDesc",
+  },
   {
     href: "/stories",
     icon: "📖",
@@ -336,6 +353,9 @@ export function WebPremiumHome() {
           ))}
         </div>
       </section>
+
+      {/* Latest educational content */}
+      <HomeLatestContent />
 
       {/* FAQ */}
       <section id="faq" className="bg-emerald-950 py-24 text-white">
