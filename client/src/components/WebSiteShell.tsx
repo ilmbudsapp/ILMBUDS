@@ -3,19 +3,22 @@ import { Link, useLocation } from "wouter";
 import { GlobeLanguageSwitcher } from "@/components/globe-language-switcher";
 import { Navbar } from "@/components/navbar";
 import { SeoEnhancements } from "@/components/SeoEnhancements";
+import PageMeta from "@/components/seo/PageMeta";
 import { useTranslation } from "@/hooks/use-translation";
+import { useLanguage } from "@/context/language-context";
+import { getRouteSeo } from "@/lib/seo/routeSeo";
 import { WebMagicBackground } from "@/components/web/WebMagicBackground";
 import CookieConsent from "@/components/CookieConsent";
-
 type Props = {
   children: ReactNode;
 };
 
 export default function WebSiteShell({ children }: Props) {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [location] = useLocation();
   const isHome = location === "/";
-
+  const routeSeo = getRouteSeo(location, language);
   useEffect(() => {
     document.documentElement.classList.add("ilmbuds-web", "ilmbuds-web-light");
     return () => {
@@ -27,7 +30,9 @@ export default function WebSiteShell({ children }: Props) {
     <div className="ilmbuds-web ilmbuds-web-light relative flex min-h-screen flex-col font-display text-slate-900">
       <WebMagicBackground />
       <SeoEnhancements />
-      <a
+      {routeSeo ? (
+        <PageMeta title={routeSeo.title} description={routeSeo.description} path={location} />
+      ) : null}      <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-amber-500 focus:px-4 focus:py-2 focus:text-slate-950"
       >
@@ -93,11 +98,26 @@ export default function WebSiteShell({ children }: Props) {
           <Link href="/about" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "about")}
           </Link>
-          <Link href="/about#contact" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+          <Link href="/contact" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "contact")}
+          </Link>
+          <Link href="/author" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            {t("trust", "author")}
           </Link>
           <Link href="/about#privacy" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "privacy")}
+          </Link>
+          <Link href="/terms" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            {t("trust", "terms")}
+          </Link>
+          <Link href="/disclaimer" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            {t("trust", "disclaimer")}
+          </Link>
+          <Link href="/editorial-policy" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            {t("trust", "editorial")}
+          </Link>
+          <Link href="/sources" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            {t("trust", "sources")}
           </Link>
           <Link href="/about#legal" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "legalInfo")}
@@ -105,12 +125,13 @@ export default function WebSiteShell({ children }: Props) {
           <Link href="/partners" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "partners")}
           </Link>
-          <Link href="/donate" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
-            {t("ui", "donations")}
-          </Link>
         </nav>
         <p>
-          © {new Date().getFullYear()} ILMBUDS · {t("homeSeo", "authorLabel")}: Agron Osmani ·{" "}
+          © {new Date().getFullYear()} ILMBUDS · {t("homeSeo", "authorLabel")}:{" "}
+          <Link href="/author" className="text-emerald-300 underline-offset-2 hover:text-emerald-200 hover:underline">
+            Agron Osmani
+          </Link>
+          {" · "}
           <a
             href="https://agrmultimedia.eu"
             target="_blank"
@@ -119,8 +140,7 @@ export default function WebSiteShell({ children }: Props) {
           >
             AGRMULTIMEDIA
           </a>
-        </p>
-      </footer>
+        </p>      </footer>
 
       <CookieConsent />
     </div>

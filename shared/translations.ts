@@ -20,6 +20,7 @@ export type TranslationKeys =
   | 'quran'    // Quran section translations
   | 'cartoons' // Cartoons section translations
   | 'games'    // Mini games section translations
+  | 'trust'    // Trust / legal / E-E-A-T pages
 
 // Using a more flexible structure to support backward compatibility
 export type TranslationEntry = {
@@ -2344,6 +2345,113 @@ export const translations: Translations = {
       bs: 'Islamska web stranica za djecu',
       de: 'Islamische Website für Kinder',
       it: 'Sito web islamico per bambini'
+    }
+  },
+  trust: {
+    terms: {
+      en: 'Terms of Service',
+      sq: 'Kushtet',
+      bs: 'Uslovi korištenja',
+      de: 'Nutzungsbedingungen',
+      it: 'Termini di servizio'
+    },
+    disclaimer: {
+      en: 'Disclaimer',
+      sq: 'Mohim përgjegjësie',
+      bs: 'Odricanje od odgovornosti',
+      de: 'Haftungsausschluss',
+      it: 'Disclaimer'
+    },
+    editorial: {
+      en: 'Editorial Policy',
+      sq: 'Politika editoriale',
+      bs: 'Urednička politika',
+      de: 'Redaktionelle Richtlinien',
+      it: 'Politica editoriale'
+    },
+    sources: {
+      en: 'Sources & References',
+      sq: 'Burimet',
+      bs: 'Izvori i reference',
+      de: 'Quellen & Referenzen',
+      it: 'Fonti e riferimenti'
+    },
+    author: {
+      en: 'Author & Team',
+      sq: 'Autori',
+      bs: 'Autor i tim',
+      de: 'Autor & Team',
+      it: 'Autore e team'
+    },
+    legalHubTitle: {
+      en: 'Legal & trust pages',
+      sq: 'Faqet ligjore',
+      bs: 'Pravne i povjerljive stranice',
+      de: 'Rechtliches & Vertrauen',
+      it: 'Pagine legali'
+    },
+    attributionAria: {
+      en: 'Content attribution',
+      sq: 'Atribuimi i përmbajtjes',
+      bs: 'Atribucija sadržaja',
+      de: 'Inhaltsangabe',
+      it: 'Attribuzione contenuti'
+    },
+    authorLabel: {
+      en: 'Author',
+      sq: 'Autori',
+      bs: 'Autor',
+      de: 'Autor',
+      it: 'Autore'
+    },
+    reviewerLabel: {
+      en: 'Islamic review',
+      sq: 'Rishikim islamik',
+      bs: 'Islamski pregled',
+      de: 'Islamische Prüfung',
+      it: 'Revisione islamica'
+    },
+    updatedLabel: {
+      en: 'Last updated',
+      sq: 'Përditësuar',
+      bs: 'Zadnje ažurirano',
+      de: 'Zuletzt aktualisiert',
+      it: 'Ultimo aggiornamento'
+    },
+    reviewedLabel: {
+      en: 'Last reviewed',
+      sq: 'Rishikuar',
+      bs: 'Zadnji pregled',
+      de: 'Zuletzt geprüft',
+      it: 'Ultima revisione'
+    },
+    attributionNote: {
+      en: 'Questions or corrections?',
+      sq: 'Pyetje ose korrigjime?',
+      bs: 'Pitanja ili ispravke?',
+      de: 'Fragen oder Korrekturen?',
+      it: 'Domande o correzioni?'
+    },
+    relatedTitle: {
+      en: 'Explore more',
+      sq: 'Eksploro më shumë',
+      bs: 'Istražite više',
+      de: 'Mehr entdecken',
+      it: 'Scopri di più'
+    },
+    notFoundTitle: {
+      en: 'Page not found',
+      sq: 'Faqja nuk u gjet',
+      bs: 'Stranica nije pronađena',
+      de: 'Seite nicht gefunden',
+      it: 'Pagina non trovata'
+    },
+    notFoundDesc: {
+      en: 'This page does not exist. Return to ILMBUDS home or explore our stories and lessons.',
+      sq: 'Kjo faqe nuk ekziston.',
+      bs: 'Ova stranica ne postoji. Vratite se na početnu ili istražite priče i lekcije.',
+      de: 'Diese Seite existiert nicht. Zur Startseite oder zu Geschichten und Lektionen.',
+      it: 'Questa pagina non esiste.'
     }
   },
   cookieConsent: {

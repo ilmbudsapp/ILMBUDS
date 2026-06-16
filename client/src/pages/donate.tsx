@@ -1,80 +1,98 @@
-import React from 'react';
-import { useLocation } from 'wouter';
-import { Card, CardContent } from '@/components/ui/card';
+import { Link } from "wouter";
+import { useTranslation } from "@/hooks/use-translation";
+import { useLanguage } from "@/context/language-context";
+import PageMeta from "@/components/seo/PageMeta";
+import { CONTACT_EMAIL } from "@/lib/seo/siteConfig";
+import ContentAttribution from "@/components/ContentAttribution";
 
 export default function Donate() {
-  const [_, setLocation] = useLocation();
+  const { t } = useTranslation();
+  const { language } = useLanguage();
+  const isDe = language === "de";
+  const isEn = language === "en" || language === "sq" || language === "it";
+
+  const title = isDe ? "ILMBUDS unterstützen" : isEn ? "Support ILMBUDS" : "Podržite ILMBUDS";
+  const description = isDe
+    ? "Wie Sie ILMBUDS unterstützen können — kostenlose islamische Bildung für Kinder in der Diaspora."
+    : isEn
+      ? "How to support ILMBUDS — free Islamic education for children in the diaspora."
+      : "Kako podržati ILMBUDS — besplatno islamsko obrazovanje za djecu u dijaspori.";
 
   return (
-    <div className="min-h-screen flex flex-col"
-         style={{ 
-           background: 'linear-gradient(135deg, #4a90e2 0%, #357abd 100%)',
-           minHeight: '100vh'
-         }}>
-      
-      <header className="bg-gradient-to-r from-indigo-700/80 to-blue-700/80 backdrop-blur-sm text-white p-4 flex justify-between items-center shadow-md">
-        <button onClick={() => setLocation('/')} className="text-white">
-          ← Nazad
-        </button>
-        <h1 className="text-lg font-bold">Podrška ILMBUDS</h1>
-        <div></div>
+    <article className="mx-auto max-w-3xl">
+      <PageMeta title={title} description={description} path="/donate" />
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-slate-900">{title}</h1>
+        <p className="mt-4 text-lg text-slate-600">{description}</p>
       </header>
 
-      <main className="flex-1 p-6">
-        <div className="max-w-4xl mx-auto">
-          
-          {/* Donation Options */}
-          <Card className="mb-6 bg-white/10 backdrop-blur-sm border-white/20">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Podržite Islamsku Edukaciju
-              </h2>
-              <p className="text-white/80 mb-6">
-                ILMBUDS je besplatna aplikacija za islamsko obrazovanje dece. 
-                Vaša podrška pomaže nam da nastavimo sa razvojem kvalitetnog sadržaja.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <Card className="bg-green-600 border-green-500">
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-white font-bold mb-2">PayPal Donacija</h3>
-                    <p className="text-white/80 text-sm mb-3">
-                      Jednokratna donacija
-                    </p>
-                    <button className="bg-white text-green-600 px-4 py-2 rounded font-bold">
-                      Doniraj $5
-                    </button>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-blue-600 border-blue-500">
-                  <CardContent className="p-4 text-center">
-                    <h3 className="text-white font-bold mb-2">Premium Verzija</h3>
-                    <p className="text-white/80 text-sm mb-3">
-                      Dodatni sadržaj bez reklama
-                    </p>
-                    <button className="bg-white text-blue-600 px-4 py-2 rounded font-bold">
-                      $2.99/mesec
-                    </button>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <div className="bg-white/10 p-4 rounded-lg">
-                <h4 className="text-white font-bold mb-2">Kako se koriste sredstva:</h4>
-                <ul className="text-white/80 text-sm space-y-1">
-                  <li>• Razvoj novih lekcija i kvizova</li>
-                  <li>• Poboljšanje aplikacije i dodavanje funkcija</li>
-                  <li>• Održavanje servera i infrastrukture</li>
-                  <li>• Prevođenje na više jezika</li>
-                </ul>
-              </div>
-              
-            </CardContent>
-          </Card>
+      <section className="mb-8 rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6">
+        <h2 className="text-xl font-bold text-emerald-900">
+          {isDe ? "Warum ILMBUDS kostenlos ist" : isEn ? "Why ILMBUDS is free" : "Zašto je ILMBUDS besplatan"}
+        </h2>
+        <p className="mt-3 leading-relaxed text-slate-700">
+          {isDe
+            ? "ILMBUDS wurde gegründet, damit muslimische Familien — unabhängig vom Einkommen — Zugang zu qualitativ hochwertigem Islam-Lernen für Kinder haben. Kerninhalte (Geschichten, Koran, Ilmihal, Quizze) bleiben kostenlos. Optional können Werbeanzeigen (Google AdSense) nach Ihrer Einwilligung angezeigt werden, um Hosting und Weiterentwicklung zu finanzieren."
+            : isEn
+              ? "ILMBUDS was founded so Muslim families — regardless of income — can access quality Islamic learning for children. Core content (stories, Quran, catechism, quizzes) remains free. Optional ads (Google AdSense) may display after your consent to fund hosting and development."
+              : "ILMBUDS je osnovan da muslimanske porodice — bez obzira na prihode — imaju pristup kvalitetnom islamskom učenju za djecu. Osnovni sadržaj (priče, Kuran, ilmihal, kvizovi) ostaje besplatan. Opcioni oglasi (Google AdSense) mogu se prikazati nakon vaše suglasnosti radi finansiranja hostinga i razvoja."}
+        </p>
+      </section>
 
-        </div>
-      </main>
-    </div>
+      <section className="mb-8 rounded-2xl border border-amber-100 bg-white p-6 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900">
+          {isDe ? "Wie Sie helfen können" : isEn ? "How you can help" : "Kako možete pomoći"}
+        </h2>
+        <ul className="mt-4 space-y-4 text-slate-700">
+          <li>
+            <strong>{isDe ? "Empfehlen" : isEn ? "Share" : "Podijelite"}:</strong>{" "}
+            {isDe
+              ? "Erzählen Sie Freunden, Lehrern und Moscheen von ILMBUDS."
+              : isEn
+                ? "Tell friends, teachers and mosques about ILMBUDS."
+                : "Recite prijateljima, učiteljima i džamijama o ILMBUDS."}
+          </li>
+          <li>
+            <strong>{isDe ? "Feedback" : isEn ? "Feedback" : "Povratne informacije"}:</strong>{" "}
+            <Link href="/contact" className="text-emerald-700 underline-offset-2 hover:underline">
+              {t("ui", "contact")}
+            </Link>
+            {" — "}
+            {isDe ? "Verbesserungsvorschläge helfen uns, besser zu werden." : "Suggestions help us improve."}
+          </li>
+          <li>
+            <strong>{isDe ? "Partnerschaften" : isEn ? "Partnerships" : "Partnerstva"}:</strong>{" "}
+            <Link href="/partners" className="text-emerald-700 underline-offset-2 hover:underline">
+              {t("ui", "partners")}
+            </Link>
+          </li>
+          <li>
+            <strong>{isDe ? "Spenden" : isEn ? "Donations" : "Donacije"}:</strong>{" "}
+            {isDe
+              ? "Für direkte Spendenanfragen schreiben Sie an"
+              : isEn
+                ? "For direct donation inquiries email"
+                : "Za direktne donacije pišite na"}{" "}
+            <a href={`mailto:${CONTACT_EMAIL}?subject=ILMBUDS%20Donation`} className="text-emerald-700 underline-offset-2 hover:underline">
+              {CONTACT_EMAIL}
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+        <h2 className="text-lg font-bold text-slate-900">
+          {isDe ? "Verwendung der Mittel" : isEn ? "Use of funds" : "Korištenje sredstava"}
+        </h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
+          <li>{isDe ? "Entwicklung neuer Lektionen und Quizze" : isEn ? "Development of new lessons and quizzes" : "Razvoj novih lekcija i kvizova"}</li>
+          <li>{isDe ? "Übersetzungen (BS, DE, EN, SQ, IT)" : "Translations (BS, DE, EN, SQ, IT)"}</li>
+          <li>{isDe ? "Hosting und technische Infrastruktur (Vercel)" : "Hosting and infrastructure (Vercel)"}</li>
+          <li>{isDe ? "Inhaltliche Prüfung und Qualitätssicherung" : "Content review and quality assurance"}</li>
+        </ul>
+      </section>
+
+      <ContentAttribution compact />
+    </article>
   );
 }

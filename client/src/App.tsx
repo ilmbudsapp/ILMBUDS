@@ -27,6 +27,12 @@ const Settings = lazy(() => import("@/pages/settings"));
 const Badges = lazy(() => import("@/pages/badges"));
 const About = lazy(() => import("@/pages/about"));
 const Partners = lazy(() => import("@/pages/partners"));
+const Contact = lazy(() => import("@/pages/contact"));
+const Author = lazy(() => import("@/pages/author"));
+const Terms = lazy(() => import("@/pages/trust/terms"));
+const Disclaimer = lazy(() => import("@/pages/trust/disclaimer"));
+const EditorialPolicy = lazy(() => import("@/pages/trust/editorial-policy"));
+const Sources = lazy(() => import("@/pages/trust/sources"));
 
 // Main content sections
 const Quran = lazy(() => import("@/pages/quran"));
@@ -67,6 +73,12 @@ function Router() {
         <Route path="/badges" component={Badges} />
         <Route path="/about" component={About} />
         <Route path="/partners" component={Partners} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/author" component={Author} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/disclaimer" component={Disclaimer} />
+        <Route path="/editorial-policy" component={EditorialPolicy} />
+        <Route path="/sources" component={Sources} />
         
         {/* Main content sections */}
         <Route path="/quran" component={Quran} />

@@ -234,6 +234,13 @@ export function Navbar({ variant = 'mobile' }: NavbarProps) {
             className="flex w-full items-center justify-center gap-2 rounded-full border border-amber-400/30 bg-slate-900/50 px-3 py-2 text-sm font-medium text-amber-100 backdrop-blur-sm"
             aria-expanded={menuOpen}
             aria-controls="web-nav-menu"
+            aria-label={pickLabel(currentLanguage, {
+              en: 'Open main menu',
+              bs: 'Otvori glavni meni',
+              sq: 'Hap menynë',
+              de: 'Hauptmenü öffnen',
+              it: 'Apri menu principale',
+            })}
           >
             <span className="text-lg leading-none" aria-hidden="true">
               ☰
