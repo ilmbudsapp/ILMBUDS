@@ -674,7 +674,7 @@ export default function HomeKids() {
                 animate={{ scale: [1, 1.2, 1], rotate: 180 }}
                 transition={{ repeat: Infinity, duration: 2, delay: 0.1 }}
               >
-                ⭐
+                ✨
               </motion.div>
               <motion.div 
                 className="absolute bottom-10 left-6 text-pink-200 text-xl"

@@ -39,7 +39,7 @@ export const ParticleEffect: React.FC<ParticleEffectProps> = ({
   const getParticleEmoji = () => {
     switch (type) {
       case 'stars':
-        return '⭐';
+        return '🌟';
       case 'sparkles':
         return '✨';
       case 'hearts':
@@ -47,7 +47,7 @@ export const ParticleEffect: React.FC<ParticleEffectProps> = ({
       case 'bubbles':
         return '💫';
       default:
-        return '⭐';
+        return '🌟';
     }
   };
 
