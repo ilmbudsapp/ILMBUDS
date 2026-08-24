@@ -381,18 +381,6 @@ export function QuizComplete({
           </motion.div>
         )}
       </motion.div>
-      
-      <RewardedAd
-        isOpen={showRewardedAd}
-        onClose={() => {
-          setShowRewardedAd(false);
-          // Ensure the component is properly marked as having earned extra points
-          if (!hasEarnedExtraPoints && totalEarnedPoints > earnedPoints) {
-            setHasEarnedExtraPoints(true);
-          }
-        }}
-        onRewarded={handleAdRewarded}
-      />
     </>
   );
 }
