@@ -186,7 +186,7 @@ export function WebPremiumHome() {
                 letterSpacing: '-0.03em'
               }}
             >
-              🌟 {t("homeLanding", "heroTitle")}
+              {t("homeLanding", "heroTitle")}
             </h1>
 
             <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/95 md:text-2xl font-medium backdrop-blur-sm">
@@ -265,7 +265,7 @@ export function WebPremiumHome() {
             viewport={{ once: true }}
             className="inline-block rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-emerald-700 shadow-lg"
           >
-            🌟 {t("homeLanding", "featuresLabel")}
+            {t("homeLanding", "featuresLabel")}
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
