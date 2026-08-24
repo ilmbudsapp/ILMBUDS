@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useTranslation } from '@/hooks/use-translation';
 
 interface InterstitialAdProps {
   isOpen: boolean;
   onClose: () => void;
   adUnitId?: string;
-  minDisplayTime?: number; // Minimum seconds to show before allowing close
+  minDisplayTime?: number;
 }
 
 export const InterstitialAd: React.FC<InterstitialAdProps> = ({
   isOpen,
   onClose,
-  adUnitId = 'ca-app-pub-9746293142643974/1234567890', // Replace with real ID
+  adUnitId = 'ca-app-pub-9746293142643974/1234567890',
   minDisplayTime = 5,
 }) => {
-  const { t } = useTranslation();
   const [countdown, setCountdown] = useState(minDisplayTime);
   const [isLoading, setIsLoading] = useState(true);
   const [adError, setAdError] = useState(false);
@@ -102,7 +100,7 @@ export const InterstitialAd: React.FC<InterstitialAdProps> = ({
               <div className="flex flex-col items-center gap-4">
                 <Loader2 className="w-12 h-12 text-emerald-500 animate-spin" />
                 <p className="text-gray-600 dark:text-gray-400">
-                  {t('loadingAd') || 'Loading ad...'}
+                  Loading ad...
                 </p>
               </div>
             ) : adError ? (
@@ -113,17 +111,17 @@ export const InterstitialAd: React.FC<InterstitialAdProps> = ({
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                    {t('adLoadError') || 'Could not load ad'}
+                    Could not load ad
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('continueWithoutAd') || 'You can continue without watching the ad'}
+                    You can continue without watching the ad
                   </p>
                 </div>
                 <Button
                   onClick={onClose}
                   className="bg-emerald-500 hover:bg-emerald-600"
                 >
-                  {t('continue') || 'Continue'}
+                  Continue
                 </Button>
               </div>
             ) : (
@@ -149,7 +147,7 @@ export const InterstitialAd: React.FC<InterstitialAdProps> = ({
                   {/* Support Message */}
                   <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t('adsSupport') || 'Ads help us keep ILMBUDS free for everyone'}
+                      Ads help us keep ILMBUDS free for everyone
                     </p>
                   </div>
                 </div>
@@ -161,11 +159,11 @@ export const InterstitialAd: React.FC<InterstitialAdProps> = ({
           <div className="bg-emerald-50 dark:bg-emerald-900/20 border-t border-emerald-200 dark:border-emerald-800 p-4">
             <div className="flex items-center justify-between max-w-4xl mx-auto">
               <p className="text-sm text-emerald-900 dark:text-emerald-100 font-medium">
-                {t('thankYouForSupport') || 'Thank you for supporting ILMBUDS!'}
+                Thank you for supporting ILMBUDS!
               </p>
               {countdown > 0 && (
                 <p className="text-xs text-emerald-700 dark:text-emerald-300">
-                  {t('canCloseIn') || 'You can close in'} {countdown}s
+                  You can close in {countdown}s
                 </p>
               )}
             </div>

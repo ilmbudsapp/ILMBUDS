@@ -4,7 +4,6 @@ import { X, Heart, Coffee, Gift, Sparkles } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { useTranslation } from '@/hooks/use-translation';
 
 interface DonationModalProps {
   isOpen: boolean;
@@ -42,23 +41,19 @@ const donationTiers = [
 ];
 
 export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useTranslation();
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [customAmount, setCustomAmount] = useState('');
 
   const handleDonate = (tierId: string) => {
     setSelectedTier(tierId);
-    // TODO: Integrate with payment provider (Stripe/PayPal)
     console.log('Donate:', tierId);
-    
-    // For now, just show a thank you message
-    alert(t('thankYouDonation') || 'Thank you for your support! Payment integration coming soon.');
+    alert('Thank you for your support! Payment integration coming soon.');
   };
 
   const handleCustomDonate = () => {
     if (customAmount && parseFloat(customAmount) > 0) {
       console.log('Custom donation:', customAmount);
-      alert(t('thankYouDonation') || 'Thank you for your support! Payment integration coming soon.');
+      alert('Thank you for your support! Payment integration coming soon.');
     }
   };
 
@@ -74,7 +69,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose })
               <Heart className="w-6 h-6 text-rose-500" fill="currentColor" />
             </motion.div>
             <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-              {t('supportUs') || 'Support ILMBUDS'}
+              Support ILMBUDS
             </span>
           </DialogTitle>
         </DialogHeader>
@@ -92,9 +87,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose })
                     صَدَقَةٌ جَارِيَةٌ - Sadaqah Jariyah
                   </h3>
                   <p className="text-emerald-800 dark:text-emerald-200 text-sm leading-relaxed">
-                    {t('sadaqahJariyahText') || 
-                      'When a person dies, their deeds come to an end except for three: ongoing charity (Sadaqah Jariyah), beneficial knowledge, or a righteous child who prays for them. Your support helps thousands of children learn about Islam.'
-                    }
+                    When a person dies, their deeds come to an end except for three: ongoing charity (Sadaqah Jariyah), beneficial knowledge, or a righteous child who prays for them. Your support helps thousands of children learn about Islam.
                   </p>
                   <p className="text-emerald-700 dark:text-emerald-300 text-xs mt-2 italic">
                     — Sahih Muslim 1631
@@ -149,7 +142,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose })
           {/* Custom Amount */}
           <Card>
             <CardContent className="p-6">
-              <h4 className="font-semibold mb-3">{t('customAmount') || 'Custom Amount'}</h4>
+              <h4 className="font-semibold mb-3">Custom Amount</h4>
               <div className="flex gap-2">
                 <input
                   type="number"
@@ -165,7 +158,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose })
                   className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
                   disabled={!customAmount || parseFloat(customAmount) <= 0}
                 >
-                  {t('donate') || 'Donate'}
+                  Donate
                 </Button>
               </div>
             </CardContent>
@@ -174,31 +167,31 @@ export const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose })
           {/* Why Support */}
           <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4">
             <h4 className="font-semibold mb-2 text-sm">
-              {t('whySupport') || 'Why Support Us?'}
+              Why Support Us?
             </h4>
             <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-500">✓</span>
-                <span>{t('supportReason1') || 'Keep ILMBUDS 100% free for all children'}</span>
+                <span>Keep ILMBUDS 100% free for all children</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-500">✓</span>
-                <span>{t('supportReason2') || 'Add more languages and content'}</span>
+                <span>Add more languages and content</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-500">✓</span>
-                <span>{t('supportReason3') || 'Improve app performance and features'}</span>
+                <span>Improve app performance and features</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-500">✓</span>
-                <span>{t('supportReason4') || 'Reach more Muslim families worldwide'}</span>
+                <span>Reach more Muslim families worldwide</span>
               </li>
             </ul>
           </div>
 
           {/* Payment Note */}
           <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-            {t('paymentNote') || 'Secure payment processing via Stripe/PayPal (coming soon)'}
+            Secure payment processing via Stripe/PayPal (coming soon)
           </p>
         </div>
       </DialogContent>

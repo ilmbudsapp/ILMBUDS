@@ -21,31 +21,31 @@ export const BottomNavBar: React.FC = () => {
       id: 'home',
       path: '/',
       icon: <Home className="w-5 h-5" />,
-      label: t('home') || 'Home',
+      label: t('ui', 'home') || 'Home',
     },
     {
       id: 'stories',
       path: '/stories',
       icon: <BookOpen className="w-5 h-5" />,
-      label: t('stories') || 'Stories',
+      label: t('home', 'stories') || 'Stories',
     },
     {
       id: 'quiz',
       path: '/quiz-categories',
       icon: <Brain className="w-5 h-5" />,
-      label: t('quiz') || 'Quiz',
+      label: t('home', 'quiz') || 'Quiz',
     },
     {
       id: 'games',
       path: '/mini-games',
       icon: <Gamepad2 className="w-5 h-5" />,
-      label: t('games') || 'Games',
+      label: t('home', 'games') || 'Games',
     },
     {
       id: 'settings',
       path: '/settings',
       icon: <Settings className="w-5 h-5" />,
-      label: t('settings') || 'Settings',
+      label: t('ui', 'settings') || 'Settings',
     },
   ];
 

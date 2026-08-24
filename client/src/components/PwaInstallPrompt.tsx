@@ -3,7 +3,6 @@ import { X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useTranslation } from '@/hooks/use-translation';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -13,7 +12,6 @@ interface BeforeInstallPromptEvent extends Event {
 export const PwaInstallPrompt: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showPrompt, setShowPrompt] = useState(false);
-  const { t } = useTranslation();
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -90,10 +88,10 @@ export const PwaInstallPrompt: React.FC = () => {
             
             <div className="flex-1 pr-6">
               <h3 className="text-white font-bold text-lg mb-1">
-                {t('installApp') || 'Install ILMBUDS App'}
+                Install ILMBUDS App
               </h3>
               <p className="text-white/90 text-sm mb-3">
-                {t('installAppDescription') || 'Get fast offline access and a better experience. No download needed!'}
+                Get fast offline access and a better experience. No download needed!
               </p>
               
               <Button
@@ -102,7 +100,7 @@ export const PwaInstallPrompt: React.FC = () => {
                 size="lg"
               >
                 <Download className="w-4 h-4 mr-2" />
-                {t('installNow') || 'Install Now'}
+                Install Now
               </Button>
             </div>
           </div>

@@ -99,10 +99,10 @@ export const StreakBar: React.FC = () => {
             </motion.div>
             <div className="flex flex-col">
               <span className="text-white text-xs font-semibold">
-                {t('streak') || 'Streak'}
+                Streak
               </span>
               <span className="text-white text-lg font-bold leading-none">
-                {streak.currentStreak} {t('days') || 'days'}
+                {streak.currentStreak} {t('ui', 'days') || 'days'}
               </span>
             </div>
           </div>
@@ -113,7 +113,7 @@ export const StreakBar: React.FC = () => {
               <Zap className="w-4 h-4 text-yellow-400" />
               <div className="flex flex-col items-end">
                 <span className="text-white/70 text-xs">
-                  {t('points') || 'Points'}
+                  Points
                 </span>
                 <span className="text-white text-lg font-bold leading-none">
                   {user.points || 0}
@@ -127,7 +127,7 @@ export const StreakBar: React.FC = () => {
             <div className="hidden sm:flex items-center gap-1 bg-white/10 rounded-full px-3 py-1">
               <Trophy className="w-3 h-3 text-yellow-400" />
               <span className="text-white text-xs font-medium">
-                {t('best') || 'Best'}: {streak.longestStreak}
+                Best: {streak.longestStreak}
               </span>
             </div>
           )}
