@@ -128,12 +128,18 @@ export function WebPremiumHome() {
 
   return (
     <div className="premium-home text-slate-900">
-      {/* Hero - Ultra Premium Mesh Gradient */}
+      {/* Hero - Ultra Premium Mesh Gradient with Islamic Elements */}
       <section className="relative overflow-hidden" aria-labelledby="hero-heading">
         {/* Animated mesh gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-900 via-purple-900 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-teal-800 to-slate-950" />
+        
+        {/* Islamic decorative elements */}
+        <div className="pointer-events-none absolute left-10 top-10 text-6xl opacity-10" aria-hidden>☪️</div>
+        <div className="pointer-events-none absolute right-20 top-20 text-5xl opacity-10" aria-hidden>🕌</div>
+        <div className="pointer-events-none absolute left-1/4 bottom-20 text-4xl opacity-10" aria-hidden>📿</div>
+        
         <div
-          className="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-fuchsia-500/30 to-violet-600/30 blur-[120px] animate-pulse"
+          className="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-600/30 blur-[120px] animate-pulse"
           style={{ animationDuration: '8s' }}
           aria-hidden
         />
@@ -150,8 +156,18 @@ export function WebPremiumHome() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 md:grid-cols-2 md:py-28">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
+            {/* Bismillah - Arabic Islamic phrase */}
             <motion.div 
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-gradient-to-r from-white/15 to-white/5 px-5 py-2.5 text-sm font-bold text-white shadow-2xl backdrop-blur-xl"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-4 text-center text-2xl font-arabic text-emerald-200"
+              style={{ fontFamily: "'Scheherazade New', 'Arial', serif" }}
+            >
+              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </motion.div>
+            
+            <motion.div 
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 px-5 py-2.5 text-sm font-bold text-white shadow-2xl backdrop-blur-xl"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
@@ -159,18 +175,18 @@ export function WebPremiumHome() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
               </span>
-              {t("homeLanding", "heroBadge")}
+              🕌 {t("homeLanding", "heroBadge")}
             </motion.div>
 
             <h1
               id="hero-heading"
               className="text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
               style={{ 
-                textShadow: '0 0 80px rgba(139, 92, 246, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
+                textShadow: '0 0 80px rgba(5, 150, 105, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
                 letterSpacing: '-0.03em'
               }}
             >
-              {t("homeLanding", "heroTitle")}
+              🌟 {t("homeLanding", "heroTitle")}
             </h1>
 
             <p className="mt-7 max-w-xl text-xl leading-relaxed text-white/95 md:text-2xl font-medium backdrop-blur-sm">
@@ -182,15 +198,15 @@ export function WebPremiumHome() {
                 href="/stories"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-300 px-8 py-5 text-lg font-black text-slate-950 shadow-[0_0_40px_rgba(251,191,36,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200"
               >
-                <span className="relative z-10">{t("homeLanding", "ctaStart")}</span>
+                <span className="relative z-10">✨ {t("homeLanding", "ctaStart")}</span>
                 <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 <div className="absolute inset-0 -z-0 bg-gradient-to-r from-yellow-300 via-amber-300 to-yellow-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               </Link>
               <a
                 href="#content-cards"
-                className="group inline-flex items-center gap-2 rounded-2xl border-2 border-white/40 bg-white/10 px-8 py-5 text-lg font-bold text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white/60 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="group inline-flex items-center gap-2 rounded-2xl border-2 border-white/40 bg-emerald-500/20 px-8 py-5 text-lg font-bold text-white shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white/60 hover:bg-emerald-500/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <span>{t("homeLanding", "ctaExplore")}</span>
+                <span>🔍 {t("homeLanding", "ctaExplore")}</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </div>
@@ -247,9 +263,9 @@ export function WebPremiumHome() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block rounded-full bg-gradient-to-r from-violet-100 to-purple-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-violet-700 shadow-lg"
+            className="inline-block rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-emerald-700 shadow-lg"
           >
-            {t("homeLanding", "featuresLabel")}
+            🌟 {t("homeLanding", "featuresLabel")}
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
@@ -286,12 +302,12 @@ export function WebPremiumHome() {
             >
               <Link
                 href={f.href}
-                className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white/60 bg-white/70 p-8 shadow-[0_10px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:border-violet-200 hover:bg-white/90 hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-500"
+                className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-emerald-200 bg-white p-8 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:border-emerald-400 hover:bg-emerald-50 hover:shadow-[0_20px_60px_rgba(5,150,105,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-500"
               >
-                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-violet-400/0 via-purple-400/0 to-fuchsia-400/0 opacity-0 transition-opacity duration-500 group-hover:from-violet-400/20 group-hover:via-purple-400/10 group-hover:to-fuchsia-400/20 group-hover:opacity-100" aria-hidden></div>
+                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-emerald-400/0 via-teal-400/0 to-cyan-400/0 opacity-0 transition-opacity duration-500 group-hover:from-emerald-400/20 group-hover:via-teal-400/10 group-hover:to-cyan-400/20 group-hover:opacity-100" aria-hidden></div>
                 
                 <motion.div 
-                  className="relative mb-6 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-violet-500 to-purple-600 text-5xl shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-violet-500/50"
+                  className="relative mb-6 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-emerald-500 to-teal-600 text-5xl shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-emerald-500/50"
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                   aria-hidden
@@ -299,13 +315,13 @@ export function WebPremiumHome() {
                   {f.icon}
                 </motion.div>
                 
-                <h3 className="relative text-2xl font-black text-slate-900 transition-colors duration-300 group-hover:text-violet-700 lg:text-3xl">
+                <h3 className="relative text-2xl font-black text-slate-900 transition-colors duration-300 group-hover:text-emerald-700 lg:text-3xl">
                   {t(f.titleSection, f.titleKey)}
                 </h3>
                 <p className="relative mt-4 flex-1 text-base leading-relaxed text-slate-600 lg:text-lg">
                   {t(f.descSection, f.descKey)}
                 </p>
-                <span className="relative mt-6 inline-flex items-center gap-2 text-base font-black text-violet-600 transition-all duration-300 group-hover:gap-3 group-hover:text-violet-700">
+                <span className="relative mt-6 inline-flex items-center gap-2 text-base font-black text-emerald-600 transition-all duration-300 group-hover:gap-3 group-hover:text-emerald-700">
                   {t("ui", "explore")} 
                   <span className="text-xl">→</span>
                 </span>
@@ -315,11 +331,15 @@ export function WebPremiumHome() {
         </div>
       </section>
 
-      {/* Learning path - Modern Glassmorphism */}
+      {/* Learning path - Modern Glassmorphism with Islamic colors */}
       <section id="learning-path" className="relative overflow-hidden py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50"></div>
-        <div className="absolute -right-64 top-0 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-violet-300/30 to-purple-400/30 blur-[100px]" aria-hidden></div>
-        <div className="absolute -left-64 bottom-0 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-fuchsia-300/30 to-pink-400/30 blur-[100px]" aria-hidden></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50"></div>
+        <div className="absolute -right-64 top-0 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-300/30 to-teal-400/30 blur-[100px]" aria-hidden></div>
+        <div className="absolute -left-64 bottom-0 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-cyan-300/30 to-teal-400/30 blur-[100px]" aria-hidden></div>
+        
+        {/* Arabic decoration */}
+        <div className="pointer-events-none absolute right-10 top-10 text-6xl opacity-5" aria-hidden>📿</div>
+        <div className="pointer-events-none absolute left-10 bottom-10 text-6xl opacity-5" aria-hidden>☪️</div>
         
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 md:grid-cols-2">
           <motion.div
@@ -328,7 +348,7 @@ export function WebPremiumHome() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="inline-block rounded-full bg-gradient-to-r from-violet-100 to-purple-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-violet-700 shadow-lg">{t("homeLanding", "pathLabel")}</p>
+            <p className="inline-block rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-emerald-700 shadow-lg">📚 {t("homeLanding", "pathLabel")}</p>
             <h2 className="mt-5 text-4xl font-black text-slate-900 md:text-5xl" style={{ letterSpacing: '-0.02em' }}>
               {t("homeLanding", "pathTitle")}
             </h2>
@@ -345,13 +365,13 @@ export function WebPremiumHome() {
                 viewport={{ once: true }}
                 variants={fadeUp}
                 whileHover={{ x: 8 }}
-                className="group flex items-center gap-6 rounded-[2rem] border-2 border-white/60 bg-white/70 p-7 shadow-[0_8px_32px_rgba(0,0,0,0.06)] backdrop-blur-xl transition-all duration-300 hover:border-violet-200 hover:bg-white/90 hover:shadow-[0_12px_48px_rgba(139,92,246,0.12)]"
+                className="group flex items-center gap-6 rounded-[2rem] border-2 border-emerald-200 bg-white p-7 shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-50 hover:shadow-[0_12px_48px_rgba(5,150,105,0.15)]"
               >
-                <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 text-2xl font-black text-white shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-violet-500/50">
+                <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-2xl font-black text-white shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-emerald-500/50">
                   {i + 1}
-                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-400 to-purple-500 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-50" aria-hidden></div>
+                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-50" aria-hidden></div>
                 </div>
-                <b className="text-xl font-black text-slate-800 transition-colors duration-300 group-hover:text-violet-700 lg:text-2xl">{step}</b>
+                <b className="text-xl font-black text-slate-800 transition-colors duration-300 group-hover:text-emerald-700 lg:text-2xl">{step}</b>
               </motion.div>
             ))}
           </div>
@@ -365,9 +385,9 @@ export function WebPremiumHome() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block rounded-full bg-gradient-to-r from-violet-100 to-purple-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-violet-700 shadow-lg"
+            className="inline-block rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-emerald-700 shadow-lg"
           >
-            {t("homeLanding", "contentLabel")}
+            🎯 {t("homeLanding", "contentLabel")}
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
@@ -395,24 +415,25 @@ export function WebPremiumHome() {
             >
               <Link
                 href={card.href}
-                className="group relative block overflow-hidden rounded-[2rem] border-2 border-white/60 bg-white/70 p-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-500 hover:border-violet-200 hover:bg-white/90 hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-500"
+                className="group relative block overflow-hidden rounded-[2rem] border-2 border-emerald-200 bg-white p-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:border-emerald-400 hover:bg-emerald-50 hover:shadow-[0_20px_60px_rgba(5,150,105,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-500"
               >
-                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-violet-400/0 via-purple-400/0 to-fuchsia-400/0 opacity-0 transition-opacity duration-500 group-hover:from-violet-400/20 group-hover:via-purple-400/10 group-hover:to-fuchsia-400/20 group-hover:opacity-100" aria-hidden></div>
+                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-emerald-400/0 via-teal-400/0 to-cyan-400/0 opacity-0 transition-opacity duration-500 group-hover:from-emerald-400/20 group-hover:via-teal-400/10 group-hover:to-cyan-400/20 group-hover:opacity-100" aria-hidden></div>
                 
-                <div className="relative mb-5 flex h-36 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-violet-100 via-purple-100 to-fuchsia-100 p-5 shadow-inner transition-all duration-500 group-hover:scale-105">
+                {/* Vibrant gradient background for images - child-friendly */}
+                <div className="relative mb-5 flex h-36 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-400 p-5 shadow-lg transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl">
                   <img
                     src={card.image}
                     alt=""
-                    className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="max-h-full max-w-full object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
                 </div>
                 
-                <h3 className="relative text-xl font-black text-slate-900 transition-colors duration-300 group-hover:text-violet-700 lg:text-2xl">
+                <h3 className="relative text-xl font-black text-slate-900 transition-colors duration-300 group-hover:text-emerald-700 lg:text-2xl">
                   {t(card.section, card.titleKey)}
                 </h3>
                 
-                <span className="relative mt-3 inline-flex items-center gap-2 text-sm font-black text-violet-600 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                <span className="relative mt-3 inline-flex items-center gap-2 text-sm font-black text-emerald-600 opacity-0 transition-all duration-300 group-hover:opacity-100">
                   {t("ui", "explore")} 
                   <span className="text-lg">→</span>
                 </span>
@@ -431,9 +452,9 @@ export function WebPremiumHome() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block rounded-full bg-gradient-to-r from-violet-100 to-purple-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-violet-700 shadow-lg"
+            className="inline-block rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-emerald-700 shadow-lg"
           >
-            {t("homeLanding", "languagesLabel")}
+            🌍 {t("homeLanding", "languagesLabel")}
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
@@ -470,7 +491,7 @@ export function WebPremiumHome() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + i * 0.05 }}
                 whileHover={{ scale: 1.1, y: -4 }}
-                className="rounded-2xl border-2 border-violet-200/50 bg-white/80 px-8 py-4 text-lg font-black text-slate-800 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-violet-300 hover:bg-white hover:shadow-2xl hover:shadow-violet-500/20"
+                className="rounded-2xl border-2 border-emerald-200/50 bg-white/80 px-8 py-4 text-lg font-black text-slate-800 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-emerald-300 hover:bg-white hover:shadow-2xl hover:shadow-emerald-500/20"
               >
                 {lang}
               </motion.span>
@@ -479,10 +500,14 @@ export function WebPremiumHome() {
         </div>
       </section>
 
-      {/* Stats band - Vibrant Gradient */}
+      {/* Stats band - Islamic Green Gradient */}
       <section id="stats" className="relative overflow-hidden py-20" aria-label={t("homeLanding", "statsAria")}>
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-900 via-purple-900 to-fuchsia-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900 via-teal-900 to-cyan-900"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50" aria-hidden></div>
+        
+        {/* Islamic star decorations */}
+        <div className="pointer-events-none absolute left-10 top-10 text-6xl opacity-10" aria-hidden>⭐</div>
+        <div className="pointer-events-none absolute right-10 bottom-10 text-6xl opacity-10" aria-hidden>☪️</div>
         
         <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 md:grid-cols-4">
           {stats.map((s, i) => (
@@ -506,16 +531,31 @@ export function WebPremiumHome() {
             </motion.div>
           ))}
         </div>
+        
+        {/* Arabic phrase at bottom */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative mt-10 text-center text-xl font-arabic text-emerald-200"
+          style={{ fontFamily: "'Scheherazade New', 'Arial', serif" }}
+        >
+          الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+        </motion.div>
       </section>
 
       {/* Latest educational content */}
       <HomeLatestContent />
 
-      {/* FAQ - Modern Glassmorphism */}
+      {/* FAQ - Modern Glassmorphism with Islamic Green */}
       <section id="faq" className="relative overflow-hidden py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-violet-950 to-purple-950"></div>
-        <div className="absolute -right-64 top-0 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-violet-600/20 to-purple-700/20 blur-[120px]" aria-hidden></div>
-        <div className="absolute -left-64 bottom-0 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-fuchsia-600/20 to-pink-700/20 blur-[120px]" aria-hidden></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-950"></div>
+        <div className="absolute -right-64 top-0 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-700/20 blur-[120px]" aria-hidden></div>
+        <div className="absolute -left-64 bottom-0 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-cyan-600/20 to-teal-700/20 blur-[120px]" aria-hidden></div>
+        
+        {/* Islamic decorations */}
+        <div className="pointer-events-none absolute right-20 top-20 text-8xl opacity-5" aria-hidden>🕌</div>
+        <div className="pointer-events-none absolute left-20 bottom-20 text-8xl opacity-5" aria-hidden>📿</div>
         
         <div className="relative mx-auto max-w-4xl px-6">
           <motion.h2 
@@ -524,11 +564,11 @@ export function WebPremiumHome() {
             viewport={{ once: true }}
             className="text-center text-4xl font-black text-white md:text-5xl"
             style={{ 
-              textShadow: '0 0 80px rgba(236, 72, 153, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
+              textShadow: '0 0 80px rgba(5, 150, 105, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
               letterSpacing: '-0.02em'
             }}
           >
-            {t("homeSeo", "faqHeading")}
+            ❓ {t("homeSeo", "faqHeading")}
           </motion.h2>
 
           <div className="mt-14 space-y-5">
@@ -539,13 +579,13 @@ export function WebPremiumHome() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group rounded-[2rem] border-2 border-white/20 bg-white/10 p-7 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-2xl transition-all duration-300 open:border-violet-400/40 open:bg-white/15 open:shadow-[0_20px_60px_rgba(139,92,246,0.3)] hover:border-white/30"
+                className="group rounded-[2rem] border-2 border-white/20 bg-white/10 p-7 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-2xl transition-all duration-300 open:border-emerald-400/40 open:bg-white/15 open:shadow-[0_20px_60px_rgba(5,150,105,0.3)] hover:border-white/30"
               >
-                <summary className="cursor-pointer list-none text-xl font-black text-white marker:content-none transition-colors duration-300 group-hover:text-violet-200 lg:text-2xl [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer list-none text-xl font-black text-white marker:content-none transition-colors duration-300 group-hover:text-emerald-200 lg:text-2xl [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-4">
                     {q}
                     <motion.span 
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/30 text-2xl text-violet-200 transition-all duration-300 group-open:rotate-45 group-open:bg-violet-500/50 group-hover:bg-violet-500/40"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/30 text-2xl text-emerald-200 transition-all duration-300 group-open:rotate-45 group-open:bg-emerald-500/50 group-hover:bg-emerald-500/40"
                       whileHover={{ scale: 1.1 }}
                     >
                       +
