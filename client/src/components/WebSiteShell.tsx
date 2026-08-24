@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { GlobeLanguageSwitcher } from "@/components/globe-language-switcher";
 import { Navbar } from "@/components/navbar";
@@ -9,6 +9,12 @@ import { useLanguage } from "@/context/language-context";
 import { getRouteSeo } from "@/lib/seo/routeSeo";
 import { WebMagicBackground } from "@/components/web/WebMagicBackground";
 import CookieConsent from "@/components/CookieConsent";
+import { PwaInstallPrompt } from "@/components/PwaInstallPrompt";
+import { BottomNavBar } from "@/components/BottomNavBar";
+import { StreakBar } from "@/components/StreakBar";
+import { DonationModal } from "@/components/DonationModal";
+import { Heart } from "lucide-react";
+
 type Props = {
   children: ReactNode;
 };
@@ -21,6 +27,8 @@ export default function WebSiteShell({ children }: Props) {
   const routeSeo = getRouteSeo(location, language);
   const noindexPaths = ["/settings", "/profile", "/parent-dashboard", "/badges"];
   const shouldNoindex = noindexPaths.some((p) => location === p || location.startsWith(`${p}/`));
+  const [showDonationModal, setShowDonationModal] = useState(false);
+
   useEffect(() => {
     document.documentElement.classList.add("ilmbuds-web", "ilmbuds-web-light");
     return () => {
@@ -32,6 +40,12 @@ export default function WebSiteShell({ children }: Props) {
     <div className="ilmbuds-web ilmbuds-web-light relative flex min-h-screen flex-col font-display text-slate-900">
       <WebMagicBackground />
       <SeoEnhancements />
+      
+      {/* New PWA & Gamification Components */}
+      <PwaInstallPrompt />
+      <StreakBar />
+      <BottomNavBar />
+      <DonationModal isOpen={showDonationModal} onClose={() => setShowDonationModal(false)} />
       {shouldNoindex ? (
         <PageMeta title="ILMBUDS" description="Settings" path={location} noindex />
       ) : routeSeo ? (
@@ -126,9 +140,16 @@ export default function WebSiteShell({ children }: Props) {
           <Link href="/about#legal" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "legalInfo")}
           </Link>
-          <Link href="/partners" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
+            <Link href="/partners" className="text-amber-200/90 underline-offset-2 hover:text-amber-100 hover:underline">
             {t("ui", "partners")}
           </Link>
+          <button 
+            onClick={() => setShowDonationModal(true)}
+            className="text-rose-300 underline-offset-2 hover:text-rose-200 hover:underline inline-flex items-center gap-1"
+          >
+            <Heart className="w-3 h-3" fill="currentColor" />
+            {t("ui", "donate") || "Support Us"}
+          </button>
         </nav>
         <p>
           © {new Date().getFullYear()} ILMBUDS · {t("homeSeo", "authorLabel")}:{" "}

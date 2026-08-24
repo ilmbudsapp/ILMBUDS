@@ -5,6 +5,8 @@ import Confetti from 'react-confetti';
 import { playSound } from '@/lib/sounds';
 import { useIsMobile } from '@/hooks/use-mobile'; 
 import { motion } from 'framer-motion';
+import { ParticleEffect, SuccessAnimation } from '@/components/ParticleEffects';
+import { InterstitialAd, useInterstitialAd } from '@/components/InterstitialAd';
 // Rewarded ads handled by Android MainActivity
 // AdMob imports DISABLED to prevent crash
 // import { canShowRewarded, markRewardedShown, showInterstitialAd } from '@/services/ad-service';
@@ -27,6 +29,7 @@ export function QuizComplete({
 }: QuizCompleteProps) {
   const isMobile = useIsMobile();
   const { t } = useTranslation();
+  const { showAd, triggerAd, closeAd } = useInterstitialAd();
   const [windowDimension, setWindowDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight
@@ -37,6 +40,7 @@ export function QuizComplete({
   const [hasEarnedExtraPoints, setHasEarnedExtraPoints] = useState(false);
   const [hasEarnedBonus, setHasEarnedBonus] = useState(false);
   const [totalEarnedPoints, setTotalEarnedPoints] = useState(earnedPoints);
+  const [showSuccessAnim, setShowSuccessAnim] = useState(false);
   
   const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
   const incorrectAnswers = totalQuestions - correctAnswers;
@@ -71,7 +75,13 @@ export function QuizComplete({
     // Show confetti for perfect score
     if (isPerfectScore) {
       setShowConfetti(true);
+      setShowSuccessAnim(true);
       playSound('finish');
+      
+      // Update streak
+      if ((window as any).updateIlmbudsStreak) {
+        (window as any).updateIlmbudsStreak();
+      }
       
       // Vibrate on mobile devices for perfect score (if supported)
       if (isMobile && 'vibrate' in navigator) {
@@ -82,6 +92,7 @@ export function QuizComplete({
       // Hide confetti after some time
       const timer = setTimeout(() => {
         setShowConfetti(false);
+        setShowSuccessAnim(false);
       }, 8000);
       
       return () => clearTimeout(timer);
@@ -91,10 +102,17 @@ export function QuizComplete({
     // For good scores, play a success sound
     if (accuracy >= 80) {
       playSound('finish');
+      // Update streak
+      if ((window as any).updateIlmbudsStreak) {
+        (window as any).updateIlmbudsStreak();
+      }
     } else {
       // For lower scores, play a subtle completion sound
       playSound('click');
     }
+    
+    // Trigger interstitial ad every 3 quizzes
+    triggerAd(3);
     
     // Set animation complete after a delay
     const animTimer = setTimeout(() => {
@@ -102,7 +120,7 @@ export function QuizComplete({
     }, 800);
     
     return () => clearTimeout(animTimer);
-  }, [isPerfectScore, accuracy, isMobile]);
+  }, [isPerfectScore, accuracy, isMobile, triggerAd]);
 
   // Handler for opening rewarded ad
   const handleWatchAd = () => {
@@ -135,6 +153,15 @@ export function QuizComplete({
   
   return (
     <>
+      {/* Success Animation with Confetti */}
+      <SuccessAnimation show={showSuccessAnim} />
+      
+      {/* Particle Effects for Perfect Score */}
+      {isPerfectScore && <ParticleEffect type="stars" count={30} duration={5000} />}
+      
+      {/* Interstitial Ad */}
+      <InterstitialAd isOpen={showAd} onClose={closeAd} />
+      
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

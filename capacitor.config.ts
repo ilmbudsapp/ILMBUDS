@@ -23,12 +23,10 @@ const config: CapacitorConfig = {
       showSpinner: true,
       spinnerColor: "#2196F3"
     },
-    // AdMob plugin configuration
+    // AdMob plugin configuration - PRODUCTION
     AdMob: {
       appIdAndroid: "ca-app-pub-9746293142643974~5047751469",
       bannerAdUnitId: "ca-app-pub-9746293142643974/3548505956",
-      interstitialAdUnitId: "ca-app-pub-9746293142643974/7649626393",
-      rewardedAdUnitId: "ca-app-pub-9746293142643974/2411518252",
       isTesting: false,
       npa: true,
       tagForChildDirectedTreatment: true,
