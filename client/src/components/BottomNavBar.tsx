@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { Home, BookOpen, Brain, Gamepad2, Settings } from 'lucide-react';
-import { useTranslation } from '@/hooks/use-translation';
 import { playSound } from '@/lib/sounds';
 
 interface NavItem {
@@ -14,38 +13,37 @@ interface NavItem {
 
 export const BottomNavBar: React.FC = () => {
   const [location, setLocation] = useLocation();
-  const { t } = useTranslation();
 
   const navItems: NavItem[] = [
     {
       id: 'home',
       path: '/',
       icon: <Home className="w-5 h-5" />,
-      label: t('ui', 'home') || 'Home',
+      label: 'Home',
     },
     {
       id: 'stories',
       path: '/stories',
       icon: <BookOpen className="w-5 h-5" />,
-      label: t('home', 'stories') || 'Stories',
+      label: 'Stories',
     },
     {
       id: 'quiz',
       path: '/quiz-categories',
       icon: <Brain className="w-5 h-5" />,
-      label: t('home', 'quiz') || 'Quiz',
+      label: 'Quiz',
     },
     {
       id: 'games',
       path: '/mini-games',
       icon: <Gamepad2 className="w-5 h-5" />,
-      label: t('home', 'games') || 'Games',
+      label: 'Games',
     },
     {
       id: 'settings',
       path: '/settings',
       icon: <Settings className="w-5 h-5" />,
-      label: t('ui', 'settings') || 'Settings',
+      label: 'Settings',
     },
   ];
 

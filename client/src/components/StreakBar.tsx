@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, Star, Trophy, Zap } from 'lucide-react';
 import { useUserContext } from '@/context/user-context';
-import { useTranslation } from '@/hooks/use-translation';
 
 interface StreakData {
   currentStreak: number;
@@ -12,7 +11,6 @@ interface StreakData {
 
 export const StreakBar: React.FC = () => {
   const { user } = useUserContext();
-  const { t } = useTranslation();
   const [streak, setStreak] = useState<StreakData>({
     currentStreak: 0,
     longestStreak: 0,
@@ -102,7 +100,7 @@ export const StreakBar: React.FC = () => {
                 Streak
               </span>
               <span className="text-white text-lg font-bold leading-none">
-                {streak.currentStreak} {t('ui', 'days') || 'days'}
+                {streak.currentStreak} days
               </span>
             </div>
           </div>
