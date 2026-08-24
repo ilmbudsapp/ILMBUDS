@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium smooth scrolling */
+/* Premium smooth scrolling and Poppins font */
 @layer base {
   * {
     -webkit-font-smoothing: antialiased;
@@ -21,7 +21,7 @@
   }
   
   body {
-    font-family: 'Inter', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Poppins', 'Nunito', ui-sans-serif, system-ui, sans-serif;
   }
 }
 

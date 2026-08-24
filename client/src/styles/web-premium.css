@@ -10,8 +10,7 @@
   --web-warm-bg: #f8f5ec;
   --web-navy: #0f172a;
   color: #0f172a;
-  font-family: "Inter", "Nunito", ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "cv11", "ss01";
+  font-family: "Poppins", "Nunito", ui-sans-serif, system-ui, sans-serif;
   font-optical-sizing: auto;
 }
 

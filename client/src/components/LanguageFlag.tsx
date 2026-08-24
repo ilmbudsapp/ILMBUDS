@@ -36,12 +36,19 @@ export function LanguageFlag({ lang, className = "h-5 w-7 shrink-0 rounded-sm sh
       return (
         <svg viewBox="0 0 60 40" {...common}>
           <rect width="60" height="40" fill="#002395" />
-          <path d="M0 40L30 0 60 40z" fill="#FECB00" />
-          <circle cx="14" cy="28" r="2.2" fill="#fff" />
-          <circle cx="22" cy="22" r="2.2" fill="#fff" />
-          <circle cx="30" cy="16" r="2.2" fill="#fff" />
-          <circle cx="38" cy="22" r="2.2" fill="#fff" />
-          <circle cx="46" cy="28" r="2.2" fill="#fff" />
+          <path d="M0 0L26 40H0z" fill="#FECB00" />
+          <g fill="#fff">
+            <circle cx="11" cy="6" r="1.8" />
+            <circle cx="16" cy="10" r="1.8" />
+            <circle cx="21" cy="14" r="1.8" />
+            <circle cx="11" cy="14" r="1.8" />
+            <circle cx="16" cy="18" r="1.8" />
+            <circle cx="21" cy="22" r="1.8" />
+            <circle cx="11" cy="22" r="1.8" />
+            <circle cx="16" cy="26" r="1.8" />
+            <circle cx="21" cy="30" r="1.8" />
+            <circle cx="11" cy="30" r="1.8" />
+          </g>
         </svg>
       );
     case "de":

@@ -164,7 +164,7 @@ export function WebPremiumHome() {
 
             <h1
               id="hero-heading"
-              className="text-5xl font-black leading-[1.1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+              className="text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
               style={{ 
                 textShadow: '0 0 80px rgba(139, 92, 246, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
                 letterSpacing: '-0.03em'
@@ -256,7 +256,7 @@ export function WebPremiumHome() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-5 text-5xl font-black text-slate-900 md:text-6xl lg:text-7xl"
+            className="mt-5 text-4xl font-black text-slate-900 md:text-5xl"
             style={{ letterSpacing: '-0.02em' }}
           >
             {t("homeLanding", "featuresTitle")}
@@ -329,7 +329,7 @@ export function WebPremiumHome() {
             transition={{ duration: 0.6 }}
           >
             <p className="inline-block rounded-full bg-gradient-to-r from-violet-100 to-purple-100 px-5 py-2 text-sm font-black uppercase tracking-wider text-violet-700 shadow-lg">{t("homeLanding", "pathLabel")}</p>
-            <h2 className="mt-5 text-5xl font-black text-slate-900 md:text-6xl" style={{ letterSpacing: '-0.02em' }}>
+            <h2 className="mt-5 text-4xl font-black text-slate-900 md:text-5xl" style={{ letterSpacing: '-0.02em' }}>
               {t("homeLanding", "pathTitle")}
             </h2>
             <p className="mt-6 text-xl font-medium leading-relaxed text-slate-600">{t("homeLanding", "pathBody")}</p>
@@ -374,7 +374,7 @@ export function WebPremiumHome() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-5 text-5xl font-black text-slate-900 md:text-6xl lg:text-7xl"
+            className="mt-5 text-4xl font-black text-slate-900 md:text-5xl"
             style={{ letterSpacing: '-0.02em' }}
           >
             {t("homeLanding", "contentTitle")}
@@ -440,7 +440,7 @@ export function WebPremiumHome() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-5 text-5xl font-black text-slate-900 md:text-6xl lg:text-7xl"
+            className="mt-5 text-4xl font-black text-slate-900 md:text-5xl"
             style={{ letterSpacing: '-0.02em' }}
           >
             {t("homeLanding", "languagesTitle")}
@@ -522,7 +522,7 @@ export function WebPremiumHome() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center text-5xl font-black text-white md:text-6xl lg:text-7xl"
+            className="text-center text-4xl font-black text-white md:text-5xl"
             style={{ 
               textShadow: '0 0 80px rgba(236, 72, 153, 0.5), 0 10px 40px rgba(0, 0, 0, 0.4)',
               letterSpacing: '-0.02em'
