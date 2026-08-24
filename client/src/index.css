@@ -1,4 +1,4 @@
-/* Modular CSS Architecture - ILMBUDS v8+ */
+/* Modular CSS Architecture - ILMBUDS v8+ ULTRA PREMIUM 2026 */
 @import './styles/base.css';
 @import './styles/animations.css';
 @import './styles/components.css';
@@ -8,6 +8,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Premium smooth scrolling */
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  }
+}
 
 /* ILMBUDS Original Card Colors - ChatGPT solution using CSS variables and @layer */
 @layer components {
