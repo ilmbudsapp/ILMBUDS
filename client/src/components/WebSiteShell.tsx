@@ -158,7 +158,7 @@ export default function WebSiteShell({ children }: Props) {
           </Link>
           {" · "}
           <a
-            href="https://agrmultimedia.eu"
+            href="https://www.agrmultimedia.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-300 underline-offset-2 hover:text-emerald-200 hover:underline"

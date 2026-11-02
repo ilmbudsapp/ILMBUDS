@@ -5,10 +5,10 @@
 ## Organization
 
 - **Name:** ILMBUDS
-- **Publisher:** AGRMULTIMEDIA (https://agrmultimedia.eu)
+- **Publisher:** AGRMULTIMEDIA (https://www.agrmultimedia.com)
 - **Author:** Agron Osmani (agron6922@gmail.com)
 - **Languages:** Bosnian, German, English, Albanian, Italian
-- **sameAs:** https://www.ilmbuds.com/ | https://agrmultimedia.eu | https://play.google.com/store/apps/details?id=com.ilmbuds.app | https://en.wikipedia.org/wiki/Islamic_education | https://www.wikidata.org/wiki/Q432
+- **sameAs:** https://www.ilmbuds.com/ | https://www.agrmultimedia.com | https://play.google.com/store/apps/details?id=com.ilmbuds.app | https://en.wikipedia.org/wiki/Islamic_education | https://www.wikidata.org/wiki/Q432
 
 ## What ILMBUDS is
 

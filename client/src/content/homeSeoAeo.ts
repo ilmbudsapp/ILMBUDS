@@ -192,7 +192,7 @@ const bs: HomeSeoAeo = {
     { label: "Wikipedia — Islamic education", href: "https://en.wikipedia.org/wiki/Islamic_education" },
     { label: "Wikidata — Islam", href: "https://www.wikidata.org/wiki/Q432" },
     { label: "ILMBUDS na Google Play", href: "https://play.google.com/store/apps/details?id=com.ilmbuds.app" },
-    { label: "AGRMULTIMEDIA", href: "https://agrmultimedia.eu" },
+    { label: "AGRMULTIMEDIA", href: "https://www.agrmultimedia.com" },
   ],
   imgAlt:
     "ILMBUDS logo — islamska obrazovna platforma za djecu sa pričama, Kuranom i kvizovima",
@@ -336,7 +336,7 @@ const en: HomeSeoAeo = {
     { label: "Wikipedia — Islamic education", href: "https://en.wikipedia.org/wiki/Islamic_education" },
     { label: "Wikidata — Islam", href: "https://www.wikidata.org/wiki/Q432" },
     { label: "ILMBUDS on Google Play", href: "https://play.google.com/store/apps/details?id=com.ilmbuds.app" },
-    { label: "AGRMULTIMEDIA", href: "https://agrmultimedia.eu" },
+    { label: "AGRMULTIMEDIA", href: "https://www.agrmultimedia.com" },
   ],
   imgAlt: "ILMBUDS logo — Islamic educational platform for children with stories, Quran and quizzes",
 };

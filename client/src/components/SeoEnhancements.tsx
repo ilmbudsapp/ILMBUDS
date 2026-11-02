@@ -130,7 +130,7 @@ export function SeoEnhancements() {
 
         name: PUBLISHER,
 
-        url: "https://agrmultimedia.eu",
+        url: "https://www.agrmultimedia.com",
 
       },
 
@@ -164,7 +164,7 @@ export function SeoEnhancements() {
 
       jobTitle: "Islamic educational content author",
 
-      worksFor: { "@type": "Organization", name: PUBLISHER, url: "https://agrmultimedia.eu" },
+      worksFor: { "@type": "Organization", name: PUBLISHER, url: "https://www.agrmultimedia.com" },
 
       url: `${SITE_URL}/author`,
 
